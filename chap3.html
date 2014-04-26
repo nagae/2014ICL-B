@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第3回 アカデミックスキルI レポートの作成技術(1)</title>
-<!-- 2014-04-25 金 21:53 -->
+<!-- 2014-04-26 土 15:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -207,48 +207,6 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
-<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
-<script type="text/javascript">
-<!--/*--><![CDATA[/*><!--*/
-    MathJax.Hub.Config({
-        // Only one of the two following lines, depending on user settings
-        // First allows browser-native MathML display, second forces HTML/CSS
-        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
-            jax: ["input/TeX", "output/HTML-CSS"],
-        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
-                     "TeX/noUndefined.js"],
-        tex2jax: {
-            inlineMath: [ ["\\(","\\)"] ],
-            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
-            skipTags: ["script","noscript","style","textarea","pre","code"],
-            ignoreClass: "tex2jax_ignore",
-            processEscapes: false,
-            processEnvironments: true,
-            preview: "TeX"
-        },
-        showProcessingMessages: true,
-        displayAlign: "center",
-        displayIndent: "2em",
-
-        "HTML-CSS": {
-             scale: 100,
-             availableFonts: ["STIX","TeX"],
-             preferredFont: "TeX",
-             webFont: "TeX",
-             imageFont: "TeX",
-             showMathMenu: true,
-        },
-        MMLorHTML: {
-             prefer: {
-                 MSIE:    "MML",
-                 Firefox: "MML",
-                 Opera:   "HTML",
-                 other:   "HTML"
-             }
-        }
-    });
-/*]]>*///-->
-</script>
 </head>
 <body>
 <div id="content">
@@ -262,7 +220,9 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-1">1.1. 起動方法</a></li>
 <li><a href="#sec-1-2">1.2. 特殊キーとキーバインド</a></li>
 <li><a href="#sec-1-3">1.3. 基本的な操作</a></li>
-<li><a href="#sec-1-4">1.4. 日本語の入力</a></li>
+<li><a href="#sec-1-4">1.4. アンドゥ</a></li>
+<li><a href="#sec-1-5">1.5. 日本語の入力</a></li>
+<li><a href="#sec-1-6">1.6. 参考URL</a></li>
 </ul>
 </li>
 <li><a href="#sec-2">2. LaTeX による文書作成</a>
@@ -483,7 +443,7 @@ Save file /Users/foo/test.txt? (y, n, !, ., q, C-r, d or C-h)
 Modified buffers exist; exit anyway? (yes or no)
 </pre>
 <p>
-(修正されたバッファが存在します．それでも終了しますか？)と表示される．ここで．=yes RET= と入力すれば，編集は破棄され，Emacs は終了する．=no RET= と入力すれば，終了がキャンセルされ，操作前の画面に戻る．
+(修正されたバッファが存在します．それでも終了しますか？)と表示される．ここで, <code>yes RET</code> と入力すれば，編集は破棄され，Emacs は終了する. <code>no RET</code> と入力すれば，終了がキャンセルされ，操作前の画面に戻る．
 </p>
 </dd>
 </dl>
@@ -621,7 +581,7 @@ Emacs でウィンドウに表示されるのは，メモリ上にのみ存在�
 </p>
 
 <p>
-ウィンドウ上に表示されるバッファを切り替えるには <code>C-x b</code> や <code>C-x C-b</code> を用いる．=C-x= の後に左右カーソルキーを入力する(<code>C-x &lt;left&gt;</code> / <code>C-x &lt;right&gt;</code>) ことでバッファを次々と切り替える機能も便利．バッファを閉じるには <code>C-x k</code> を用いる．
+ウィンドウ上に表示されるバッファを切り替えるには <code>C-x b</code> や <code>C-x C-b</code> を用いる. <code>C-x</code> の後に左右カーソルキーを入力する(<code>C-x &lt;left&gt;</code> / <code>C-x &lt;right&gt;</code>) ことでバッファを次々と切り替える機能も便利．バッファを閉じるには <code>C-x k</code> を用いる．
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -662,12 +622,12 @@ Emacs でウィンドウに表示されるのは，メモリ上にのみ存在�
 <tbody>
 <tr>
 <td class="left"><code>C-x b</code> (switch-to-buffer)</td>
-<td class="left">バッファを切り替える．ミニバッファ上で開きたいバッファ名を入力．=TAB= を押すと補完候補が一覧できる．</td>
+<td class="left">バッファを切り替える．ミニバッファ上で開きたいバッファ名を入力. <code>TAB</code> を押すと補完候補が一覧できる．</td>
 </tr>
 
 <tr>
 <td class="left"><code>C-x k</code> (kill-buffer)</td>
-<td class="left">バッファを消去する．ミニバッファに <code>Kill buffer (default foo):</code> と消去するバッファ名を入力でき，=RET= を押すとそのバッファが消去される．デフォルトは呼び出し時にアクティブだったバッファ(※)</td>
+<td class="left">バッファを消去する．ミニバッファに <code>Kill buffer (default foo):</code> と消去するバッファ名を入力でき, <code>RET</code> を押すとそのバッファが消去される．デフォルトは呼び出し時にアクティブだったバッファ(※)</td>
 </tr>
 
 <tr>
@@ -688,7 +648,7 @@ Emacs でウィンドウに表示されるのは，メモリ上にのみ存在�
 Buffer foo modified; kill anyway? (yes or no)
 </pre>
 <p>
-(<code>foo</code> という名前のバッファは保存されていません．それでも消去しますか？)と質問される．=yes RET= で編集を破棄してバッファを消去．=no RET= でバッファの消去をキャンセル(<code>C-g</code> でもキャンセル可能)．
+(<code>foo</code> という名前のバッファは保存されていません．それでも消去しますか？)と質問される. <code>yes RET</code> で編集を破棄してバッファを消去. <code>no RET</code> でバッファの消去をキャンセル(<code>C-g</code> でもキャンセル可能)．
 </p>
 </div>
 </div>
@@ -698,7 +658,7 @@ Buffer foo modified; kill anyway? (yes or no)
 <div class="outline-text-4" id="text-1-3-4">
 <p>
 Emacs では，1つのフレームの中にいくつものウィンドウを作り，それぞれに別々のバッファを表示させられる．
-<code>C-x 2</code> / <code>C-x 3</code> で上下/左右に分割でき，=C-x 0= や <code>C-x 1</code> で分割を解除できる(<code>C-x C-b</code> などで意図せずにウィンドウが分割されたのを戻すのに頻繁に使う)．
+<code>C-x 2</code> / <code>C-x 3</code> で上下/左右に分割でき, <code>C-x 0</code> や <code>C-x 1</code> で分割を解除できる(<code>C-x C-b</code> などで意図せずにウィンドウが分割されたのを戻すのに頻繁に使う)．
 ウィンドウを閉じてもバッファは消去されない．
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -755,15 +715,15 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 
 <p>
 <code>C-SPC</code> でマークしてからカーソルを移動させると，マークと現在のカーソル位置までが
-選択範囲(リージョン)となる．=C-g= とすればリージョンとマークを取り消せる．
+選択範囲(リージョン)となる. <code>C-g</code> とすればリージョンとマークを取り消せる．
 <code>M-h</code> で段落を選択, <code>C-x h</code> でバッファ全体を選択(narrowingされている場合は当該箇
-所)，=C-x C-p= でページ全体を選択．
+所), <code>C-x C-p</code> でページ全体を選択．
 </p>
 
 <p>
-<code>M-w</code> でリージョンをコピー，=C-w= でリージョンをカットできる．コピー/カットされた
-リージョンは，クリップボードに相当するキルリング(kill-ring)に保存され，=C-y= で直
-前のキルリングの内容をヤンク(ペースト)できる．その際，=C-y= に続けて <code>M-y</code> を入力
+<code>M-w</code> でリージョンをコピー, <code>C-w</code> でリージョンをカットできる．コピー/カットされた
+リージョンは，クリップボードに相当するキルリング(kill-ring)に保存され, <code>C-y</code> で直
+前のキルリングの内容をヤンク(ペースト)できる．その際, <code>C-y</code> に続けて <code>M-y</code> を入力
 することでキルリングを次々にさかのぼってヤンクできる．
 </p>
 
@@ -830,21 +790,11 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </table>
 </div>
 </div>
-
 <div id="outline-container-sec-1-3-6" class="outline-4">
-<h4 id="sec-1-3-6"><span class="section-number-4">1.3.6</span> アンドゥ</h4>
+<h4 id="sec-1-3-6"><span class="section-number-4">1.3.6</span> 検索・置換</h4>
 <div class="outline-text-4" id="text-1-3-6">
 <p>
-直前の入力内容を取り消したい場合には <code>C-/</code> (<code>C-_</code> または <code>C-x u</code> でも可能)．
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-1-3-7" class="outline-4">
-<h4 id="sec-1-3-7"><span class="section-number-4">1.3.7</span> 検索・置換</h4>
-<div class="outline-text-4" id="text-1-3-7">
-<p>
-<code>C-s</code> / <code>C-r</code> でバッファを順方向/逆方向に検索．=C-M-s= / <code>C-M-r</code> で正規表現による順方向/逆方向の検索．
+<code>C-s</code> / <code>C-r</code> でバッファを順方向/逆方向に検索. <code>C-M-s</code> / <code>C-M-r</code> で正規表現による順方向/逆方向の検索．
 検索された文字列を別の文字列で置換するには <code>M-%</code> / <code>C-M-%</code> (対話型の置換/正規表現置換) 
 もしくは <code>M-x replace-string</code> / <code>M-x replace-regexp</code> (一括の置換/正規表現置換)を使う．
 </p>
@@ -867,29 +817,39 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </div>
 
 <div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4"><span class="section-number-3">1.4</span> 日本語の入力</h3>
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> アンドゥ</h3>
 <div class="outline-text-3" id="text-1-4">
+<p>
+直前の入力内容を取り消したい場合には <code>C-/</code> (<code>C-_</code> または <code>C-x u</code> でも可能)．
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> 日本語の入力</h3>
+<div class="outline-text-3" id="text-1-5">
 <p>
 情報基盤センターの Emacs の日本語入力メソッドは kkc が入っている模様．
 </p>
 </div>
-<div id="outline-container-sec-1-4-1" class="outline-4">
-<h4 id="sec-1-4-1"><span class="section-number-4">1.4.1</span> 日本語入力切り替え</h4>
-<div class="outline-text-4" id="text-1-4-1">
+<div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1"><span class="section-number-4">1.5.1</span> 日本語入力切り替え</h4>
+<div class="outline-text-4" id="text-1-5-1">
 <p>
 <code>C-\</code> (toggle-input-method) で日本語入力/英数字入力を切り替え(toggle)できる．
 日本語109キーボードでは， <code>\</code> は DEL キーの一つ左の「￥」マークで入力できる．
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-4-2" class="outline-4">
-<h4 id="sec-1-4-2"><span class="section-number-4">1.4.2</span> 入力モード</h4>
-<div class="outline-text-4" id="text-1-4-2">
+<div id="outline-container-sec-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2"><span class="section-number-4">1.5.2</span> 入力モード</h4>
+<div class="outline-text-4" id="text-1-5-2">
 <p>
 入力モードによって，モードラインの左端の記号が変わる．
 </p>
 <dl class="org-dl">
-<dt> AあU: </dt><dd>日本語入力モード. <code>qq</code> で英数入力モード, <code>qz</code> で全角英数入力モードに切り替え．
+<dt> AあU: </dt><dd>日本語入力モード. <code>SPC</code> で漢字変換モード, <code>qq</code> で英数入力モード, <code>qz</code> で全角英数入力モードに切り替え．
+</dd>
+<dt> 漢U: </dt><dd>漢字変換モード. <code>C-c</code> で日本語入力モードに切り替え．
 </dd>
 <dt> AaU: </dt><dd>英数入力モード. <code>qq</code> で日本語入力モードに切り替え．
 </dd>
@@ -898,9 +858,9 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </dl>
 </div>
 </div>
-<div id="outline-container-sec-1-4-3" class="outline-4">
-<h4 id="sec-1-4-3"><span class="section-number-4">1.4.3</span> キー割り当て一覧</h4>
-<div class="outline-text-4" id="text-1-4-3">
+<div id="outline-container-sec-1-5-3" class="outline-4">
+<h4 id="sec-1-5-3"><span class="section-number-4">1.5.3</span> キー割り当て一覧</h4>
+<div class="outline-text-4" id="text-1-5-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -996,6 +956,63 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </tr>
 </tbody>
 </table>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> 参考URL</h3>
+<div class="outline-text-3" id="text-1-6">
+</div><div id="outline-container-sec-1-6-1" class="outline-4">
+<h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> Emacs 入門</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<p>
+Emacs の標準的なキーバインドを習得するには以下のようなサイトが便利でしょう．
+</p>
+<ul class="org-ul">
+<li>Emacs 超入門(1) <a href="http:sourceforge.jp/magazine/09/04/06/1138226">http:sourceforge.jp/magazine/09/04/06/1138226</a>
+</li>
+<li>Emacs を使って，文章を書く <a href="http:www.wakayama-u.ac.jp/~takehiko/webprg/03.html">http:www.wakayama-u.ac.jp/~takehiko/webprg/03.html</a>
+</li>
+<li>Emacs のキーバインド覚書 <a href="http:www.aise.ics.saitama-u.ac.jp/~gotoh/EmacsKeybind.html">http:www.aise.ics.saitama-u.ac.jp/~gotoh/EmacsKeybind.html</a>
+</li>
+</ul>
+
+<p>
+しかし，Emacs の真の魅力は，キーバインドを含め，あらゆるものがカスタマイズできるという点にあります．
+以下のサイトが参考になるかもしれません．
+</p>
+<ul class="org-ul">
+<li>Emacs 超入門(2) <a href="http:sourceforge.jp/magazine/09/04/23/0834240">http:sourceforge.jp/magazine/09/04/23/0834240</a>
+</li>
+<li>Emacs 電子書棚 <a href="http:www.bookshelf.jp">http:www.bookshelf.jp</a>
+</li>
+</ul>
+<p>
+書籍も色々あります．
+</p>
+<ul class="org-ul">
+<li>大竹 智也: Emacs実践入門　~思考を直感的にコード化し、開発を加速する (WEB+DB PRESS plus), 技術評論社, 2012. <a href="http:www.amazon.co.jp/dp/4774150029">http:www.amazon.co.jp/dp/4774150029</a>
+</li>
+<li>るびきち: Emacsテクニックバイブル　~作業効率をカイゼンする200の技~, 技術評論社, 2010. <a href="http:www.amazon.co.jp/dp/4774143278">http:www.amazon.co.jp/dp/4774143278</a>
+</li>
+<li>るびきち: Emacs Lispテクニックバイブル, 技術評論社, 2011. <a href="http:www.amazon.co.jp/dp/4774148970">http:www.amazon.co.jp/dp/4774148970</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-6-2" class="outline-4">
+<h4 id="sec-1-6-2"><span class="section-number-4">1.6.2</span> Window でも Emacs ＆ UNIX</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<p>
+Windows で Emacs を使ったり，コマンドライン処理をしてみたい人には，
+gnupack というパッケージがあるようです．
+<a href="http:sourceforge.jp/projects/gnupack/">http:sourceforge.jp/projects/gnupack/</a>
+</p>
+
+<p>
+gnupack ではアーカイブを展開するだけで，cygwin (Windows 上でUNIX 的な環境を実現するソフトウェア)と emacs が使えるそうです．
+私が Windows 2000/NT/XP を使ってた頃には，こういう便利なものは無かった…
+</p>
 </div>
 </div>
 </div>
@@ -1118,7 +1135,7 @@ LaTeXのコマンドは <code>\</code> (バックスラッシュ)と <code>{}</c
 </p>
 </li>
 <li>箇条書きが必要な場合には <code>itemize</code> 環境を使う．
-具体的には，=\begin{itemize}= と <code>\end{itemize}</code> の間に
+具体的には, <code>\begin{itemize}</code> と <code>\end{itemize}</code> の間に
 <code>\item</code> で項目を記述する．
 <div class="org-src-container">
 
@@ -1181,7 +1198,7 @@ LaTeXのコマンドは <code>\</code> (バックスラッシュ)と <code>{}</c
 </pre>
 </div>
 <p>
-とする．=\item= の数は何個でも構わない．
+とする. <code>\item</code> の数は何個でも構わない．
 </p>
 </li>
 <li>定義リストが必要な場合は，
@@ -1235,7 +1252,7 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 と入力して <code>RET</code> キーを押す．
 </p>
 </li>
-<li>問題が無ければ <code>report1.dvi</code> というファイルができるはずなので，=C-x C-d RET= としてディレクトリ一覧を表示させ，確認してみよう．
+<li>問題が無ければ <code>report1.dvi</code> というファイルができるはずなので, <code>C-x C-d RET</code> としてディレクトリ一覧を表示させ，確認してみよう．
 </li>
 <li>ファイル名が <code>report1.tex</code> でない場合は，適切なファイル名を <code>platex</code> の後に記
 述する．例えば，ファイル名が <code>test.txt</code> なら，以下のようにする．
@@ -1255,7 +1272,7 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 <h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> dvi ファイル → pdf ファイル</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <ol class="org-ol">
-<li>再び <code>M-!</code> として，=Shell command:= の後に
+<li>再び <code>M-!</code> として, <code>Shell command:</code> の後に
 <div class="org-src-container">
 
 <pre class="src src-example">dvipdfmx report1.dvi
@@ -1265,7 +1282,7 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 とする．
 </p>
 </li>
-<li>問題が無ければ <code>report1.pdf</code> というファイルができるはずなので，=C-x C-d RET= としてディレクトリ一覧を表示させ，確認してみよう．
+<li>問題が無ければ <code>report1.pdf</code> というファイルができるはずなので <code>C-x C-d RET</code> としてディレクトリ一覧を表示させ，確認してみよう．
 </li>
 <li>同じく，dviファイル名が <code>report1.dvi</code> で無い場合には，適切なファイル名を与え
 る．例えば，ファイル名が <code>test.dvi</code> なら，以下のようにする．
@@ -1299,7 +1316,7 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-04-25 金 21:53</p>
+<p class="date">Created: 2014-04-26 土 15:06</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
