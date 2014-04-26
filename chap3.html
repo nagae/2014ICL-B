@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第3回 アカデミックスキルI レポートの作成技術(1)</title>
-<!-- 2014-04-26 土 15:06 -->
+<!-- 2014-04-26 土 15:13 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -215,20 +215,21 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. テキストエディタ Emacs 入門</a>
+<li><a href="#sec-1">1. このページの更新履歴</a></li>
+<li><a href="#sec-2">2. テキストエディタ Emacs 入門</a>
 <ul>
-<li><a href="#sec-1-1">1.1. 起動方法</a></li>
-<li><a href="#sec-1-2">1.2. 特殊キーとキーバインド</a></li>
-<li><a href="#sec-1-3">1.3. 基本的な操作</a></li>
-<li><a href="#sec-1-4">1.4. アンドゥ</a></li>
-<li><a href="#sec-1-5">1.5. 日本語の入力</a></li>
-<li><a href="#sec-1-6">1.6. 参考URL</a></li>
+<li><a href="#sec-2-1">2.1. 起動方法</a></li>
+<li><a href="#sec-2-2">2.2. 特殊キーとキーバインド</a></li>
+<li><a href="#sec-2-3">2.3. 基本的な操作</a></li>
+<li><a href="#sec-2-4">2.4. アンドゥ</a></li>
+<li><a href="#sec-2-5">2.5. 日本語の入力</a></li>
+<li><a href="#sec-2-6">2.6. 参考URL</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. LaTeX による文書作成</a>
+<li><a href="#sec-3">3. LaTeX による文書作成</a>
 <ul>
-<li><a href="#sec-2-1">2.1. TeX ファイルの作成</a></li>
-<li><a href="#sec-2-2">2.2. コンパイル</a></li>
+<li><a href="#sec-3-1">3.1. TeX ファイルの作成</a></li>
+<li><a href="#sec-3-2">3.2. コンパイル</a></li>
 </ul>
 </li>
 </ul>
@@ -236,26 +237,34 @@ for the JavaScript code in this tag.
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> テキストエディタ Emacs 入門</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> このページの更新履歴</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 起動方法</h3>
-<div class="outline-text-3" id="text-1-1">
-</div><div id="outline-container-sec-1-1-1" class="outline-4">
-<h4 id="sec-1-1-1"><span class="section-number-4">1.1.1</span> Cent OS の場合</h4>
-<div class="outline-text-4" id="text-1-1-1">
+<p>
+<a href="https:github.com/nagae/2014ICL-B/commits/gh-pages/chap3.html">このページの更新履歴</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> テキストエディタ Emacs 入門</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 起動方法</h3>
+<div class="outline-text-3" id="text-2-1">
+</div><div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1"><span class="section-number-4">2.1.1</span> Cent OS の場合</h4>
+<div class="outline-text-4" id="text-2-1-1">
 <p>
 左下のメニューから，ユーティリティ→エディタ→Emacs テキスト・エディターを選択
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 特殊キーとキーバインド</h3>
-<div class="outline-text-3" id="text-1-2">
-</div><div id="outline-container-sec-1-2-1" class="outline-4">
-<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> 特殊キー</h4>
-<div class="outline-text-4" id="text-1-2-1">
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 特殊キーとキーバインド</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> 特殊キー</h4>
+<div class="outline-text-4" id="text-2-2-1">
 <p>
 Emacs では特殊キーと呼ばれるキーを活用する．
 ICL演習室に設置されている  <b>109キーボード</b>  では，特殊キーは以下のように割当てられている．
@@ -333,9 +342,9 @@ ICL演習室に設置されている  <b>109キーボード</b>  では，特殊
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-2-2" class="outline-4">
-<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> キーバインド：同時押しと順次押しの組み合わせ</h4>
-<div class="outline-text-4" id="text-1-2-2">
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> キーバインド：同時押しと順次押しの組み合わせ</h4>
+<div class="outline-text-4" id="text-2-2-2">
 <p>
 Emacs では，特殊キーとそれ以外のキーの組み合わせ(キーバインド)によって多彩な操作が可能である．
 全てのキー操作は  <b>同時押し</b> と <b>順次押し</b>  で構成される．
@@ -366,12 +375,12 @@ Emacs では，特殊キーとそれ以外のキーの組み合わせ(キーバ�
 </div>
 </div>
 
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3"><span class="section-number-3">1.3</span> 基本的な操作</h3>
-<div class="outline-text-3" id="text-1-3">
-</div><div id="outline-container-sec-1-3-1" class="outline-4">
-<h4 id="sec-1-3-1"><span class="section-number-4">1.3.1</span> 起動，キャンセル，そして終了</h4>
-<div class="outline-text-4" id="text-1-3-1">
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 基本的な操作</h3>
+<div class="outline-text-3" id="text-2-3">
+</div><div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1"><span class="section-number-4">2.3.1</span> 起動，キャンセル，そして終了</h4>
+<div class="outline-text-4" id="text-2-3-1">
 <p>
 起動方法については口頭で説明．
 </p>
@@ -449,9 +458,9 @@ Modified buffers exist; exit anyway? (yes or no)
 </dl>
 </div>
 </div>
-<div id="outline-container-sec-1-3-2" class="outline-4">
-<h4 id="sec-1-3-2"><span class="section-number-4">1.3.2</span> カーソルの操作，文字の入力・消去</h4>
-<div class="outline-text-4" id="text-1-3-2">
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2"><span class="section-number-4">2.3.2</span> カーソルの操作，文字の入力・消去</h4>
+<div class="outline-text-4" id="text-2-3-2">
 <p>
 Emacs では，十字キーではなく，キーバインドでもカーソルを操作できる．最初は十字キーの方が楽なように思うだろうが，慣れてくると十字キーに手を伸ばすのが億劫になってくるはずだ．最初の画面(eshell)で色々試してみよう．
 </p>
@@ -566,9 +575,9 @@ Emacs では，十字キーではなく，キーバインドでもカーソル�
 </table>
 </div>
 </div>
-<div id="outline-container-sec-1-3-3" class="outline-4">
-<h4 id="sec-1-3-3"><span class="section-number-4">1.3.3</span> ファイル操作 / バッファ操作</h4>
-<div class="outline-text-4" id="text-1-3-3">
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3"><span class="section-number-4">2.3.3</span> ファイル操作 / バッファ操作</h4>
+<div class="outline-text-4" id="text-2-3-3">
 <p>
 Emacs でウィンドウに表示されるのは，メモリ上にのみ存在する  <b>バッファ</b>  である．バッ
 ファはディスク上に実在する  <b>ファイル</b>  と明確に区別される必要がある．
@@ -653,9 +662,9 @@ Buffer foo modified; kill anyway? (yes or no)
 </div>
 </div>
 
-<div id="outline-container-sec-1-3-4" class="outline-4">
-<h4 id="sec-1-3-4"><span class="section-number-4">1.3.4</span> ウィンドウの分割</h4>
-<div class="outline-text-4" id="text-1-3-4">
+<div id="outline-container-sec-2-3-4" class="outline-4">
+<h4 id="sec-2-3-4"><span class="section-number-4">2.3.4</span> ウィンドウの分割</h4>
+<div class="outline-text-4" id="text-2-3-4">
 <p>
 Emacs では，1つのフレームの中にいくつものウィンドウを作り，それぞれに別々のバッファを表示させられる．
 <code>C-x 2</code> / <code>C-x 3</code> で上下/左右に分割でき, <code>C-x 0</code> や <code>C-x 1</code> で分割を解除できる(<code>C-x C-b</code> などで意図せずにウィンドウが分割されたのを戻すのに頻繁に使う)．
@@ -705,9 +714,9 @@ Emacs では，1つのフレームの中にいくつものウィンドウを作�
 </table>
 </div>
 </div>
-<div id="outline-container-sec-1-3-5" class="outline-4">
-<h4 id="sec-1-3-5"><span class="section-number-4">1.3.5</span> マークとリージョン</h4>
-<div class="outline-text-4" id="text-1-3-5">
+<div id="outline-container-sec-2-3-5" class="outline-4">
+<h4 id="sec-2-3-5"><span class="section-number-4">2.3.5</span> マークとリージョン</h4>
+<div class="outline-text-4" id="text-2-3-5">
 <p>
 Windows ではshift を押しながら上下左右で「範囲」を選択してコピー/カットできた．
 この機能は Emacs にも  <b>マーク</b> と <b>リージョン</b>  という(少し操作し辛い)形で存在する．
@@ -790,9 +799,9 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </table>
 </div>
 </div>
-<div id="outline-container-sec-1-3-6" class="outline-4">
-<h4 id="sec-1-3-6"><span class="section-number-4">1.3.6</span> 検索・置換</h4>
-<div class="outline-text-4" id="text-1-3-6">
+<div id="outline-container-sec-2-3-6" class="outline-4">
+<h4 id="sec-2-3-6"><span class="section-number-4">2.3.6</span> 検索・置換</h4>
+<div class="outline-text-4" id="text-2-3-6">
 <p>
 <code>C-s</code> / <code>C-r</code> でバッファを順方向/逆方向に検索. <code>C-M-s</code> / <code>C-M-r</code> で正規表現による順方向/逆方向の検索．
 検索された文字列を別の文字列で置換するには <code>M-%</code> / <code>C-M-%</code> (対話型の置換/正規表現置換) 
@@ -816,33 +825,33 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </div>
 </div>
 
-<div id="outline-container-sec-1-4" class="outline-3">
-<h3 id="sec-1-4"><span class="section-number-3">1.4</span> アンドゥ</h3>
-<div class="outline-text-3" id="text-1-4">
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> アンドゥ</h3>
+<div class="outline-text-3" id="text-2-4">
 <p>
 直前の入力内容を取り消したい場合には <code>C-/</code> (<code>C-_</code> または <code>C-x u</code> でも可能)．
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-5" class="outline-3">
-<h3 id="sec-1-5"><span class="section-number-3">1.5</span> 日本語の入力</h3>
-<div class="outline-text-3" id="text-1-5">
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 日本語の入力</h3>
+<div class="outline-text-3" id="text-2-5">
 <p>
 情報基盤センターの Emacs の日本語入力メソッドは kkc が入っている模様．
 </p>
 </div>
-<div id="outline-container-sec-1-5-1" class="outline-4">
-<h4 id="sec-1-5-1"><span class="section-number-4">1.5.1</span> 日本語入力切り替え</h4>
-<div class="outline-text-4" id="text-1-5-1">
+<div id="outline-container-sec-2-5-1" class="outline-4">
+<h4 id="sec-2-5-1"><span class="section-number-4">2.5.1</span> 日本語入力切り替え</h4>
+<div class="outline-text-4" id="text-2-5-1">
 <p>
 <code>C-\</code> (toggle-input-method) で日本語入力/英数字入力を切り替え(toggle)できる．
 日本語109キーボードでは， <code>\</code> は DEL キーの一つ左の「￥」マークで入力できる．
 </p>
 </div>
 </div>
-<div id="outline-container-sec-1-5-2" class="outline-4">
-<h4 id="sec-1-5-2"><span class="section-number-4">1.5.2</span> 入力モード</h4>
-<div class="outline-text-4" id="text-1-5-2">
+<div id="outline-container-sec-2-5-2" class="outline-4">
+<h4 id="sec-2-5-2"><span class="section-number-4">2.5.2</span> 入力モード</h4>
+<div class="outline-text-4" id="text-2-5-2">
 <p>
 入力モードによって，モードラインの左端の記号が変わる．
 </p>
@@ -858,9 +867,9 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </dl>
 </div>
 </div>
-<div id="outline-container-sec-1-5-3" class="outline-4">
-<h4 id="sec-1-5-3"><span class="section-number-4">1.5.3</span> キー割り当て一覧</h4>
-<div class="outline-text-4" id="text-1-5-3">
+<div id="outline-container-sec-2-5-3" class="outline-4">
+<h4 id="sec-2-5-3"><span class="section-number-4">2.5.3</span> キー割り当て一覧</h4>
+<div class="outline-text-4" id="text-2-5-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -959,12 +968,12 @@ Windows ではshift を押しながら上下左右で「範囲」を選択して
 </div>
 </div>
 </div>
-<div id="outline-container-sec-1-6" class="outline-3">
-<h3 id="sec-1-6"><span class="section-number-3">1.6</span> 参考URL</h3>
-<div class="outline-text-3" id="text-1-6">
-</div><div id="outline-container-sec-1-6-1" class="outline-4">
-<h4 id="sec-1-6-1"><span class="section-number-4">1.6.1</span> Emacs 入門</h4>
-<div class="outline-text-4" id="text-1-6-1">
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 参考URL</h3>
+<div class="outline-text-3" id="text-2-6">
+</div><div id="outline-container-sec-2-6-1" class="outline-4">
+<h4 id="sec-2-6-1"><span class="section-number-4">2.6.1</span> Emacs 入門</h4>
+<div class="outline-text-4" id="text-2-6-1">
 <p>
 Emacs の標準的なキーバインドを習得するには以下のようなサイトが便利でしょう．
 </p>
@@ -1000,9 +1009,9 @@ Emacs の標準的なキーバインドを習得するには以下のような�
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-6-2" class="outline-4">
-<h4 id="sec-1-6-2"><span class="section-number-4">1.6.2</span> Window でも Emacs ＆ UNIX</h4>
-<div class="outline-text-4" id="text-1-6-2">
+<div id="outline-container-sec-2-6-2" class="outline-4">
+<h4 id="sec-2-6-2"><span class="section-number-4">2.6.2</span> Window でも Emacs ＆ UNIX</h4>
+<div class="outline-text-4" id="text-2-6-2">
 <p>
 Windows で Emacs を使ったり，コマンドライン処理をしてみたい人には，
 gnupack というパッケージがあるようです．
@@ -1017,12 +1026,12 @@ gnupack ではアーカイブを展開するだけで，cygwin (Windows 上でUN
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> LaTeX による文書作成</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> TeX ファイルの作成</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> LaTeX による文書作成</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> TeX ファイルの作成</h3>
+<div class="outline-text-3" id="text-3-1">
 <ol class="org-ol">
 <li><code>C-x C-f ~/report1.tex</code> として <code>report1.tex</code> ファイルを(新たに)開く
 </li>
@@ -1217,9 +1226,9 @@ LaTeXのコマンドは <code>\</code> (バックスラッシュ)と <code>{}</c
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> コンパイル</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> コンパイル</h3>
+<div class="outline-text-3" id="text-3-2">
 <p>
 TeXファイルから pdf (portable document file)ファイルを作るためには，
 </p>
@@ -1238,9 +1247,9 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 を作成することを <b><i>コンパイル</i></b> と呼ぶ．
 </p>
 </div>
-<div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> TeX ファイル → dvi ファイル</h4>
-<div class="outline-text-4" id="text-2-2-1">
+<div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> TeX ファイル → dvi ファイル</h4>
+<div class="outline-text-4" id="text-3-2-1">
 <ol class="org-ol">
 <li>Emacs上で <code>M-!</code> (<code>Alt+shift+1</code>)とすると，ミニバッファに <code>Shell command:</code> とプロンプトが出るので，
 <div class="org-src-container">
@@ -1268,9 +1277,9 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> dvi ファイル → pdf ファイル</h4>
-<div class="outline-text-4" id="text-2-2-2">
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> dvi ファイル → pdf ファイル</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <ol class="org-ol">
 <li>再び <code>M-!</code> として, <code>Shell command:</code> の後に
 <div class="org-src-container">
@@ -1295,9 +1304,9 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2-3" class="outline-4">
-<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> PDFファイルの確認</h4>
-<div class="outline-text-4" id="text-2-2-3">
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> PDFファイルの確認</h4>
+<div class="outline-text-4" id="text-3-2-3">
 <p>
 以下の方法で生成した PDF ファイルを確認できる．
 </p>
@@ -1316,7 +1325,7 @@ TeXファイルから pdf (portable document file)ファイルを作るために
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-04-26 土 15:06</p>
+<p class="date">Created: 2014-04-26 土 15:13</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
