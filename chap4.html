@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>第4回 アカデミックスキルI レポートの作成技術(2)</title>
+<!-- 2014-04-30 Wed 15:59 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Takeshi Nagae" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel=stylesheet href="style.css" type="text/css">
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">第4回 アカデミックスキルI レポートの作成技術(2)</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. Emacs でファイルを作って保存してみよう</a>
+<ul>
+<li><a href="#sec-1-1">1.1. Emacs を起動する</a></li>
+<li><a href="#sec-1-2">1.2. 新しいバッファを開く</a></li>
+<li><a href="#sec-1-3">1.3. バッファを編集して保存する</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. LaTeX ファイルを作成し，コンパイルしてみよう</a>
+<ul>
+<li><a href="#sec-2-1">2.1. <code>tex_sample.tex</code> というバッファを作成する</a></li>
+<li><a href="#sec-2-2">2.2. <code>tex_sample.tex</code> をコンパイルして <code>tex_sample.dvi</code> を作成する</a></li>
+<li><a href="#sec-2-3">2.3. <code>tex_sample.dvi</code> を <code>tex_sample.pdf</code> に変換する</a></li>
+<li><a href="#sec-2-4">2.4. 変換された <code>tex_sample.pdf</code> を開く</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. LaTeX ファイルから PDF ファイルを作る前のチェック</a>
+<ul>
+<li><a href="#sec-3-1">3.1. ファイルは保存されているか？</a></li>
+<li><a href="#sec-3-2">3.2. ファイルは存在するか？</a></li>
+<li><a href="#sec-3-3">3.3. ファイル名は正しいか？</a></li>
+<li><a href="#sec-3-4">3.4. LaTeX のコマンドを間違えていないか？</a></li>
+<li><a href="#sec-3-5">3.5. <code>\begin{}</code> <code>\end{}</code> の対応はとれているか？</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. LaTeX コンパイルのエラー対策</a>
+<ul>
+<li><a href="#sec-4-1">4.1. エラー・メッセージからエラーの内容と場所を特定する</a></li>
+<li><a href="#sec-4-2">4.2. エラーメッセージに表示された行に問題がある場合</a></li>
+<li><a href="#sec-4-3">4.3. エラーメッセージに表示される行とは別の部分に問題がある場合</a></li>
+<li><a href="#sec-4-4">4.4. TeX のエラー対策に関する参考資料</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. エラー対策をしてみよう</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Emacs でファイルを作って保存してみよう</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Emacs を起動する</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>左下のメニューから ユーティリティ→エディタ→Emacs を選択
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 新しいバッファを開く</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>Emacs 上で <code>C-x C-f</code> とすると，新しいバッファを開き，そこにファイルの内容を表示させられる
+</li>
+<li>ミニバッファに <code>Find file: ~</code> と表示されるので，これを <code>Find file: ~/brank.tex</code> となるように修正して <code>RET</code>
+</li>
+<li>入力されたファイル名(<code>brank.txt</code>)が存在する場合はそのファイルの内容が開かれる
+</li>
+<li>当該ファイルが無い場合は，新しいバッファが開かれる
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> バッファを編集して保存する</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>開いたバッファのモードラインにファイル名(<code>brank.txt</code>)と表示されているのを確認し，適当な文字列を入力
+</li>
+<li>モードラインの記号が <code>**</code> となっているのを確認(<code>--</code>: 変更なし <code>**</code>: 変更あり)．
+</li>
+<li><code>C-x C-s</code> とすると，当該ファイル名でバッファを保存
+</li>
+<li>保存が完了するとモードラインの記号が <code>--</code> となるので，確認
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> LaTeX ファイルを作成し，コンパイルしてみよう</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <code>tex_sample.tex</code> というバッファを作成する</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>上述の方法で <code>tex_sample.tex</code> というファイル名でバッファを作成する
+</li>
+<li><code>tex_sample.tex</code> に以下の内容をコピー＆ペースト(<code>C-y</code>)する
+<script src="https://gist.github.com/nagae/11399232.js"></script>
+</li>
+<li>保存(<code>C-x C-s</code>)する
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <code>tex_sample.tex</code> をコンパイルして <code>tex_sample.dvi</code> を作成する</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>Emacs 上で <code>M-!</code> (ALT と Shift を押しながら1)とする
+</li>
+<li>ミニバッファに <code>Shell Command:</code> と表示されるので，その後に
+<div class="org-src-container">
+
+<pre class="src src-sh">platex tex_sample.tex
+</pre>
+</div>
+<p>
+と入力して <code>RET</code> する．
+</p>
+</li>
+<li>フレームが上下に分割され，下側のウィンドウにコンパイル結果が表示される. ここで <code>C-x o</code> とすればウィンドウを切り替えられる. <code>C-M-v</code> や <code>C-M-S-v</code> とすると別のウィンドウをスクロールさせられる．
+</li>
+<li>出力結果の最後に以下が表示されていれば，コンパイルが完了している．
+<div class="org-src-container">
+
+<pre class="src src-text">Output written on tex_sample.dvi (1 page, 1608 bytes).
+Transcript written on tex_sample.log.
+</pre>
+</div>
+</li>
+<li>出力結果の最後に以下が表示されている場合は，コンパイルが失敗している．
+<div class="org-src-container">
+
+<pre class="src src-text">No pages of output.
+Transcript written on texput.log.
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> <code>tex_sample.dvi</code> を <code>tex_sample.pdf</code> に変換する</h3>
+<div class="outline-text-3" id="text-2-3">
+<ul class="org-ul">
+<li><code>tex_sample.dvi</code> が生成されていることを確認する. <code>C-x C-f</code> で <code>tex_sample</code> まで入力して <code>TAB</code> キーを押すと, <code>tex_sample</code> で始まるファイル名が表示される．この中に <code>tex_sample.dvi</code> が無ければ，何らかの理由でコンパイルに失敗しているので，もう一度 <code>tex_sample.tex</code> の生成からやり直す．
+</li>
+<li><code>tex_sample.dvi</code> が存在するなら, <code>M-!</code> として <code>Shell command:</code> の後に
+<div class="org-src-container">
+
+<pre class="src src-sh">dvipdfmx tex_sample.dvi
+</pre>
+</div>
+<p>
+と入力して <code>RET</code> するとミニバッファに変換結果が表示される．
+</p>
+</li>
+<li>変換結果に
+<div class="org-src-container">
+
+<pre class="src src-text">tex_sample.dvi -&gt; tex_sample.pdf
+[1]
+32789 bytes written
+</pre>
+</div>
+<p>
+と表示されれば正常に完了．
+</p>
+</li>
+<li>変換結果に
+<div class="org-src-container">
+
+<pre class="src src-text">tex_sample.dvi -&gt; tex_sample.pdf
+
+** ERROR ** Could not open specified DVI file: tex_sample.dvi
+
+Output file removed.
+</pre>
+</div>
+<p>
+などと表示された場合は，何らかの問題が生じていて変換できていない．
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 変換された <code>tex_sample.pdf</code> を開く</h3>
+<div class="outline-text-3" id="text-2-4">
+<ul class="org-ul">
+<li>Cent OS の左下のメニュー→ホームを選択すると <code>~/</code> に対応するフォルダが表示される．
+
+<div class="figure">
+<p><img src="fig/menu-home.png" alt="menu-home.png" />
+</p>
+</div>
+</li>
+<li>生成された PDF ファイル(<code>tex_sample.pdf</code>) を見つけてダブルクリックすると PDF が開かれる．
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> LaTeX ファイルから PDF ファイルを作る前のチェック</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> ファイルは保存されているか？</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>モードラインの記号が <code>**</code> となっている場合は，ファイルが保存されていない． <code>C-x C-s</code> として保存しよう．
+</li>
+<li>保存が完了するとモードラインの記号が <code>--</code> になる．
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> ファイルは存在するか？</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li><code>platex</code> を使ったコンパイルに失敗すると，dvi ファイルが生成されない．存在しないファイルに対して <code>dvipdfmx</code> を行なっても，当然，何も処理されない．
+</li>
+<li><code>platex</code> を行なう前に, <code>tex_sample.tex</code> が存在しているか確認しよう．
+</li>
+<li><code>dvipdfmx</code> を行なう前に, <code>tex_sample.dvi</code> が存在しているか確認しよう．
+</li>
+<li>ファイルが存在するかどうか確認する方法：
+<dl class="org-dl">
+<dt> <code>C-x C-d</code> (list-directory) </dt><dd><div class="org-src-container">
+
+<pre class="src src-sh">List directory (brief): ~/
+</pre>
+</div>
+<p>
+フォルダ名(デフォルトでは現在のフォルダ)を入力して <code>RET</code> すると，当該フォルダ内のファイル一覧が表示される．
+</p>
+</dd>
+<dt> <code>M-x find-name-dired</code> </dt><dd><div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #98fb98;">Find-name</span> (directory): ~/
+</pre>
+</div>
+<p>
+フォルダ名(デフォルトでは現在のフォルダ)を入力して <code>RET</code> すると，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #98fb98;">Find-name</span> (filename wildcard):
+</pre>
+</div>
+<p>
+と表示されるので，ファイル名を入力して <code>RET</code> すると，指定したフォルダ下の該当する全てのファイルを表示してくれる．
+</p>
+
+<p>
+wildcard というのは七並べのジョーカーや UNO のワイルドカードのような「どんな文字にもなれる特殊な文字」で，以下の2種類がある．
+</p>
+<pre class="example">
+*	任意の長さの文字
+?	任意の1文字
+</pre>
+
+<p>
+例えば，ファイル名を
+</p>
+<pre class="example">
+tex_sample*
+</pre>
+<p>
+とすれば, <code>tex_sample</code> で始まる全てのファイル名を表示してくれるし，
+</p>
+<pre class="example">
+*.pdf
+</pre>
+<p>
+とすれば, <code>pdf</code> で終わる全てのファイル名を表示してくれる．
+</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> ファイル名は正しいか？</h3>
+<div class="outline-text-3" id="text-3-3">
+<ul class="org-ul">
+<li>TeXファイル(<code>.tex</code>)と <code>platex</code> の引数に与えているファイル名は同じものだろうか？
+</li>
+<li><code>TAB</code> 補完(ファイル名を途中まで入力して <code>TAB</code> を押す)ができる場合は積極的に使おう
+</li>
+<li>よくある間違い
+<ul class="org-ul">
+<li>大文字/小文字を間違える(e.g. <code>TEX_sample.tex</code>)
+</li>
+<li><code>_</code> (アンダーバー)と <code>-</code> (ハイフン), <code>1</code> と <code>l</code>, <code>0</code> と <code>o</code> など
+</li>
+<li>拡張子(<code>.tex</code>)を忘れる(うまく動くこともある)
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> LaTeX のコマンドを間違えていないか？</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>LaTeX のコマンドは, <code>\</code> (バックスラッシュ，109キーボードでは右上の￥マーク)で始まる．
+</li>
+<li>コマンドの後には，時折 <code>{...}</code> (波括弧)で引数が， <code>[...]</code> (角括弧)でオプションが与えられる.  <b>開き/閉じ括弧は対応しているだろうか？</b>, 一方が <code>(</code> や <code>)</code> などの <b>丸括弧になっていないだろうか？</b> 
+</li>
+<li>LaTeX のコマンドは，よほど特殊な設定をしない限り, <b>半角</b> のみで構成される． <b>全角にしていないだろうか？</b>
+</li>
+<li>例年，散見されるコマンド間違いの例(<code>\author{氏名}</code> の部分)：
+<pre class="example">
+\author{川内 情太郎 % 閉じ波括弧 } を忘れている
+\author{川内 情太郎) % 丸括弧 ) で閉じている
+\author(川内 情太郎) % 波括弧 {...} でなく丸括弧 (...) を使っている
+\author{川内 情太郎}} % 閉じ波括弧が余分
+＼author{川内 情太郎} % バックスラッシュ \ が全角になっている
+\author{川内 情太郎｝ % 閉じ波括弧が全角になっている(難易度高!)
+</pre>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> <code>\begin{}</code> <code>\end{}</code> の対応はとれているか？</h3>
+<div class="outline-text-3" id="text-3-5">
+<ul class="org-ul">
+<li><code>\begin{document}, \begin{itemize}, \begin{enumerate}</code> など, <code>\begin{環境名}</code> で始まる LaTeX コマンド(環境; environment と呼ばれる)は，
+常に, <code>end{document}, \end{itemize}, \end{enumerate}</code> など，対応する <code>\end{環境名}</code> で終わらなければならない．
+</li>
+<li>サンプルファイルをコピー＆ペーストする際に <code>\begin{...}</code> や <code>\end{...}</code> のどちらかを <b>忘れていないだろうか？</b>
+</li>
+<li><code>\begin{...}</code> や <code>\end{...}</code> のどちらかで，上述したような <b>コマンド間違い(特に括弧)をしていないだろうか？</b>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> LaTeX コンパイルのエラー対策</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> エラー・メッセージからエラーの内容と場所を特定する</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+TeX ファイルをコンパイルして dvi を作成するとき，出力結果ウィンドウの最後に
+</p>
+<pre class="example">
+No pages of output.
+Transcript written on texput.log.
+</pre>
+<p>
+と表示されている場合, <b>何らかの問題</b> があってコンパイルに失敗している．どんな問題で失敗したのかを調べるには <b>エラーメッセージを読む必要</b> がある．
+エラーメッセージは(残念ながら) <b>英語でしか表示されない</b> が，少しトレーニングすれば簡単に読めるようになる．
+</p>
+
+<p>
+コンパイルに失敗した場合，出力結果には，大抵，以下のような <code>!</code> で始まるエラーメッセージが表示されている．
+</p>
+<pre class="example">
+! Undefined control sequence.
+l.7 これは \LaTEX
+                  のサンプルです．
+</pre>
+<ul class="org-ul">
+<li>最初の <code>!</code> の直後の英語(<i>Undefined control sequence.</i>)は, <b>エラーの内容</b> を表している．この場合は「未定義のコマンド(control sequence)です」と訴えている．
+</li>
+<li>その次の <code>l.7</code> は <b>エラーが置きた場所(行番号)</b> を表している．ここでは，更に <code>\LaTEX</code> の後で改行されており, <code>\LaTEX</code> というコマンドが定義されていないことが明示されている．
+</li>
+</ul>
+
+<p>
+以上のことから，直ちに, 7行目の <code>\LaTeX</code> というコマンドを <code>\LaTEX</code> と誤って入力したのだ，ということが判る．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> エラーメッセージに表示された行に問題がある場合</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+LaTeX に限らず，大半は <b>エラーメッセージに表示された行に問題がある</b> ので，その部分を表示させて修正すればよい．
+</p>
+
+<p>
+Emacs で指定した行番号にカーソルを移動させるには, <code>M-x goto-line</code> とした後，
+</p>
+<pre class="example">
+Goto line:
+</pre>
+<p>
+の後に行番号を入力して <code>RET</code> とする．
+</p>
+
+<p>
+修正したら <code>C-x C-s</code> で保存するのを忘れないように．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> エラーメッセージに表示される行とは別の部分に問題がある場合</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+厄介なのは，エラーメッセージに表示された行とは別の部分に問題がある場合．
+例えば，4行目の <code>\begin{document}</code> の最後の波括弧を間違えて丸括弧で閉じて <code>\begin{document)</code> とした場合，
+以下のようなエラーメッセージが表示される．
+</p>
+<pre class="example">
+Runaway argument?
+{document) \maketitle これは \LaTEX のサンプルです．こうすると{\bf 太\ETC.
+! Paragraph ended before \begin was complete.
+&lt;to be read again&gt; 
+                   \par 
+l.11
+</pre>
+<p>
+エラーメッセージは11行目を指しているが，11行目はただの空行なので修正のしようが無い．
+</p>
+
+<p>
+こういう時は，エラーの内容を <b>丁寧に読むしか無い</b>. この
+</p>
+<pre class="example">
+Paragraph ended before \begin was complete.
+</pre>
+<p>
+は「 <code>\begin</code> というコマンド(の引数)が完結する前に段落が終わってる」という意味．
+</p>
+
+<p>
+さらに，その上を見ると，
+</p>
+<pre class="example">
+Runaway argument?
+{document) \maketitle これは \LaTeX のサンプルです．こうすると{\bf 太\ETC.
+</pre>
+<p>
+と表示されている．これは「引数(argument)が暴走(runaway)しているのでは？」という意味で，
+<code>\begin</code> というコマンドの引数 <code>{...}</code> の中身が <b>やたら長い</b>
+(TeXのコンパイラは <code>{document) \maketitle これは \La...</code> という引数が与えられたと解釈している)ことを示唆しているのだ．
+</p>
+
+<p>
+このことから, <code>{document) \maketitle</code> のあたりで LaTeX コマンドの <b>波括弧が正しく閉じられていないのだな</b> ということが判る．
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> TeX のエラー対策に関する参考資料</h3>
+<div class="outline-text-3" id="text-4-4">
+<ul class="org-ul">
+<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?TeX%2520%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">TeX のエラーメッセージ</a> (奥村先生)
+</li>
+<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?LaTeX%2520%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">LaTeX のエラーメッセージ</a> (奥村先生)
+</li>
+<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?LaTeX%2520%E3%81%AE%E8%AD%A6%E5%91%8A%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">LaTeX の警告メッセージ</a> (奥村先生)
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> エラー対策をしてみよう</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+以下のソースファイルには6ヶ所間違いが含まれている．全て修正し，適切な PDF を作成せよ．
+</p>
+<script src="https://gist.github.com/nagae/3ac178ed579c4f1b849f.js"></script>
+
+<p>
+ソースファイルのコピー＆ペーストに失敗すると <b>何してるのか判らなくなる</b> ので，今回は，以下の手順でファイルを直接ダウンロードすること．
+<a href="https:gist.githubusercontent.com/nagae/3ac178ed579c4f1b849f/raw/tex_error.tex">https:gist.githubusercontent.com/nagae/3ac178ed579c4f1b849f/raw/tex_error.tex</a>
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Takeshi Nagae</p>
+<p class="date">Created: 2014-04-30 Wed 15:59</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
