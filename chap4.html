@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第4回 アカデミックスキルI レポートの作成技術(2)</title>
-<!-- 2014-04-30 Wed 18:17 -->
+<!-- 2014-05-02 Fri 13:42 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -215,58 +215,67 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#sec-1">1. Emacs でファイルを作って保存してみよう</a>
+<li><a href="#sec-1">1. このページの更新履歴</a></li>
+<li><a href="#sec-2">2. Emacs でファイルを作って保存してみよう</a>
 <ul>
-<li><a href="#sec-1-1">1.1. Emacs を起動する</a></li>
-<li><a href="#sec-1-2">1.2. 新しいバッファを開く</a></li>
-<li><a href="#sec-1-3">1.3. バッファを編集して保存する</a></li>
+<li><a href="#sec-2-1">2.1. Emacs を起動する</a></li>
+<li><a href="#sec-2-2">2.2. 新しいバッファを開く</a></li>
+<li><a href="#sec-2-3">2.3. バッファを編集して保存する</a></li>
 </ul>
 </li>
-<li><a href="#sec-2">2. LaTeX ファイルを作成し，コンパイルしてみよう</a>
+<li><a href="#sec-3">3. LaTeX ファイルを作成し，コンパイルしてみよう</a>
 <ul>
-<li><a href="#sec-2-1">2.1. <code>tex_sample.tex</code> というバッファを作成する</a></li>
-<li><a href="#sec-2-2">2.2. <code>tex_sample.tex</code> をコンパイルして <code>tex_sample.dvi</code> を作成する</a></li>
-<li><a href="#sec-2-3">2.3. <code>tex_sample.dvi</code> を <code>tex_sample.pdf</code> に変換する</a></li>
-<li><a href="#sec-2-4">2.4. 変換された <code>tex_sample.pdf</code> を開く</a></li>
+<li><a href="#sec-3-1">3.1. <code>tex_sample.tex</code> というバッファを作成する</a></li>
+<li><a href="#sec-3-2">3.2. <code>tex_sample.tex</code> をコンパイルして <code>tex_sample.dvi</code> を作成する</a></li>
+<li><a href="#sec-3-3">3.3. <code>tex_sample.dvi</code> を <code>tex_sample.pdf</code> に変換する</a></li>
+<li><a href="#sec-3-4">3.4. 変換された <code>tex_sample.pdf</code> を開く</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. LaTeX ファイルから PDF ファイルを作る前のチェック</a>
+<li><a href="#sec-4">4. LaTeX ファイルから PDF ファイルを作る前のチェック</a>
 <ul>
-<li><a href="#sec-3-1">3.1. ファイルは保存されているか？</a></li>
-<li><a href="#sec-3-2">3.2. ファイルは存在するか？</a></li>
-<li><a href="#sec-3-3">3.3. ファイル名は正しいか？</a></li>
-<li><a href="#sec-3-4">3.4. LaTeX のコマンドを間違えていないか？</a></li>
-<li><a href="#sec-3-5">3.5. <code>\begin{}</code> <code>\end{}</code> の対応はとれているか？</a></li>
+<li><a href="#sec-4-1">4.1. ファイルは保存されているか？</a></li>
+<li><a href="#sec-4-2">4.2. ファイルは存在するか？</a></li>
+<li><a href="#sec-4-3">4.3. ファイル名は正しいか？</a></li>
+<li><a href="#sec-4-4">4.4. LaTeX のコマンドを間違えていないか？</a></li>
+<li><a href="#sec-4-5">4.5. <code>\begin{}</code> <code>\end{}</code> の対応はとれているか？</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">4. LaTeX コンパイルのエラー対策</a>
+<li><a href="#sec-5">5. LaTeX コンパイルのエラー対策</a>
 <ul>
-<li><a href="#sec-4-1">4.1. エラー・メッセージからエラーの内容と場所を特定する</a></li>
-<li><a href="#sec-4-2">4.2. エラーメッセージに表示された行に問題がある場合</a></li>
-<li><a href="#sec-4-3">4.3. エラーメッセージに表示される行とは別の部分に問題がある場合</a></li>
-<li><a href="#sec-4-4">4.4. TeX のエラー対策に関する参考資料</a></li>
+<li><a href="#sec-5-1">5.1. エラー・メッセージからエラーの内容と場所を特定する</a></li>
+<li><a href="#sec-5-2">5.2. エラーメッセージに表示された行に問題がある場合</a></li>
+<li><a href="#sec-5-3">5.3. エラーメッセージに表示される行とは別の部分に問題がある場合</a></li>
+<li><a href="#sec-5-4">5.4. TeX のエラー対策に関する参考資料</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. エラー対策をしてみよう</a></li>
+<li><a href="#sec-6">6. エラー対策をしてみよう</a></li>
 </ul>
 </div>
 </div>
 
 <div id="outline-container-sec-1" class="outline-2">
-<h2 id="sec-1"><span class="section-number-2">1</span> Emacs でファイルを作って保存してみよう</h2>
+<h2 id="sec-1"><span class="section-number-2">1</span> このページの更新履歴</h2>
 <div class="outline-text-2" id="text-1">
-</div><div id="outline-container-sec-1-1" class="outline-3">
-<h3 id="sec-1-1"><span class="section-number-3">1.1</span> Emacs を起動する</h3>
-<div class="outline-text-3" id="text-1-1">
+<p>
+<a href="https:github.com/nagae/2014ICL-B/commits/gh-pages/chap4.html">このページの更新履歴</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Emacs でファイルを作って保存してみよう</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Emacs を起動する</h3>
+<div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>左下のメニューから ユーティリティ→エディタ→Emacs を選択
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-2" class="outline-3">
-<h3 id="sec-1-2"><span class="section-number-3">1.2</span> 新しいバッファを開く</h3>
-<div class="outline-text-3" id="text-1-2">
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 新しいバッファを開く</h3>
+<div class="outline-text-3" id="text-2-2">
 <ul class="org-ul">
 <li>Emacs 上で <code>C-x C-f</code> とすると，新しいバッファを開き，そこにファイルの内容を表示させられる
 </li>
@@ -279,9 +288,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-1-3" class="outline-3">
-<h3 id="sec-1-3"><span class="section-number-3">1.3</span> バッファを編集して保存する</h3>
-<div class="outline-text-3" id="text-1-3">
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> バッファを編集して保存する</h3>
+<div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li>開いたバッファのモードラインにファイル名(<code>brank.txt</code>)と表示されているのを確認し，適当な文字列を入力
 </li>
@@ -296,12 +305,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> LaTeX ファイルを作成し，コンパイルしてみよう</h2>
-<div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> <code>tex_sample.tex</code> というバッファを作成する</h3>
-<div class="outline-text-3" id="text-2-1">
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> LaTeX ファイルを作成し，コンパイルしてみよう</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> <code>tex_sample.tex</code> というバッファを作成する</h3>
+<div class="outline-text-3" id="text-3-1">
 <ul class="org-ul">
 <li>上述の方法で <code>tex_sample.tex</code> というファイル名でバッファを作成する
 </li>
@@ -313,9 +322,9 @@ for the JavaScript code in this tag.
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <code>tex_sample.tex</code> をコンパイルして <code>tex_sample.dvi</code> を作成する</h3>
-<div class="outline-text-3" id="text-2-2">
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> <code>tex_sample.tex</code> をコンパイルして <code>tex_sample.dvi</code> を作成する</h3>
+<div class="outline-text-3" id="text-3-2">
 <ul class="org-ul">
 <li>Emacs 上で <code>M-!</code> (ALT と Shift を押しながら1)とする
 </li>
@@ -350,9 +359,9 @@ Transcript written on texput.log.
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> <code>tex_sample.dvi</code> を <code>tex_sample.pdf</code> に変換する</h3>
-<div class="outline-text-3" id="text-2-3">
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> <code>tex_sample.dvi</code> を <code>tex_sample.pdf</code> に変換する</h3>
+<div class="outline-text-3" id="text-3-3">
 <ul class="org-ul">
 <li><code>tex_sample.dvi</code> が生成されていることを確認する. <code>C-x C-f</code> で <code>tex_sample</code> まで入力して <code>TAB</code> キーを押すと, <code>tex_sample</code> で始まるファイル名が表示される．この中に <code>tex_sample.dvi</code> が無ければ，何らかの理由でコンパイルに失敗しているので，もう一度 <code>tex_sample.tex</code> の生成からやり直す．
 </li>
@@ -395,9 +404,9 @@ Output file removed.
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-2-4" class="outline-3">
-<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 変換された <code>tex_sample.pdf</code> を開く</h3>
-<div class="outline-text-3" id="text-2-4">
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 変換された <code>tex_sample.pdf</code> を開く</h3>
+<div class="outline-text-3" id="text-3-4">
 <ul class="org-ul">
 <li>Cent OS の左下のメニュー→ホームを選択すると <code>~/</code> に対応するフォルダが表示される．
 
@@ -413,12 +422,12 @@ Output file removed.
 </div>
 </div>
 
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> LaTeX ファイルから PDF ファイルを作る前のチェック</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> ファイルは保存されているか？</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> LaTeX ファイルから PDF ファイルを作る前のチェック</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> ファイルは保存されているか？</h3>
+<div class="outline-text-3" id="text-4-1">
 <ul class="org-ul">
 <li>モードラインの記号が <code>**</code> となっている場合は，ファイルが保存されていない． <code>C-x C-s</code> として保存しよう．
 </li>
@@ -427,9 +436,9 @@ Output file removed.
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> ファイルは存在するか？</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> ファイルは存在するか？</h3>
+<div class="outline-text-3" id="text-4-2">
 <ul class="org-ul">
 <li><code>platex</code> を使ったコンパイルに失敗すると，dvi ファイルが生成されない．存在しないファイルに対して <code>dvipdfmx</code> を行なっても，当然，何も処理されない．
 </li>
@@ -494,9 +503,9 @@ tex_sample*
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> ファイル名は正しいか？</h3>
-<div class="outline-text-3" id="text-3-3">
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> ファイル名は正しいか？</h3>
+<div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>TeXファイル(<code>.tex</code>)と <code>platex</code> の引数に与えているファイル名は同じものだろうか？
 </li>
@@ -515,9 +524,9 @@ tex_sample*
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3-4" class="outline-3">
-<h3 id="sec-3-4"><span class="section-number-3">3.4</span> LaTeX のコマンドを間違えていないか？</h3>
-<div class="outline-text-3" id="text-3-4">
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> LaTeX のコマンドを間違えていないか？</h3>
+<div class="outline-text-3" id="text-4-4">
 <ul class="org-ul">
 <li>LaTeX のコマンドは, <code>\</code> (バックスラッシュ，109キーボードでは右上の￥マーク)で始まる．
 </li>
@@ -538,9 +547,9 @@ tex_sample*
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-3-5" class="outline-3">
-<h3 id="sec-3-5"><span class="section-number-3">3.5</span> <code>\begin{}</code> <code>\end{}</code> の対応はとれているか？</h3>
-<div class="outline-text-3" id="text-3-5">
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> <code>\begin{}</code> <code>\end{}</code> の対応はとれているか？</h3>
+<div class="outline-text-3" id="text-4-5">
 <ul class="org-ul">
 <li><code>\begin{document}, \begin{itemize}, \begin{enumerate}</code> など, <code>\begin{環境名}</code> で始まる LaTeX コマンド(環境; environment と呼ばれる)は，
 常に, <code>end{document}, \end{itemize}, \end{enumerate}</code> など，対応する <code>\end{環境名}</code> で終わらなければならない．
@@ -554,12 +563,12 @@ tex_sample*
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> LaTeX コンパイルのエラー対策</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> エラー・メッセージからエラーの内容と場所を特定する</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> LaTeX コンパイルのエラー対策</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> エラー・メッセージからエラーの内容と場所を特定する</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 TeX ファイルをコンパイルして dvi を作成するとき，出力結果ウィンドウの最後に
 </p>
@@ -593,9 +602,9 @@ l.7 これは \LaTEX
 </div>
 </div>
 
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> エラーメッセージに表示された行に問題がある場合</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> エラーメッセージに表示された行に問題がある場合</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 LaTeX に限らず，大半は <b>エラーメッセージに表示された行に問題がある</b> ので，その部分を表示させて修正すればよい．
 </p>
@@ -616,9 +625,9 @@ Goto line:
 </div>
 </div>
 
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> エラーメッセージに表示される行とは別の部分に問題がある場合</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> エラーメッセージに表示される行とは別の部分に問題がある場合</h3>
+<div class="outline-text-3" id="text-5-3">
 <p>
 厄介なのは，エラーメッセージに表示された行とは別の部分に問題がある場合．
 例えば，4行目の <code>\begin{document}</code> の最後の波括弧を間違えて丸括弧で閉じて <code>\begin{document)</code> とした場合，
@@ -664,25 +673,25 @@ Runaway argument?
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> TeX のエラー対策に関する参考資料</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> TeX のエラー対策に関する参考資料</h3>
+<div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
-<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?TeX%2520%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">TeX のエラーメッセージ</a> (奥村先生)
+<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?TeX%20%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">TeX のエラーメッセージ</a> (奥村先生)
 </li>
-<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?LaTeX%2520%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">LaTeX のエラーメッセージ</a> (奥村先生)
+<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?LaTeX%20%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">LaTeX のエラーメッセージ</a> (奥村先生)
 </li>
-<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?LaTeX%2520%E3%81%AE%E8%AD%A6%E5%91%8A%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">LaTeX の警告メッセージ</a> (奥村先生)
+<li><a href="http:oku.edu.mie-u.ac.jp/~okumura/texwiki/?LaTeX%20%E3%81%AE%E8%AD%A6%E5%91%8A%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8">LaTeX の警告メッセージ</a> (奥村先生)
 </li>
 </ul>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> エラー対策をしてみよう</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> エラー対策をしてみよう</h2>
+<div class="outline-text-2" id="text-6">
 <p>
-以下のソースファイルには6ヶ所間違いが含まれている．全て修正し，適切な PDF を作成せよ．
+以下のソースファイルには <del>6ヶ所</del> 7ヶ所 間違いが含まれている．全て修正し，適切な PDF を作成せよ．
 </p>
 <script src="https://gist.github.com/nagae/3ac178ed579c4f1b849f.js"></script>
 
@@ -694,7 +703,7 @@ Runaway argument?
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-04-30 Wed 18:17</p>
+<p class="date">Created: 2014-05-02 Fri 13:42</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
