@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>第4回 アカデミックスキルI レポートの作成技術(3)</title>
+<!-- 2014-05-09 Fri 11:49 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Takeshi Nagae" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel=stylesheet href="style.css" type="text/css">
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">第4回 アカデミックスキルI レポートの作成技術(3)</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. このページの更新履歴</a></li>
+<li><a href="#sec-2">2. 「私の好きな競技とその魅力」について書こう</a></li>
+<li><a href="#sec-3">3. 競技を決め，題材となる魅力を絞り込もう</a></li>
+<li><a href="#sec-4">4. 魅力を説明するための内容を考えよう</a>
+<ul>
+<li><a href="#sec-4-1">4.1. 文章全体で「扱う話題」とその「回答」を決めよう</a></li>
+<li><a href="#sec-4-2">4.2. 「前情報」「論の組み立て」「補足展開」に相当する項目を考えよう</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. 全体の構成を考えながら段落を構成しよう</a>
+<ul>
+<li><a href="#sec-5-1">5.1. 文章を構成する単位</a></li>
+<li><a href="#sec-5-2">5.2. 段落を構成し，それぞれのトピック・センテンスを書こう</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> このページの更新履歴</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+<a href="https:github.com/nagae/2014ICL-B/commits/gh-pages/chap5.html">このページの更新履歴</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 「私の好きな競技とその魅力」について書こう</h2>
+<div class="outline-text-2" id="text-2">
+<blockquote>
+<p>
+課題：
+自分の好きな競技と，その魅力について <span class="underline">A4 用紙 2〜3枚</span> で述べよ．ただし，下記の <b>2つの点について必ず述べること</b>. 
+</p>
+<ul class="org-ul">
+<li>主なルール(特に，勝敗もしくは優劣の判定方法)
+</li>
+<li>観戦する際に注目すべき点(盛り上がるシーン，プレイヤー間の駆け引きなど)
+</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 競技を決め，題材となる魅力を絞り込もう</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+課題名には「好きな競技」とあるが，満足すべき要件として「ルール」と「注目すべき点」を <b>記述しなければならない</b>. 
+レポートを書く際には，課題に必要な要件を正確に読み取り，適切な題材を選ぶことがとても重要である．
+</p>
+
+<p>
+例えば, <b>指相撲</b> はルールは記述し易いかもしれないが，注目すべき点や魅力について記述し辛いのではないだろうか．
+</p>
+
+<p>
+競技が決まったら，レポートで述べるべき「競技の魅力」を絞り込もう．
+「とにかくやってみれば絶対に面白いスポーツです」では魅力の説明にならない．
+</p>
+
+<p>
+巧妙な戦術，プロが見せるスーパープレイ，手に汗握る駆け引き，自分自身の体験談，絶妙なチームプレイなど，
+まずは, <b>具体的な魅力をいくつか列挙してみる</b> とよい．
+そして，その中で，自分が <b>最も書きたいもの</b> (あるいは <b>最も書き易いもの</b> )を1つ選ぼう．
+</p>
+
+<p>
+具体的な魅力が思いつかない場合，思い切って競技を変えてみるのもよい．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 魅力を説明するための内容を考えよう</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+次に，題材に選んだ魅力を説明するための内容を考えていこう．以下では，
+</p>
+
+<p>
+酒井聡樹: <a href="http:www.amazon.co.jp/dp/4320005856">100ページの文章術</a>, 共立出版, 2011
+</p>
+
+<p>
+を参考にする．酒井(2011)では，文章の基本構成として，以下の2つを挙げている：
+</p>
+<ul class="org-ul">
+<li>構成1
+<ul class="org-ul">
+<li>前情報 (※)
+</li>
+<li>扱う話題
+</li>
+<li>論の組み立て (※)
+</li>
+<li>回答
+</li>
+<li>補足展開 (※)
+</li>
+</ul>
+</li>
+<li>構成2
+<ul class="org-ul">
+<li>前情報 (※)
+</li>
+<li>扱う話題・回答
+</li>
+<li>論の組み立て (※)
+</li>
+<li>まとめ直し
+</li>
+<li>補足展開 (※)
+</li>
+</ul>
+</li>
+</ul>
+<p>
+ただし，(※) は無いこともある項目である．
+</p>
+</div>
+
+<div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 文章全体で「扱う話題」とその「回答」を決めよう</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+まず，どちらの構成にも必要な「扱う話題」とその「回答」を考える．例えば，
+</p>
+<ul class="org-ul">
+<li>「野球で一番爽快なプレーは何だろうか？」
+</li>
+</ul>
+<p>
+を「扱う話題」，その「回答」として，
+</p>
+<ul class="org-ul">
+<li>「サヨナラホームランである」
+</li>
+</ul>
+<p>
+としてみよう．さらに，課題の要請である「注目すべき点」も含めて，
+</p>
+<ul class="org-ul">
+<li>扱う話題：サヨナラホームランの爽快感を楽しむには？
+</li>
+</ul>
+<p>
+に対して
+</p>
+<ul class="org-ul">
+<li>(例えば) 9回裏になったら，点差を見て「あと何人塁に出た上でホームランを打つとサヨナラになるか」を考えながら観るとよい
+</li>
+<li>9回裏で，塁上に走者がたまった時の選手や監督の表情の変化，緊迫感に注目して観て欲しい
+</li>
+</ul>
+<p>
+といった回答にしても面白い．あるいは，
+</p>
+<ul class="org-ul">
+<li>扱う話題：これまでにあった劇的なサヨナラホームランは？
+</li>
+</ul>
+<p>
+に対して「満塁サヨナラホームラン」「代打サヨナラホームラン」「釣り銭なしサヨナラホームラン」「優勝決定サヨナラホームラン」などを回答としたり，
+</p>
+<ul class="org-ul">
+<li>扱う話題：サヨナラホームランを打った打者と打たれた投手，それぞれの心境は？
+</li>
+</ul>
+<p>
+に対して，自分の体験談を回答とするのもいい．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 「前情報」「論の組み立て」「補足展開」に相当する項目を考えよう</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+特に，レポート課題として要求されている「前情報」や「論の組み立て」の中に「ルール(特に勝敗)」および
+「観戦する時に注目すべき点」に関連した項目が必要となる．
+</p>
+
+<p>
+これらの項目もまた，上述のような構成を持つ(階層構造になる)．
+例えば，「サヨナラホームラン」を説明するための「論の組み立て」には，
+</p>
+<ul class="org-ul">
+<li>扱う話題：どうすると勝敗が決まるのか？
+<ul class="org-ul">
+<li>回答：2つのチームが攻撃・防御を交互に9回繰り返し，9回目の攻撃終了時に得点の多い方が勝つ．
+</li>
+<li>補足展開：特に，9回裏の攻撃で逆転した場合をサヨナラ勝ちと呼ぶ
+</li>
+</ul>
+</li>
+<li>扱う話題：ホームランとは何か？
+<ul class="org-ul">
+<li>回答：攻撃側の打球が防御側の手の届かないゾーンに入った場合をホームランと呼ぶ．
+</li>
+<li>論の組み立て：ホームランの場合は打者だけでなく，その時点の塁上の走者が全てホームに戻れる
+</li>
+</ul>
+</li>
+</ul>
+<p>
+などが必要となるだろう．
+</p>
+
+<p>
+あるルールを説明するために，別のルールが必要となることもあり，芋づる式に話題がいくつも挙がることもある．
+例えば，得点がどのように入るか，を説明するために，
+</p>
+
+<ul class="org-ul">
+<li>フィールドや塁に関する話題
+<ul class="org-ul">
+<li>フィールド上には4角形が描かれ，その四隅には塁が設置される
+</li>
+<li>4つの塁は，反時計周りに，本塁，1塁，2塁，3塁と呼ばれる．
+</li>
+</ul>
+</li>
+<li>走者と得点に関する話題
+<ul class="org-ul">
+<li>1つの攻撃では，攻撃側の1名の打者と防御側の1名の投手が対峙する
+</li>
+<li>打者は投手の投げたボールをバットで打ち返すことで，その打球が捕球されていずれかの塁に戻されるまで，塁を進められる．
+</li>
+<li>塁は1塁，2塁，3塁，本塁の順に進めることができ，1人の打者(走者)が本塁まで進んだら1点．
+</li>
+<li>塁を進める途中でボールが戻ってきた場合，打者(走者)は途中の塁上に留まる．
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+といったルールに関する話題が必要となるかもしれない．
+</p>
+
+<p>
+文章全体で扱う話題や回答によって「前情報」や「論の組み立て」に必要な情報が変わってくる．
+例えば「サヨナラホームランの爽快感を楽しむ方法は？」という話題を扱うなら，
+</p>
+<ul class="org-ul">
+<li>プロ野球での劇的なサヨナラホームランに関する話題
+</li>
+<li>観戦していた試合がサヨナラホームランで終わった時の体験談
+</li>
+</ul>
+<p>
+などがあるとよいかもしれないし，「特別なサヨナラホームランとその醍醐味」という話題を扱うなら，
+</p>
+<ul class="org-ul">
+<li>「満塁」「代打」「釣り銭なし」といった用語についての話題
+</li>
+</ul>
+<p>
+が必要だろう．「サヨナラホームランに対する打者・投手それぞれの心境」についての話題を扱うなら，
+</p>
+<ul class="org-ul">
+<li>自らがサヨナラホームランを放った・打たれた体験談
+</li>
+</ul>
+<p>
+といった情報が必要になるかもしれない．
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 全体の構成を考えながら段落を構成しよう</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+上述で挙げた話題を基に，段落を構成していこう．そのために，まず，文章がどんな単位で構成されるかを知ろう．
+</p>
+</div>
+<div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 文章を構成する単位</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+文章は，通常，以下の単位で構成される階層構造を持つ．
+</p>
+<dl class="org-dl">
+<dt> 文(sentence) </dt><dd>句点(。)で区切られる文字のまとまり．
+</dd>
+<dt> 段落(paragraph) </dt><dd>1つの「話題」を扱う，複数の文のまとまり．字下げ(第1行の最初の文字を，行端から数文字分下げて書き始める)や空行で区切られる．
+</dd>
+<dt> 節(section)，小節(subsection) </dt><dd>ある話題を扱うための複数の段落のまとまりに，表題をつけたもの．小節は，節だけではまとまりが大き過ぎる場合に使われる．
+</dd>
+</dl>
+<p>
+ただし，
+</p>
+<ol class="org-ol">
+<li>書籍や卒業論文・修士論文では，節より大きなまとまりに章(chapter)，さらに大きなまとまりとして部(part)が設けられることもある．
+</li>
+<li>今回のような短いレポートでは，節・小節は無いこともある．
+</li>
+</ol>
+
+<p>
+以上のことからも明らかなように，文章の基本的な構成要素は「段落」と「文」である．
+</p>
+
+<p>
+文章を「レゴブロックの家」に喩えるなら，「段落」は1つ1つの「ブロック」，「文」は個々のブロックの「側面」やジョイント用の「ツブツブ」に当たり，
+いくつかのブロックで構成された「門」や「屋根」などが「部」「章」「節」「小節」に相当する．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 段落を構成し，それぞれのトピック・センテンスを書こう</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+段落とは「1つの話題を扱う複数の文のまとまり」であるから，
+原則としては，これまでに挙げた「話題」のそれぞれについて，1つづつ「段落」を設ければよい．
+ただし，選んだ話題について書くべき内容があまり無い場合には，複数の話題をまとめて1つの「段落」にできないか検討する必要がある．
+なぜなら，ツブツブが1つしかなかったり側面が欠けたりしたレゴブロックでは家が作れないように，
+あまりに短い(文が少ない)段落だと「複数の文のまとまり」にならず，論理構造を構成し辛いからだ．
+</p>
+
+<p>
+それぞれの段落が扱う話題を決めたら，その段落のトピック・センテンスを書こう．
+トピック・センテンスは，その段落における最も重要な情報を伝える「文」である．
+酒井(2011)が挙げる文章の構成に従って段落を構成するなら，トピック・センテンスは「扱う話題・回答」に相当する．
+</p>
+
+<p>
+うまいトピック・センテンスが書けると，それを並べるだけで何となく文章の論理構造が見えてくる．
+逆に，なかなかトピック・センテンスが決まらない場合は，段落で複数の話題を扱おうとしたり，
+回答が無かったりしている可能性がある．こういう場合は，段落の再編成も含めて検討し直す必要がある．
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Takeshi Nagae</p>
+<p class="date">Created: 2014-05-09 Fri 11:49</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
