@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第6回 アカデミックスキルI レポートの作成技術(4)</title>
-<!-- 2014-05-13 Tue 11:41 -->
+<!-- 2014-05-13 Tue 11:51 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -303,7 +303,9 @@ TeX の命令は <b>マクロ</b> と <b>環境</b> とに分かれる．
 </dd>
 <dt> <code>\\</code> </dt><dd>改行を挿入する．
 </dd>
-<dt> <code>\verb|...|</code> </dt><dd>ソースコードのように LaTeX で処理されたくないテキストを挿入する．
+<dt> <code>\verb|\section{節の標題}|</code> </dt><dd>LaTeX で処理されたくないソースコードなど(この場合は <code>\section{節の標題}</code>)を挿入する．
+<code>\verb</code> コマンドの <b>直後の記号を引数のデリミタ(区切り文字)とする</b> ので，ソースコードの中に無い記号を適宜選べばよい．
+代表的なのは <code>\verb|...|</code> や <code>\verb!...!</code> や <code>\verb+...+</code> など．
 </dd>
 </dl>
 </div>
@@ -446,7 +448,7 @@ TeX の命令は <b>マクロ</b> と <b>環境</b> とに分かれる．
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-05-13 Tue 11:41</p>
+<p class="date">Created: 2014-05-13 Tue 11:51</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
