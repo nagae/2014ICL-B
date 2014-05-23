@@ -1,0 +1,979 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>「端末」の使い方</title>
+<!-- 2014-05-23 Fri 09:55 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Takeshi Nagae" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel=stylesheet href="style.css" type="text/css">
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">「端末」の使い方</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. このページの更新履歴</a></li>
+<li><a href="#sec-2">2. 「端末」の基本的なコマンド</a>
+<ul>
+<li><a href="#sec-2-1">2.1. コマンドのルール</a></li>
+<li><a href="#sec-2-2">2.2. マニュアル表示，ファイルの中身を閲覧</a></li>
+<li><a href="#sec-2-3">2.3. ファイル/ディレクトリ操作</a></li>
+<li><a href="#sec-2-4">2.4. 検索</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 「端末」の使い方</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 端末の起動</a></li>
+<li><a href="#sec-3-2">3.2. コマンドの引数とTAB 補完</a></li>
+<li><a href="#sec-3-3">3.3. マニュアル</a></li>
+<li><a href="#sec-3-4">3.4. ディレクトリとパス</a></li>
+<li><a href="#sec-3-5">3.5. 特別なディレクトリ</a></li>
+<li><a href="#sec-3-6">3.6. 相対パスと絶対パス</a></li>
+<li><a href="#sec-3-7">3.7. ファイルエクスプローラ や Finder.app のような機能</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> このページの更新履歴</h2>
+<div class="outline-text-2" id="text-1">
+<a href="https://github.com/nagae/2014ICL-B/commits/gh-pages/terminal.html">このページの更新履歴</a>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 「端末」の基本的なコマンド</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> コマンドのルール</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>引数は半角スペースで区切る.
+</li>
+<li><code>[]</code> 内の引数は省略可能.
+</li>
+<li>オプションは <code>-a</code> のように <code>-</code> をつけて指定する．複数のオプションを指定する場合, <code>-l -a</code> とする代わりに <code>-la</code> とまとめられる．
+</li>
+<li>特別なディレクトリとして, <code>~/</code> (ホームディレクトリ), <code>./</code> (現在のディレクトリ), <code>../</code> (1つ上位のディレクトリ/親ディレクトリ)がよく使われる．
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> マニュアル表示，ファイルの中身を閲覧</h3>
+<div class="outline-text-3" id="text-2-2">
+<dl class="org-dl">
+<dt> <code>man コマンド名</code> </dt><dd>コマンドのマニュアルを表示する
+<div class="org-src-container">
+
+<pre class="src src-sh">man ls                          <span style="color: #00cd66;"># </span><span style="color: #00cd66;">ls &#12467;&#12510;&#12531;&#12489;&#12398;&#12510;&#12491;&#12517;&#12450;&#12523;&#12434;&#34920;&#31034;&#12377;&#12427;</span>
+</pre>
+</div>
+<p>
+マニュアル表示モードに対しては，以下のようなキー操作が可能である．
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">キー</th>
+<th scope="col" class="left">処理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left"><code>q</code></td>
+<td class="left">マニュアルモードを終了</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left"><code>RET</code>, <code>j</code> または下カーソル</td>
+<td class="left">1行進む</td>
+</tr>
+
+<tr>
+<td class="left"><code>k</code> または上カーソル</td>
+<td class="left">1行戻る</td>
+</tr>
+
+<tr>
+<td class="left"><code>SPC</code> または <code>f</code></td>
+<td class="left">1ページ進む</td>
+</tr>
+
+<tr>
+<td class="left"><code>b</code></td>
+<td class="left">1ページ戻る</td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt> <code>less ファイル名</code> </dt><dd>ファイルの中身を閲覧する
+<div class="org-src-container">
+
+<pre class="src src-sh">less ~/.bash_profile                <span style="color: #00cd66;"># </span><span style="color: #00cd66;">.bash_profile &#12398;&#20013;&#36523;&#12434;&#38322;&#35239;&#12377;&#12427;</span>
+</pre>
+</div>
+<p>
+中身の閲覧モードに対しては，マニュアル表示モードと同様のキー操作が可能．
+</p>
+</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> ファイル/ディレクトリ操作</h3>
+<div class="outline-text-3" id="text-2-3">
+<dl class="org-dl">
+<dt> <code>pwd</code> </dt><dd>現在のディレクトリを確認する．
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b0c4de;">pwd</span>
+</pre>
+</div>
+</dd>
+<dt> <code>mkdir ディレクトリ名</code> </dt><dd>指定した名前のディレクトリを新しく作成する
+<div class="org-src-container">
+
+<pre class="src src-sh">mkdir ~/rep1                    <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12507;&#12540;&#12512;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12398;&#19979;&#12395; rep1 &#12392;&#12356;&#12358;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12434;&#20316;&#25104;&#12377;&#12427;</span>
+mkdir test1                     <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#29694;&#22312;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12398;&#19979;&#12395; test1 &#12392;&#12356;&#12358;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12434;&#20316;&#25104;&#12377;&#12427;</span>
+</pre>
+</div>
+</dd>
+<dt> <code>rmdir ディレクトリ名</code> </dt><dd>指定した名前のディレクトリを削除する
+<ul class="org-ul">
+<li>削除するディレクトリは <b>中が空でないといけない</b> (中身があるディレクトリを削除しようとするとエラーが表示される)
+</li>
+<li>中身が空でないディレクトリを中身ごと消去するには <code>rm -r</code> を使用
+</li>
+</ul>
+</dd>
+<dt> <code>ls [オプション] [ディレクトリ名]</code> </dt><dd>指定したディレクトリ内のファイル/ディレクトリの一覧を表示させる．
+<ul class="org-ul">
+<li>ディレクトリ名を省略した場合は，現在のディレクトリが指定される (<code>ls .</code>) と同等．
+</li>
+</ul>
+<p>
+よく使うオプション：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>a</code></td>
+<td class="left"><code>.</code> で始まる隠しファイル/ディレクトリも表示</td>
+</tr>
+
+<tr>
+<td class="left"><code>l</code></td>
+<td class="left">権限やファイルサイズなどの詳細情報も表示する．</td>
+</tr>
+</tbody>
+</table>
+<p>
+使用例：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ls                              <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#29694;&#22312;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#20869;&#12398;&#19968;&#35239;&#12434;&#34920;&#31034;</span>
+ls ~/Desktop/                   <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12487;&#12473;&#12463;&#12488;&#12483;&#12503;&#20869;&#12398;&#19968;&#35239;&#12434;&#34920;&#31034;</span>
+ls -a                           <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#38560;&#12375;&#12501;&#12449;&#12452;&#12523;/&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12434;&#21547;&#12416;&#20840;&#12390;&#12398;&#19968;&#35239;</span>
+ls -l                           <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#35443;&#32048;&#24773;&#22577;&#12434;&#34920;&#31034;</span>
+</pre>
+</div>
+</dd>
+<dt> <code>cd [移動先ディレクトリ名]</code> </dt><dd>指定したディレクトリに移動する．
+<ul class="org-ul">
+<li>ディレクトリ名を省略した場合は，ホームディレクトリが指定される (<code>cd ~</code> と同等)．
+</li>
+<li>ディレクトリ名に <code>-</code> を指定した場合，直前のディレクトリに移動する
+</li>
+</ul>
+<p>
+使用例：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b0c4de;">cd</span>                              <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12507;&#12540;&#12512;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12395;&#31227;&#21205;</span>
+<span style="color: #b0c4de;">cd</span> ~/Desktop/                   <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12487;&#12473;&#12463;&#12488;&#12483;&#12503;&#12395;&#31227;&#21205;</span>
+<span style="color: #b0c4de;">cd</span> -                            <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#30452;&#21069;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12395;&#25147;&#12427;</span>
+</pre>
+</div>
+</dd>
+<dt> <code>mv [オプション] 移動元 移動先</code> </dt><dd>ファイル/ディレクトリを移動(名称変更)する
+<ul class="org-ul">
+<li>移動元と移動先が <b>同じディレクトリ</b> の場合は，単なる <b>名称変更</b> となる
+</li>
+<li>移動先に <b>既存のディレクトリ名</b> を指定した場合, <b>そのディレクトリの下に</b> 移動元ファイルを移動させる
+</li>
+</ul>
+<p>
+よく使うオプション：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>n</code></td>
+<td class="left">移動先に既存のファイル名を指定したとき，上書きしない</td>
+</tr>
+
+<tr>
+<td class="left"><code>i</code></td>
+<td class="left">移動先のファイル名が既に存在するとき，確認メッセージを表示させる</td>
+</tr>
+
+<tr>
+<td class="left"><code>f</code></td>
+<td class="left">移動先のファイル名が既に存在するとき，強制的に上書きする <b>!!!危険!!!</b></td>
+</tr>
+</tbody>
+</table>
+<p>
+使用例：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">mv report1 report1.tex          <span style="color: #00cd66;"># </span><span style="color: #00cd66;">report1 &#12434; report1.tex &#12392;&#12356;&#12358;&#21517;&#21069;&#12395;&#22793;&#26356;</span>
+mv -n report1 report1.tex       <span style="color: #00cd66;"># </span><span style="color: #00cd66;">report1.tex &#12364;&#23384;&#22312;&#12375;&#12390;&#12356;&#12427;&#22580;&#21512;&#12395;&#12399;&#21517;&#31216;&#22793;&#26356;&#12375;&#12394;&#12356;</span>
+mv report1.tex rep1/            <span style="color: #00cd66;"># </span><span style="color: #00cd66;">rep1 &#12392;&#12356;&#12358;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12364;&#12354;&#12427;&#22580;&#21512;&#65292;report1.tex &#12434;&#12381;&#12398;&#19979;&#12395;&#31227;&#21205;</span>
+mv report1.* rep1/              <span style="color: #00cd66;"># </span><span style="color: #00cd66;">rep1 &#12392;&#12356;&#12358;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12364;&#12354;&#12427;&#22580;&#21512;&#65292;report1 &#12391;&#22987;&#12414;&#12427;&#20840;&#12390;&#12398;&#12501;&#12449;&#12452;&#12523;&#12434;&#12381;&#12398;&#19979;&#12395;&#31227;&#21205;</span>
+</pre>
+</div>
+</dd>
+<dt> <code>cp [オプション] コピー元 コピー先</code> </dt><dd>ファイル/ディレクトリをコピーする
+<ul class="org-ul">
+<li>デフォルトでは <b>単一のファイルのみ</b> をコピーする
+</li>
+<li>コピー先に <b>既存のディレクトリ名</b> を指定した場合, <b>そのディレクトリの下に</b> コピー元ファイルの複製を作る
+</li>
+<li><b>ディレクトリごとコピーしたい場合</b> には <code>r</code> オプションを使う
+</li>
+</ul>
+<p>
+よく使うオプション：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>r</code></td>
+<td class="left">指定したディレクトリ以下のサブディレクトリも含めてコピーする</td>
+</tr>
+
+<tr>
+<td class="left"><code>i</code></td>
+<td class="left">コピー先のファイル名が既に存在するとき，確認メッセージを表示させる</td>
+</tr>
+
+<tr>
+<td class="left"><code>f</code></td>
+<td class="left">コピー先のファイル名が既に存在するとき，強制的に上書きする <b>!!!危険!!!</b></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt> <code>rm [オプション] 削除するファイル</code> </dt><dd>ファイル/ディレクトリを削除する
+<ul class="org-ul">
+<li>削除されたファイルは <b>復元できない</b>
+</li>
+<li><b>ディレクトリごと削除したい場合</b> には <code>r</code> オプションを使う
+</li>
+</ul>
+<p>
+よく使うオプション：
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>r</code></td>
+<td class="left">指定したディレクトリ以下のサブディレクトリも含めて削除する <b>!!!危険!!!</b></td>
+</tr>
+
+<tr>
+<td class="left"><code>i</code></td>
+<td class="left">確認メッセージを表示させる</td>
+</tr>
+
+<tr>
+<td class="left"><code>f</code></td>
+<td class="left">強制的に削除する <b>!!!危険!!!</b></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 検索</h3>
+<div class="outline-text-3" id="text-2-4">
+<dl class="org-dl">
+<dt> <code>find [オプション] ディレクトリ名 判別式 アクション</code> </dt><dd>指定されたディレクトリ内のファイルを検索
+<ul class="org-ul">
+<li>判別式の文字列にはワイルドキャラクター(<code>*</code>: 任意の0字以上の文字に一致; <code>?</code>: 任意の1文字に一致)が利用可能
+</li>
+<li>判別式の条件に時間やサイズを指定する場合, <code>+n</code> は「〜以上のファイル」, <code>-n</code> は「〜以下のファイル」, <code>n</code> は「〜に一致するファイル」を検索
+</li>
+<li>アクションは省略されると <code>-print</code> が指定される．
+</li>
+<li>よく使う判別式には，以下のものがある．
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>! 条件</code></td>
+<td class="left">条件でないものが検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>条件1 -and 条件2</code></td>
+<td class="left">条件1かつ条件2のファイルを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>条件1 -or 条件2</code></td>
+<td class="left">条件1または条件2のファイルを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-name 文字列</code></td>
+<td class="left">ファイル名もしくはディレクトリ名を検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-iname 文字列</code></td>
+<td class="left"><code>-name</code> と同様だが，大文字/小文字を区別しない</td>
+</tr>
+
+<tr>
+<td class="left"><code>-path 文字列</code></td>
+<td class="left">ファイル/ディレクトリ名でなく，パスを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-type 種別</code></td>
+<td class="left">ファイル種別で検索. <code>f</code>: ファイル; <code>d</code>: ディレクトリ</td>
+</tr>
+
+<tr>
+<td class="left"><code>-atime +n</code></td>
+<td class="left">アクセス時間が n日以上のファイルを検索.</td>
+</tr>
+
+<tr>
+<td class="left"><code>-amin +n</code></td>
+<td class="left">のクセス時間が n分以上のファイルを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-mtime +n</code></td>
+<td class="left">修正時間(内容の修正)が n日以上のファイルを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-mmin +n</code></td>
+<td class="left">修正時間がn分以上のファイルを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-ctime +n</code></td>
+<td class="left">変更時間(ファイル名または内容修正)がn日以上のファイルを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-cmin +n</code></td>
+<td class="left">変更時間がn分以上のファイルを検索</td>
+</tr>
+
+<tr>
+<td class="left"><code>-size +n</code></td>
+<td class="left">ファイルサイズ(バイト単位)がn以上のファイルを検索</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>よく使われるアクションには，以下のものがある．
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>-print</code></td>
+<td class="left">検索したファイルを相対パスで表示</td>
+</tr>
+
+<tr>
+<td class="left"><code>-ls</code></td>
+<td class="left">検索したファイルの詳細情報を表示</td>
+</tr>
+
+<tr>
+<td class="left"><code>-exec コマンド名 {} \;</code></td>
+<td class="left">検索したファイルに対してコマンドを実行． <code>{}</code> の部分が検索結果に置換される．</td>
+</tr>
+
+<tr>
+<td class="left"><code>-ok</code></td>
+<td class="left"><code>-exec</code> と同様だが，実行前に確認メッセージを表示．</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<div class="org-src-container">
+
+<pre class="src src-sh">find . -type f -name <span style="color: #bdb76b;">"report*"</span>          <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#29694;&#22312;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12391; report &#12391;&#22987;&#12414;&#12427;&#12501;&#12449;&#12452;&#12523;&#12434;&#26908;&#32034;</span>
+find . -type f -name <span style="color: #bdb76b;">"*.tex"</span>            <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#29694;&#22312;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12391; .tex &#12391;&#32066;&#12431;&#12427;&#12501;&#12449;&#12452;&#12523;&#12434;&#26908;&#32034;</span>
+find . -type f -name <span style="color: #bdb76b;">"report*"</span> -and <span style="color: #bdb76b;">"*.tex"</span> <span style="color: #00cd66;"># </span><span style="color: #00cd66;">report &#12391;&#22987;&#12414;&#12426; .tex &#12391;&#32066;&#12431;&#12427;&#12501;&#12449;&#12452;&#12523;&#12434;&#26908;&#32034;</span>
+find . -name <span style="color: #bdb76b;">"*.tex"</span> -exec grep <span style="color: #bdb76b;">"document"</span> {} <span style="color: #bdb76b;">\;</span> <span style="color: #00cd66;"># </span><span style="color: #00cd66;">.tex &#12391;&#32066;&#12431;&#12427;&#12501;&#12449;&#12452;&#12523;&#12395;&#23550;&#12375;&#12390;</span>
+                                                 <span style="color: #00cd66;"># </span><span style="color: #00cd66;">document &#12434;&#21547;&#12416;&#34892;&#12434;&#34920;&#31034;&#12373;&#12379;&#12427;</span>
+find . -type f -name <span style="color: #bdb76b;">".aux"</span> -exec rm {} <span style="color: #bdb76b;">\;</span>    <span style="color: #00cd66;"># </span><span style="color: #00cd66;">.aux &#12391;&#32066;&#12431;&#12427;TeX&#12398;&#19968;&#26178;&#12501;&#12449;&#12452;&#12523;&#12434;&#21066;&#38500;&#12377;&#12427;</span>
+</pre>
+</div>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 「端末」の使い方</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+「端末(terminal)」とは，(狭い意味では)計算機をコマンド入力で操作するためのソフトウェアである．
+ファイル/ディレクトリの一覧表示，コピー，消去，移動(名称変更)，中身の確認といった基本操作から，
+各種コマンド(LaTeX の作成の際に使った <code>platex</code> (TeX→DVI) や <code>dvipdfmx</code> (DVI→PDF)など)，
+さらにはシステム管理などまでできる(というか，端末から入力されたコマンドで
+全ての操作が行なえるように OS 自体が設計されている)．
+</p>
+
+<blockquote>
+<p>
+実は，LaTeX でPDF作成する際に使った <code>M-!</code> (shell-command) というキーバインドは，
+Emacs (のミニバッファ)に，この「端末」の機能を肩代わりさせるものだった．
+</p>
+</blockquote>
+
+<p>
+本講義では，C言語のコンパイルを Emacs 上で，実行を「端末」上で行なうことにする．
+C言語プログラムは Emacs 上で実行することもできるが，
+特に，処理中でユーザーと「やり取り」をするには「端末」の方が都合がよい．
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 端末の起動</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+左下のOSメニュー→システム→端末を選んで起動．デスクトップのアイコンをダブルクリックしてもよい．
+</p>
+
+<div class="figure">
+<p><img src="fig/terminal-start.png" alt="terminal-start.png" width="600" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> コマンドの引数とTAB 補完</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+「端末」で入力するコマンドの中には <b>引数</b> を受け取るものがある．
+コマンドと引数および引数と引数の間には <b>半角スペースを入力する</b> 決まりになっている．
+</p>
+
+<p>
+コマンドの引数にはコマンドの処理対象となる <b>通常の引数</b> と，
+コマンドの振る舞いを制御する <b>オプション</b> とに分かれる．
+</p>
+
+<p>
+オプションは，通常, <code>-</code> (ハイフン)の後にアルファベットを並べることで指定できる．
+</p>
+
+<p>
+「端末」では，コマンドやファイル・パスに <b>TAB 補完</b> が利用できる．
+コマンドやファイル・パスの一部を入力して <code>TAB</code> キーを押した場合，
+それで始まるコマンドやファイル・パスが1つしかなければそれを自動的に入力してくれ，
+候補が複数存在する場合はその一覧を表示してくれる．
+</p>
+
+<p>
+<b>大変便利かつ必須の機能</b> なので，ぜひマスターして欲しい．
+覚えておかなければ，この後のコマンド操作が著しく面倒くさくなるだろう．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> マニュアル</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+「端末」で入力できるコマンド(UNIXコマンド)は何十種類もあり，
+その全てをこのページで網羅することは不可能である．
+コマンドの詳細な説明が見たい時には <code>man</code> コマンドを使う．例えば，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">man ls
+</pre>
+</div>
+<p>
+とすれば, <code>ls</code> の詳細な説明が読める. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> ディレクトリとパス</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Windows のエクスプローラ)や Mac の Finder.app を使っていれば，
+ディレクトリ(フォルダ)の概念は自然に理解できているだろう．
+レポートのTeXソースやC言語のソースファイルなどのファイルは，
+目的別にディレクトリに整理しておくべきである．
+</p>
+
+<p>
+ディレクトリは入れ子構造にできる. <code>2014ICL-B/</code> というディレクトリの下に
+<code>tex_report/</code> と <code>C_report/</code> というサブディレクトリがあり，
+さらに <code>tex_report/</code> の下に <code>rep1/</code> というサブディレクトリがあり，
+<code>tex_report/rep1/</code> の下に <code>report1.tex</code> と <code>report1.pdf</code> ファイル，
+<code>C_report/</code> の下に <code>sample1.c</code> と <code>sample1.o</code> というファイルがある場合，それらの構造は
+下記のような木(tree)で表現される．
+</p>
+<pre>
+ `--2014ICL-B
+    |-- tex_report
+    |   `-- rep1
+    |       |-- report1.tex
+    |       `-- report1.pdf
+    `-- C_report
+        |-- sample1.c
+        `-- sample1.o
+</pre>
+<p>
+このとき, <code>2014ICL-B</code> ディレクトリは，そのサブディレクトリである
+<code>tex_report1</code> や <code>C_report</code> ディレクトリの <b>親ディレクトリ</b> と呼ばれる．
+同様に, <code>rep1</code> は <code>report1.tex</code> や <code>report1.pdf</code> の親ディレクトリである．
+</p>
+
+<p>
+木構造のおかげで，任意のファイルに唯一つのパスを設定できる．例えば，上述の構造の下で
+<code>sample1.o</code> のファイルシステム上の位置は
+</p>
+<pre class="example">
+2014ICL-B/C_report/sample1.o
+</pre>
+<p>
+と表現でき，他に <code>sample1.o</code> というファイルがあったとしても，完全に区別できるのだ．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5"><span class="section-number-3">3.5</span> 特別なディレクトリ</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+UNIX システムには2つの特別なディレクトリが存在する．1つは
+ユーザーの個々人のファイルやディレクトリなどが収められている「ホームディレクトリ」，
+もう1つはシステム全体の最上位の「ルートディレクトリ」である．
+ホームディレクトリは最も頻繁に使われるもので, <code>~/</code> という名前がついている
+(<code>~</code> はチルダと呼ばれる記号で，106キーボードではシフトと数値の「0」を同時押しすれば入力できる)．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6"><span class="section-number-3">3.6</span> 相対パスと絶対パス</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+パスの指定方法には，現在のディレクトリからの <b>相対パス</b> と，上述の特別なディレクトリを用いた <b>絶対パス</b> の2通りがある．
+</p>
+
+<dl class="org-dl">
+<dt> 相対パス </dt><dd>現在のディレクトリを基準とするパス
+<dl class="org-dl">
+<dt> <code>./</code> </dt><dd>現在のディレクトリ(明示的に指定する必要は無い)
+</dd>
+<dt> <code>../</code> </dt><dd>1つ上位の親ディレクトリ(複数回指定可能. 例えば <code>../../</code> とすれば2つ上位のディレクトリ)
+</dd>
+<dt> <code>ディレクトリ名/</code> </dt><dd>指定したディレクトリ
+</dd>
+</dl>
+</dd>
+<dt> 絶対パス </dt><dd>ホームディレクトリ(<code>~/</code>) もしくは ルートディレクトリ(<code>/</code>) で始まるパス
+<dl class="org-dl">
+<dt> <code>~/</code> </dt><dd>ホームディレクトリ(左下のOSメニュー→「ホーム」で表示されるディレクトリ)
+</dd>
+<dt> <code>/</code> </dt><dd>ルートディレクトリ(情報基礎では滅多に使うことはない)
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-sec-3-7" class="outline-3">
+<h3 id="sec-3-7"><span class="section-number-3">3.7</span> ファイルエクスプローラ や Finder.app のような機能</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+これらのソフトウェアと同様，端末は，デフォルトでは「現在のディレクトリ (current directory)」に対する処理を行なう．
+現在のディレクトリを確認するには <code>pwd</code> というコマンドを使う．
+</p>
+
+<p>
+エクスプローラや Finder.app では，常に現在のディレクトリ内のファイル/ディレクトリの一覧が表示される．
+端末では <code>ls</code> というコマンドでファイル/ディレクトリの一覧を表示させられる．
+<code>ls</code> の引数にディレクトリ名を入力する(<code>ls</code> の後に半角スペースを1つ空けてからディレクトリ名を入力する)と，
+当該ディレクトリの一覧を表示させられる．
+このディレクトリは(現在のディレクトリからの) <b>相対パス</b> もしくは 
+(ホームまたはルートディレクトリを使った) <b>絶対パス</b> で指定できる．
+</p>
+
+<p>
+コマンドにはオプション引数を指定できる．オプションは <code>-</code> (ハイフン)の後にアルファベットをつけて指定する．
+例えば, <code>ls</code> コマンドでよく用いられるオプションは <code>a</code> と <code>l</code> である．前者を指定する(<code>ls -a</code>)と,
+隠しファイル(<code>.emacs.el</code> のようにファイル名が <code>.</code> で始まる)も表示できる．後者を指定する(<code>ls -l</code>)と，
+ファイルのアクセス権やファイル・サイズなどの詳細情報も表示できる．
+一度に複数のオプションを与える場合, <code>-</code> の後にまとめて指定することもできる．順序は自由．
+例えば, <code>ls ~/Desktop</code> に <code>a</code> と <code>l</code> のオプションを両方与えたい場合, 以下のいずれでも同じ結果が得られる．
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ls -l -a ~/Desktop/             <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12458;&#12503;&#12471;&#12519;&#12531;&#12434;&#20491;&#21029;&#12395;&#25351;&#23450;(l&#12364;&#20808;)</span>
+ls -a -l ~/Desktop/             <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12458;&#12503;&#12471;&#12519;&#12531;&#12434;&#20491;&#21029;&#12395;&#25351;&#23450;(a&#12364;&#20808;)</span>
+ls -la ~/Desktop/               <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12458;&#12503;&#12471;&#12519;&#12531;&#12434;&#12414;&#12392;&#12417;&#12390;&#25351;&#23450;(l&#12364;&#20808;)</span>
+ls -al ~/Desktop/               <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#12458;&#12503;&#12471;&#12519;&#12531;&#12434;&#12414;&#12392;&#12417;&#12390;&#25351;&#23450;(a&#12364;&#20808;)</span>
+</pre>
+</div>
+
+<p>
+なお, <code>ls</code> の出力結果が多すぎて画面がスクロールしてしまうのが問題になる場合は，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">ls | less
+</pre>
+</div>
+<p>
+として <code>less</code> コマンドに出力結果を <b>パイプ</b> してやるとよい．
+</p>
+
+<p>
+エクスプローラや Finder.app では，表示されているディレクトリをダブルクリックすると，当該ディレクトリの中に移動する．
+上位の親ディレクトリに移動するには，アドレスバーで当該ディレクトリ名をクリックしたり，
+メニューから移動→内包しているフォルダ(⌘+↑)を選択したりする．
+現在のディレクトリに移動する直前のディレクトリに戻るには「戻る」ボタンを使う．
+「端末」では，こうしたディレクトリ間の移動に <code>cd</code> というコマンドを使う．
+<code>cd ..</code> (1つ上のディレクトリに移動), <code>cd ~</code> (ホームディレクトリに移動), 
+<code>cd -</code> (直前のディレクトリに移動) などがよく使われる．
+</p>
+
+<p>
+ディレクトリの作成/削除は, それぞれ, <code>mkdir</code> および <code>rmdir</code> で行う．
+それぞれ，引数として与えられたディレクトリを作成したり，削除したりする．
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">mkdir dir1                      <span style="color: #00cd66;"># </span><span style="color: #00cd66;">dir1 &#12392;&#12356;&#12358;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12434;&#20316;&#25104;</span>
+rmdir dir1                      <span style="color: #00cd66;"># </span><span style="color: #00cd66;">dir1 &#12392;&#12356;&#12358;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12398;&#20013;&#36523;&#12364;&#31354;&#12394;&#12425;&#21066;&#38500;</span>
+</pre>
+</div>
+<p>
+ただし，中身が残っているディレクトリを <code>rmdir</code> で削除しようとすると
+「ディレクトリは空ではありません」というエラーメッセージが表示される．
+ディレクトリを中身ごと削除するには <code>rm</code> コマンドに <code>-r</code> オプションを与えて実行する．
+</p>
+
+<p>
+ファイルやディレクトリの移動/名称変更(<code>mv</code>)やコピー(<code>cp</code>)も端末から実行できる. 
+それぞれ, <b>第1引数に移動/コピー元</b> のファイル名, <b>第2引数に移動/コピー先</b> のファイル名を指定する．
+その際，第2引数に既存のフォルダ名を指定した場合は，当該ディレクトリの下にファイルを移動したり，複製を作成したりする．
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">mv file1 file2                  <span style="color: #00cd66;"># </span><span style="color: #00cd66;">file1 &#12398;&#21517;&#21069;&#12434; file2 &#12395;&#22793;&#26356;</span>
+mv file1 dir1/                  <span style="color: #00cd66;"># </span><span style="color: #00cd66;">file1 &#12434;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522; dir1 &#12398;&#19979;&#12395;&#31227;&#21205;</span>
+cp file1 file2                  <span style="color: #00cd66;"># </span><span style="color: #00cd66;">file1 &#12398;&#35079;&#35069;&#12434; file2 &#12392;&#12356;&#12358;&#21517;&#21069;&#12391;&#20316;&#25104;</span>
+cp file1 dir1/                  <span style="color: #00cd66;"># </span><span style="color: #00cd66;">file1 &#12398;&#35079;&#35069;&#12434;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522; dir1 &#12398;&#19979;&#12395;&#20316;&#25104;</span>
+</pre>
+</div>
+<p>
+気をつけたいのは，移動先/コピー先のファイルが既に存在する場合は <b>勝手に上書きしてしまう</b> 点だ．
+その際， <b>上書きされたファイルは消滅して復元不可能</b> となる．
+このため, <b>慣れない間はファイル・エクスプローラ的なソフトウェアを使った方がよい</b> かもしれない．
+オプションで <code>n</code> (上書き禁止)や <code>i</code> (上書きする場合には確認メッセージを表示)を必ず与えるようにしたい．
+なお, <code>cp</code> コマンドでディレクトリの中身(サブディレクトリの中身も含めて)ごとコピーする場合にはオプションで <code>r</code> を与える必要がある．
+</p>
+
+<p>
+ファイルやディレクトリは削除は, <code>rm</code> コマンドで行なえるが，ある程度慣れるまでは <b>ファイル・エクスプローラ的なソフトウェアを使った方がよい</b>. 
+というのも, <code>rm</code> で <b>削除されたファイルは消滅して復元不可能となる</b> ためだ．
+処理対象の指定に余程自信が無い限り，オプションで <code>i</code> (削除するかどうかの確認メッセージを表示)を必ず与えるようにしたい．
+なお, <code>rm</code> コマンドでオプションに <code>r</code> を与えると，ディレクトリの中身(サブディレクトリの中身も含めて)ごと削除する．
+つまり, うっかり <code>rm -r ~/</code> を実行した場合, <b>ホームディレクトリが，それ以下のファイルやディレクトリごと消去</b> される．
+しかも，それを復元することはできない．ものすごい危険だ．
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Takeshi Nagae</p>
+<p class="date">Created: 2014-05-23 Fri 09:55</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
