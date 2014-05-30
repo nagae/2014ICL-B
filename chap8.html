@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第8回 アカデミックスキルII C言語(1) 「端末」の使い方とC言語さいしょの一歩</title>
-<!-- 2014-05-23 Fri 13:27 -->
+<!-- 2014-05-30 Fri 12:12 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -222,11 +222,34 @@ for the JavaScript code in this tag.
 <li><a href="#sec-2-2">2.2. 前回のレポートを適当なディレクトリに整理する</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. C言語プログラミングことはじめ</a>
+<li><a href="#sec-3">3. C++プログラミングことはじめ(サンプルプログラム1-1)</a>
 <ul>
-<li><a href="#sec-3-1">3.1. 作業用ディレクトリを作る</a></li>
-<li><a href="#sec-3-2">3.2. まずはプログラムを作ってコンパイルする</a></li>
-<li><a href="#sec-3-3">3.3. </a></li>
+<li><a href="#sec-3-1">3.1. 作業用ディレクトリを作り，移動する．</a></li>
+<li><a href="#sec-3-2">3.2. サンプルプログラム 1-1 を作る</a></li>
+<li><a href="#sec-3-3">3.3. コンパイルする</a></li>
+<li><a href="#sec-3-4">3.4. コンパイルしたファイルを実行する</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. <code>sample1-1.cpp</code> の解説</a>
+<ul>
+<li><a href="#sec-4-1">4.1. C++ プログラムの(荒っぽい)基本的構成要素</a></li>
+<li><a href="#sec-4-2">4.2. <code>main</code> 関数の構造</a></li>
+<li><a href="#sec-4-3">4.3. C++ での標準出力</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. サンプルプログラム1-2 を実行しよう</a>
+<ul>
+<li><a href="#sec-5-1">5.1. サンプルプログラム 1-2 を作る</a></li>
+<li><a href="#sec-5-2">5.2. コンパイルする</a></li>
+<li><a href="#sec-5-3">5.3. コンパイルしたファイルを実行する</a></li>
+</ul>
+</li>
+<li><a href="#sec-6">6. <code>sample1-2.cpp</code> の解説</a></li>
+<li><a href="#sec-7">7. サンプルプログラム1-3 を元に自分の名前と誕生日を出力させよう</a>
+<ul>
+<li><a href="#sec-7-1">7.1. サンプルプログラム 1-3 を作り，コンパイルし，実行してみる</a></li>
+<li><a href="#sec-7-2">7.2. C++ の型について</a></li>
+<li><a href="#sec-7-3">7.3. 自分の名前，学籍番号および生年月日を出力させるプログラムを作ってみよう</a></li>
 </ul>
 </li>
 </ul>
@@ -277,33 +300,508 @@ mkdir ~/2014ICL-B/report1       <span style="color: #00cd66;"># </span><span sty
 </div>
 
 <div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> C言語プログラミングことはじめ</h2>
+<h2 id="sec-3"><span class="section-number-2">3</span> C++プログラミングことはじめ(サンプルプログラム1-1)</h2>
 <div class="outline-text-2" id="text-3">
 </div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 作業用ディレクトリを作る</h3>
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 作業用ディレクトリを作り，移動する．</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
-C言語プログラムでは，
-端末で以下を入力
+まずは C++プログラム用に <code>~/cpp</code> というディレクトリを作り，そこに移動しよう．
+これは，端末で以下を入力することでできる．
 </p>
+<div class="org-src-container">
+
+<pre class="src src-sh">mkdir ~/cpp                     <span style="color: #00cd66;"># </span><span style="color: #00cd66;">~/cpp &#12392;&#12356;&#12358;&#12501;&#12457;&#12523;&#12480;&#12434;&#20316;&#12427;</span>
+<span style="color: #b0c4de;">cd</span> ~/cpp                        <span style="color: #00cd66;"># </span><span style="color: #00cd66;">~/cpp &#12395;&#31227;&#21205;&#12377;&#12427;</span>
+</pre>
+</div>
 </div>
 </div>
 <div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> まずはプログラムを作ってコンパイルする</h3>
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> サンプルプログラム 1-1 を作る</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-Emacs で
+<code>~/cpp</code> ディレクトリの下に <code>sample1-1.cpp</code> というファイルを作り，ソースコードを書き込む．
 </p>
+<ol class="org-ol">
+<li>Emacs を起動して <code>~/cpp/sample1-1.cpp</code> というファイルを作成する(<code>C-x C-f sample1-1.cpp</code>)
+</li>
+<li>作成した <code>sample1-1.cpp</code> の中身を以下のように編集して保存する(<code>C-x C-s</code>)
+<script src="https://gist.github.com/nagae/4246b6db8230165b9390.js"></script>
+</li>
+</ol>
 </div>
 </div>
 <div id="outline-container-sec-3-3" class="outline-3">
-<h3 id="sec-3-3"><span class="section-number-3">3.3</span> </h3>
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> コンパイルする</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+作成した <code>~/cpp/sample1-1.cpp</code> を計算機上で実行可能な形式になるようにコンパイルする．
+コンパイルするには <code>g++</code> というコマンドを使う. 一般的によく使う <code>g++</code> の書式は以下の通り：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">g++ &#12477;&#12540;&#12473;&#12501;&#12449;&#12452;&#12523;&#21517; [-o &#20986;&#21147;&#12501;&#12449;&#12452;&#12523;&#21517;]
+</pre>
+</div>
+<p>
+例えば, 現在のディレクトリにある <code>sample1-1.cpp</code> というソースファイルをコンパイルして <code>sample1-1.o</code> という実行可能ファイルを作りたい場合は，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">g++ sample1-1.cpp -o sample1-1.o
+</pre>
+</div>
+<p>
+とする.  <code>-o 出力ファイル名</code> は省略できる(省略した場合はデフォルトで <code>a.out</code> というファイルになる)．
+</p>
+
+<p>
+上述のコマンドは Emacs からでも端末からでも実行できる．どちらも試しておこう．
+</p>
+</div>
+<div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> Emacs で g++ を実行する場合</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+<code>platex</code> などと同じく，Emacs で <code>M-!</code> (shell-command)としてからコマンドを入力する：
+</p>
+<pre class="example">
+M-! g++ sample1-1.cpp -o sample1-1.o
+</pre>
+<p>
+Emacs 上の shell-command にはこれまで入力した履歴が保存されており，カーソルの上下で呼び出せる．
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> 端末で g++ を実行する場合</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<ul class="org-ul">
+<li>まずは，端末を立ち上げ <code>~/cpp</code> ディレクトリに移動する
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b0c4de;">cd</span> ~/cpp                        <span style="color: #00cd66;"># </span><span style="color: #00cd66;">cd &#12399;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12434;&#31227;&#21205;&#12377;&#12427;&#12467;&#12510;&#12531;&#12489;</span>
+</pre>
+</div>
+</li>
+<li>コマンドを入力する
+<div class="org-src-container">
+
+<pre class="src src-sh">g++ sample1-1.cpp -o sample1-1.o
+</pre>
+</div>
+<p>
+端末でのコマンド入力をよりスムーズに行うために，以下の2つは覚えておくと良いだろう：
+</p>
+<ul class="org-ul">
+<li>Emacs と同様，これまでに入力したコマンドの履歴が保存されており，カーソルの上下で呼び出せる
+</li>
+<li>ファイル名などをある程度(e.g. <code>sam</code> くらいまで)入力してから <code>TAB</code> を押すと，ファイル名を補完してくれる．
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> コンパイルしたファイルを実行する</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+生成された <code>sample1-1.o</code> を実行しよう. <code>~/cpp</code> は実行ファイルを検索するパスに含まれていないため，
+端末から実行する際には, <code>./sample1-1.o</code> と「現在のディレクトリ(<code>./</code>)にある <code>sample1-1.o</code> 」であることを明示的に指定してやる必要がある．
+</p>
+</div>
+<div id="outline-container-sec-3-4-1" class="outline-4">
+<h4 id="sec-3-4-1"><span class="section-number-4">3.4.1</span> 端末から <code>sample1-1.o</code> を実行する場合</h4>
+<div class="outline-text-4" id="text-3-4-1">
+<ul class="org-ul">
+<li>端末を起動して <code>~/cpp</code> に移動する．既に端末が動いているなら, <code>pwd</code> コマンドを使って現在のディレクトリが <code>~/cpp</code> であればそのままでよい．
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b0c4de;">pwd</span>                             <span style="color: #00cd66;"># </span><span style="color: #00cd66;">pwd &#12399;&#29694;&#22312;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12434;&#35519;&#12409;&#12427;&#12467;&#12510;&#12531;&#12489;</span>
+~/cpp                           <span style="color: #00cd66;"># </span><span style="color: #00cd66;">~/cpp &#12392;&#34920;&#31034;&#12373;&#12428;&#12428;&#12400; OK</span>
+<span style="color: #b0c4de;">cd</span> ~/cpp                        <span style="color: #00cd66;"># </span><span style="color: #00cd66;">&#36949;&#12358;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12364;&#34920;&#31034;&#12373;&#12428;&#12383;&#26178;&#12399; cd &#12467;&#12510;&#12531;&#12489;&#12391;&#31227;&#21205;</span>
+</pre>
+</div>
+</li>
+<li><code>sample1-1.o</code> を実行する．
+<div class="org-src-container">
+
+<pre class="src src-sh">./sample1-1.o                   <span style="color: #00cd66;"># </span><span style="color: #00cd66;">./ &#12434;&#38957;&#12395;&#12388;&#12369;&#12390;&#29694;&#22312;&#12398;&#12487;&#12451;&#12524;&#12463;&#12488;&#12522;&#12391;&#12354;&#12427;&#12371;&#12392;&#12434;&#26126;&#31034;</span>
+<span style="color: #00cd66;">### </span><span style="color: #00cd66;">&#12393;&#12435;&#12394;&#32080;&#26524;&#12364;&#34920;&#31034;&#12373;&#12428;&#12427;&#65311; ###</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-4-2" class="outline-4">
+<h4 id="sec-3-4-2"><span class="section-number-4">3.4.2</span> Emacs から <code>sample1-1.o</code> を実行する場合</h4>
+<div class="outline-text-4" id="text-3-4-2">
+<p>
+コンパイル時と同様に <code>M-!</code> (shell-command) を使えばよい
+</p>
+<pre class="example">
+M-! ./sample1-1.o
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> <code>sample1-1.cpp</code> の解説</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> C++ プログラムの(荒っぽい)基本的構成要素</h3>
+<div class="outline-text-3" id="text-4-1">
+<ul class="org-ul">
+<li>C++ プログラムの基本的構成要素は <b>センテンス</b> および <b>ブロック</b> である．
+</li>
+<li>センテンスは <code>;</code> で区切られる．
+</li>
+<li>センテンスは，宣言(定義), 評価, 命令 などの種類がある．
+</li>
+<li>ブロックは, 宣言の後, <code>{</code> (波開き括弧) で始まり, <code>}</code> (波閉じ括弧)で終わる．
+</li>
+<li>1つのブロックの中には複数のセンテンスや，別のブロックが含まれることがある．
+</li>
+<li>C++は，センテンスの区切り(<code>;</code>)やブロックの開始/終了(<code>{}</code>)には厳しいが，
+改行やインデントについてはルーズ．
+</li>
+<li><code>//</code> から行末まではコメントとして判断され，解析されない
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <code>main</code> 関数の構造</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>C++ プログラムの中心的挙動は <code>main</code> 関数で定義される．
+</li>
+<li><code>main</code> 関数は以下のような構造をしている．
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #98fb98;">main</span> (<span style="color: #7fffd4;">void</span>) 
+{
+  &#12475;&#12531;&#12486;&#12531;&#12473;1;
+  &#12475;&#12531;&#12486;&#12531;&#12473;2;
+  :
+  :
+}
+</pre>
+</div>
+</li>
+<li><code>int main (void)</code> の行は
+<pre class="example">
+  関数の戻り値(型) 関数名 (引数の宣言)
+</pre>
+<p>
+の書式で記述されている．
+</p>
+<ul class="org-ul">
+<li>最初の <code>int</code> は, <code>main</code> 関数が「整数型」と呼ばれる <b>オブジェクト</b> を <b>戻り値</b> とすることを意味している．
+言い換えると, <code>main</code> 関数を評価したものは，整数型のオブジェクトとして扱われる．
+</li>
+<li>次の <code>main</code> は 関数の名前を指示している．
+</li>
+<li><code>(void)</code> は, <code>main</code> 関数が引数をとらないことを指示している．
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> C++ での標準出力</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>C++ で画面に何かを出力するには，標準出力ストリームを用いる．標準出力ストリームを使うためには，ライブラリとして <code>&lt;iostream&gt;</code> を読み込む必要がある．これは，以下のセンテンスで指示されている．
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #b0c4de;">#include</span> <span style="color: #bdb76b;">&lt;iostream&gt;</span>
+</pre>
+</div>
+</li>
+<li>標準出力ストリームは <code>std::cout</code> という名前で <code>&lt;iostream&gt;</code> ライブラリ内に定義されている
+</li>
+<li><code>std::</code> は <code>&lt;iostream&gt;</code> で使われる <b>名前空間</b> である．名前空間は「名字」のようなもので, <code>cout</code> という名前が他で使われた時にバッティングしないようにできる．
+</li>
+<li>C++ のセンテンスは <code>;</code> で区切られる．
+</li>
+<li>ストリームに何らかの <b>オブジェクト</b> を渡すには，出力演算子 <code>&lt;&lt;</code> を用いて
+<pre class="example">
+  ストリーム &lt;&lt; オブジェクト
+</pre>
+<p>
+とする．
+</p>
+</li>
+<li>最初のセンテンス
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #40e0d0;">std</span>::cout &lt;&lt; <span style="color: #bdb76b;">"&#31169;&#12398;&#21517;&#21069;&#12399; &#24029;&#20869; &#24773;&#22826;&#37070; &#12391;&#12377;"</span>;
+</pre>
+</div>
+<p>
+では，標準出力ストリーム <code>std::out</code> に文字列オブジェクト
+</p>
+<verb>"私の名前は 川内 情太郎 です"</verb>
+<p>
+を渡している．
+</p>
+</li>
+<li>次のセンテンス
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #40e0d0;">std</span>::cout &lt;&lt; <span style="color: #40e0d0;">std</span>::endl;
+</pre>
+</div>
+<p>
+は，標準出力ストリーム <code>std::cout</code> に <code>std::endl</code> というマニピュレータ(操作子)を渡している．
+出力ストリームが <code>std::endl</code> を受け取ると，それまでに蓄えていたバッファと改行を出力し，バッファをフラッシュする．
+</p>
+</li>
+<li>最後のセンテンス
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">return</span> 0;
+</pre>
+</div>
+<p>
+は, <code>main</code> 関数ブロックを抜け出し, <code>main</code> 関数の呼び出し元(この場合はシェル)に整数(<code>int</code>)型のオブジェクト 0 を返すことを指示している．
+</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> サンプルプログラム1-2 を実行しよう</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> サンプルプログラム 1-2 を作る</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+<code>~/cpp</code> ディレクトリの下に <code>sample1-2.cpp</code> というファイルを新に作り，別のソースコードを書き込もう．
+</p>
+<ol class="org-ol">
+<li>Emacs を起動して <code>~/cpp/sample1-2.cpp</code> というファイルを作成する(<code>C-x C-f sample1-2.cpp</code>)
+</li>
+<li>作成した <code>sample1-2.cpp</code> の中身を以下のように編集して保存する(<code>C-x C-s</code>)
+<script src="https://gist.github.com/nagae/976165b0ccf3c2ade272.js"></script>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> コンパイルする</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+いま作った <code>sample1-2.cpp</code> をコンパイルして <code>sample1-2.o</code> という実行ファイルを作成しよう．
+<code>sample1-1</code> に対する処理と同じように，端末や Emacs で以下を実行する：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh">g++ sample1-2.cpp -o sample1-2.o
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> コンパイルしたファイルを実行する</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+端末や Emacs から <code>sample1-2.o</code> を実行してみよう. 現在のディレクトリ(<code>./</code>)を指定するのを忘れないように!
+</p>
+<pre class="example">
+./sample1-2.o
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> <code>sample1-2.cpp</code> の解説</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><code>sample1-1.cpp</code> では, 標準出力ストリームやマニピュレータを <code>std::cout</code> や <code>std::endl</code> というように <b>名前空間</b> つきで呼んでいた．
+しかし, 他に <code>cout</code> や <code>endl</code> がいないのに，わざわざ名字をつけてフルネームで呼ぶのは面倒くさい．
+</li>
+<li>そこで，3行目のセンテンス
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">using</span> <span style="color: #ffffff;">namespace</span> <span style="color: #40e0d0;">std</span>;
+</pre>
+</div>
+<p>
+で，名前空間として <code>std</code> をデフォルトの名前空間として使うことを宣言している．これにより, <code>std::cout</code> や <code>std::endl</code> を，
+名字なしで <code>cout</code> や <code>endl</code> と呼び出せる．
+</p>
+</li>
+<li>7行目のセンテンスで
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#31169;&#12398;"</span> &lt;&lt; <span style="color: #bdb76b;">"&#21517;&#21069;&#12399; "</span>;
+</pre>
+</div>
+<p>
+としていることに注意されたい．出力演算子 <code>&lt;&lt;</code> は，その左辺にストリーム, と右辺にオブジェクトを引数とし，
+「左辺のストリームに右辺のオブジェクトを渡す」という動作の後，
+ストリームを戻り値として返すように定義されている．
+つまり，上述の式は，まず
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#31169;&#12398;"</span>
+</pre>
+</div>
+<p>
+の部分が評価されて <code>cout</code> に "私の" という文字列オブジェクトが格納(バッファ)された後，
+それ自体が <code>cout</code> として評価され，その次に &lt;&lt; "名前は"= 
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">&lt;&lt; <span style="color: #bdb76b;">"&#21517;&#21069;&#12399; "</span>;
+</pre>
+</div>
+<p>
+の部分が評価される際に，出力演算子の右辺として <code>cout</code> が渡され，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#21517;&#21069;&#12364; "</span>;
+</pre>
+</div>
+<p>
+として評価されるのである．
+</p>
+</li>
+<li>C++ はセンテンス途中の改行やインデントに関する規則がかなりルーズである．従って，
+8〜9行目のように
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#24029;&#20869; &#24773;&#22826;&#37070;"</span>          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12475;&#12531;&#12486;&#12531;&#12473;&#12398;&#36884;&#20013;&#12391;&#25913;&#34892;&#12434;&#20837;&#12428;&#12390;&#12418;&#12424;&#12356;</span>
+     &lt;&lt; <span style="color: #bdb76b;">" &#12391;&#12377;"</span>;               <span style="color: #00cd66;">//</span>
+</pre>
+</div>
+<p>
+としても，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#24029;&#20869; &#24773;&#22826;&#37070;"</span> &lt;&lt; <span style="color: #bdb76b;">" &#12391;&#12377;"</span>;
+</pre>
+</div>
+<p>
+と同じ内容として解析される．
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> サンプルプログラム1-3 を元に自分の名前と誕生日を出力させよう</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> サンプルプログラム 1-3 を作り，コンパイルし，実行してみる</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+<code>~/cpp</code> ディレクトリの下に <code>sample1-3.cpp</code> というファイルを新に作り，別のソースコードを書き込もう．
+</p>
+<ol class="org-ol">
+<li>Emacs を起動して <code>~/cpp/sample1-3.cpp</code> というファイルを作成する(<code>C-x C-f sample1-3.cpp</code>)
+</li>
+<li>作成した <code>sample1-3.cpp</code> の中身を以下のように編集して保存する(<code>C-x C-s</code>)
+<script src="https://gist.github.com/nagae/b4e94fc58226a6100e49.js"></script>
+</li>
+<li>端末もしくは Emacs 上で <code>sample1-3.cpp</code> をコンパイルして <code>sample1-3.o</code> という実行ファイルを作る
+<div class="org-src-container">
+
+<pre class="src src-sh">g++ sample1-3.cpp -o sample1-3.o
+</pre>
+</div>
+</li>
+<li>生成されたファイルを実行してみる
+<div class="org-src-container">
+
+<pre class="src src-sh">./sample1-3.o
+</pre>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-7-2" class="outline-3">
+<h3 id="sec-7-2"><span class="section-number-3">7.2</span> C++ の型について</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+C++ では，ダブルクォートで囲まれた文字：
+</p>
+<pre class="example">
+"文字列"
+</pre>
+<p>
+を <b>文字列オブジェクト</b> (特に指示が無ければ <code>char</code> 型の定数配列)として認識する．
+</p>
+
+<p>
+ダブルクォートで囲まない数値は，その内容に応じて, <code>int</code> (整数)型 もしくは
+<code>double</code> (倍精度実数)型の(数値)オブジェクトと認識される．
+例えば, <code>1998</code>, <code>4</code>, <code>31</code> などは，いずれも <code>int</code> (整数)型として認識される．
+</p>
+
+<p>
+ダブルクォートで囲まれておらず，数値でないもの (<code>cout</code> や <code>endl</code>)は，
+<b>定義済み</b> のオブジェクトと認識される．
+例えば，学籍番号 <code>B4TB9999</code> などは数値ではないため，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; B4TB9999;
+</pre>
+</div>
+<p>
+とすると，コンパイルの際に
+</p>
+<pre class="example">
+sample1-3-error.cpp:7:11: error: use of undeclared identifier 'B4TB9999'
+  cout &lt;&lt; B4TB9999;
+          ^
+1 error generated.
+</pre>
+<p>
+というエラーメッセージ(「 <code>B4TB9999</code> という定義されていない識別子が使われました」)が表示される．
+</p>
+
+<p>
+学籍番号 <code>B4TB9999</code> を標準出力ストリームに渡したい場合には，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"B4TB9999"</span>;
+</pre>
+</div>
+<p>
+とダブルクォートで囲んで「文字列オブジェクト」としなければならない．
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-3" class="outline-3">
+<h3 id="sec-7-3"><span class="section-number-3">7.3</span> 自分の名前，学籍番号および生年月日を出力させるプログラムを作ってみよう</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+<code>sample1-3.cpp</code> をベースにして，自分の名前，学籍番号および生年月日を出力させるプログラムを作ってみよう．
+</p>
+</div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-05-23 Fri 13:27</p>
+<p class="date">Created: 2014-05-30 Fri 12:12</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
