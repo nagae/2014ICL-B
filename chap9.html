@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第9回 アカデミックスキルII C言語(2) 変数の使い方と標準入力</title>
-<!-- 2014-06-06 Fri 00:12 -->
+<!-- 2014-06-06 Fri 11:19 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -220,14 +220,26 @@ for the JavaScript code in this tag.
 <li><a href="#sec-3">3. <code>sample2-1.cpp</code> 解説</a>
 <ul>
 <li><a href="#sec-3-1">3.1. 算術演算ライブラリ <code>&lt;math.h&gt;</code> のインクルード</a></li>
-<li><a href="#sec-3-2">3.2. 乗除，べき乗</a></li>
+<li><a href="#sec-3-2">3.2. 演算子</a></li>
 </ul>
 </li>
 <li><a href="#sec-4">4. 半径や円周率を変えてみる</a></li>
 <li><a href="#sec-5">5. 半径や円周率を変数を使って表現する(サンプルプログラム2-2)</a></li>
-<li><a href="#sec-6">6. <code>sample2-2.cpp</code> の解説</a></li>
-<li><a href="#sec-7">7. 標準入力から入力された情報を表示させよう</a></li>
-<li><a href="#sec-8">8. </a></li>
+<li><a href="#sec-6">6. <code>sample2-2.cpp</code> の解説</a>
+<ul>
+<li><a href="#sec-6-1">6.1. 変数の宣言</a></li>
+<li><a href="#sec-6-2">6.2. 変数の値を出力する</a></li>
+</ul>
+</li>
+<li><a href="#sec-7">7. 標準入力から得られた値を使おう(サンプルプログラム2-3)</a></li>
+<li><a href="#sec-8">8. <code>sample2-3.cpp</code> の解説</a>
+<ul>
+<li><a href="#sec-8-1">8.1. C++ での標準入力</a></li>
+<li><a href="#sec-8-2">8.2. 半径と円周率を両方入力できるようにする</a></li>
+</ul>
+</li>
+<li><a href="#sec-9">9. 「円筒」の表面積と体積を求めて表示させるプログラム</a></li>
+<li><a href="#sec-10">10. 「円錐」の表面積と体積を求めて表示させるプログラム</a></li>
 </ul>
 </div>
 </div>
@@ -301,10 +313,12 @@ Emacs 上で <code>M-!</code> (shell-command)とするか，
 </div>
 </div>
 <div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 乗除，べき乗</h3>
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 演算子</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
-11行目〜14行目は，乗算，除算，べき乗を使って，円周の長さ，円の面積，球の表面積および球の体積を，それぞれ，計算している．C++ には，標準で，以下のような基本的な算術演算子が用意されている．
+11行目〜14行目は，乗算，除算，べき乗を使って，円周の長さ，円の面積，球の表面積お
+よび球の体積を，それぞれ，計算している．C++ には，標準で，以下のような基本的な算
+術演算子が用意されている．
 </p>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -372,8 +386,65 @@ Emacs 上で <code>M-!</code> (shell-command)とするか，
 </tbody>
 </table>
 <p>
-さらに, <code>&lt;math.h&gt;</code> をインクルードすると, 「xのy乗」を返す <code>pow(x,y)</code> のような算術演算子も利用可能になる．
+さらに, <code>&lt;math.h&gt;</code> をインクルードすると, 以下のような算術演算子も利用可能になる．
 </p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">演算子</th>
+<th scope="col" class="left">意味</th>
+<th scope="col" class="left">用例</th>
+<th scope="col" class="left">結果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left"><code>pow</code></td>
+<td class="left">べき乗</td>
+<td class="left"><code>pow(x, y)</code></td>
+<td class="left"><code>x</code> の <code>y</code> 乗</td>
+</tr>
+
+<tr>
+<td class="left"><code>sqrt</code></td>
+<td class="left">平方根</td>
+<td class="left"><code>sqrt(x)</code></td>
+<td class="left"><code>x</code> の平方根</td>
+</tr>
+
+<tr>
+<td class="left"><code>exp</code></td>
+<td class="left">指数</td>
+<td class="left"><code>exp(x)</code></td>
+<td class="left"><code>x</code> の指数</td>
+</tr>
+
+<tr>
+<td class="left"><code>log</code></td>
+<td class="left">自然対数</td>
+<td class="left"><code>log(x)</code></td>
+<td class="left"><code>x</code> の指数</td>
+</tr>
+
+<tr>
+<td class="left"><code>sin, cos, tan</code></td>
+<td class="left">三角関数</td>
+<td class="left"><code>sin(x), cos(x), tan(x)</code></td>
+<td class="left"><code>x</code> の正弦，余弦，正接</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -417,6 +488,9 @@ Emacs 上で <code>M-!</code> (shell-command)とするか，
 上述の半径や円周率のように，
 「何度も使う数値」や「何らかの意味がある数値」をシステマティックに取り扱うには，
 <b>変数</b> を使うのが一般的．
+</p>
+
+<p>
 <code>~/cpp/sample2-2.cpp</code> というファイルを作り，その中に以下のソースコードを書き込んで
 コンパイル，実行してみよう．
 </p>
@@ -427,6 +501,9 @@ Emacs 上で <code>M-!</code> (shell-command)とするか，
 <div id="outline-container-sec-6" class="outline-2">
 <h2 id="sec-6"><span class="section-number-2">6</span> <code>sample2-2.cpp</code> の解説</h2>
 <div class="outline-text-2" id="text-6">
+</div><div id="outline-container-sec-6-1" class="outline-3">
+<h3 id="sec-6-1"><span class="section-number-3">6.1</span> 変数の宣言</h3>
+<div class="outline-text-3" id="text-6-1">
 <p>
 8〜9行目：
 </p>
@@ -437,31 +514,129 @@ Emacs 上で <code>M-!</code> (shell-command)とするか，
 </pre>
 </div>
 <p>
-は，それぞれ，倍精度実数(<code>double</code>)型の <b>変数</b> として <code>r</code> と <code>pi</code> の2つを定義し，
-それぞれを <code>12.34</code> と <code>3.14</code> という値で初期化している．
+は，それぞれ，倍精度実数(<code>double</code>)型の <b>変数</b> として <code>r</code> と <code>pi</code> の2つを <b>宣言</b> し，
+それぞれを <code>12.34</code> と <code>3.14</code> という値で <b>初期化</b> している．
+半径や円周率を変えたい場合は，これらの数値を修正するだけで，
+それ以外の部分には手をつける必要がない．
 </p>
 
 <p>
-11〜15行目：
+変数を <b>宣言</b> するには，
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#21322;&#24452;:"</span> &lt;&lt; r &lt;&lt; endl;
-cout &lt;&lt; <span style="color: #bdb76b;">"&#20870;&#21608;&#12398;&#38263;&#12373;:"</span> &lt;&lt; 2.0 * pi * r &lt;&lt; endl;
-cout &lt;&lt; <span style="color: #bdb76b;">"&#20870;&#12398;&#38754;&#31309;:"</span> &lt;&lt; pi * pow(r, 2.0) &lt;&lt; endl; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">pow(x,y) &#12399; x &#12398; y &#20055;&#12434;&#36820;&#12377;</span>
-cout &lt;&lt; <span style="color: #bdb76b;">"&#29699;&#12398;&#34920;&#38754;&#31309;:"</span> &lt;&lt; 4.0 * pi * pow(r, 2.0) &lt;&lt; endl;
-cout &lt;&lt; <span style="color: #bdb76b;">"&#29699;&#12398;&#20307;&#31309;:"</span> &lt;&lt; 4.0/3.0 * pi * pow(r, 3.0) &lt;&lt; endl;
+<pre class="src src-c++"><span style="color: #7fffd4;">&#22793;&#25968;&#12398;&#22411;</span> <span style="color: #9acd32;">&#22793;&#25968;&#21517;</span>;
 </pre>
 </div>
 <p>
-それぞれ, <code>sample2-1.cpp</code> で行なった計算を, 
-半径の数値(12.34)の代わりに <code>r</code> を，
-円周率の数値(3.14)の代わりに <code>pi</code> を使って行なっている．
-<code>sample2-1.cpp</code> の10〜14行目：
+というセンテンスを用いる. n個の変数を同時に宣言する場合は，
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#21322;&#24452;:"</span> &lt;&lt; 12.34 &lt;&lt; endl;
+<pre class="src src-c++"><span style="color: #7fffd4;">&#22793;&#25968;&#12398;&#22411;</span> <span style="color: #9acd32;">&#22793;&#25968;&#21517;1</span>, <span style="color: #9acd32;">&#22793;&#25968;&#21517;2</span>, ..., &#22793;&#25968;&#21517;n;
+</pre>
+</div>
+<p>
+のようにコンマで区切る．
+</p>
+
+<p>
+宣言と同時に変数を <b>初期化</b> するには, = を使って
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">&#22793;&#25968;&#12398;&#22411;</span> <span style="color: #9acd32;">&#22793;&#25968;&#21517;</span> = &#20516;;
+<span style="color: #7fffd4;">&#22793;&#25968;&#12398;&#22411;</span> <span style="color: #9acd32;">&#22793;&#25968;&#21517;1</span> = &#20516;1, <span style="color: #9acd32;">&#22793;&#25968;&#21517;2</span> = &#20516;2, ..., &#22793;&#25968;&#21517;n = &#20516;n;
+</pre>
+</div>
+<p>
+とする．「値」の部分は <code>3.14</code> のような定数でもよいし，既に定義された変数でもよい．例えば，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">a</span> = 123;                  <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#25972;&#25968;&#22411;&#22793;&#25968; a &#12434;&#23450;&#32681;&#12375;, 123 &#12391;&#21021;&#26399;&#21270;</span>
+<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">b</span> = a;                    <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#22793;&#25968;&#22411;&#22793;&#25968; b &#12434;&#23450;&#32681;&#12375;, a &#12398;&#20516;&#12391;&#21021;&#26399;&#21270;</span>
+</pre>
+</div>
+<p>
+とした場合, <code>a</code> の値も <code>b</code> の値も <code>123</code> となる．
+</p>
+
+<p>
+一度宣言した変数に値を代入するには，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">&#22793;&#25968;&#21517; = &#20516;;
+</pre>
+</div>
+<p>
+というセンテンスを用いる. もともと値が格納されている変数に，値を代入すると，古い値は新しい値によって上書きされる．
+例えば，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">a</span> = 123, <span style="color: #9acd32;">b</span>;                 <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#25972;&#25968;&#22411;&#12398;&#22793;&#25968; a, b &#12434;&#23450;&#32681;&#12375;, a &#12398;&#20516;&#12434; 123 &#12391;&#21021;&#26399;&#21270;</span>
+b = a;                          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">b &#12395; a &#12398;&#20516;&#12434;&#20195;&#20837;&#12377;&#12427;(b&#12398;&#20516;&#12399; 123 &#12392;&#12394;&#12427;)</span>
+a = 456;                        <span style="color: #00cd66;">// </span><span style="color: #00cd66;">a &#12395; 456 &#12434;&#20195;&#20837;(&#21476;&#12356;&#20516; 456 &#12399;&#22833;&#12431;&#12428;&#12427;)</span>
+</pre>
+</div>
+<p>
+とした場合, <code>a</code> の値は <code>456</code> となるが, <code>b</code> の値は <code>123</code> のままである．
+</p>
+
+<p>
+変数の名前は，
+</p>
+<ul class="org-ul">
+<li>半角英字(大文字と小文字は区別される)
+</li>
+<li>半角数字(ただし，変数名の先頭には使えない)
+</li>
+<li>半角アンダーバー(<code>_</code>)
+</li>
+</ul>
+<p>
+の組み合わせで構成される．ただし，以下のようないくつかの単語には予め役割が与えら
+れている(<b>予約語</b> と呼ばれる)ため，変数名として使うことはできない(一部または全部を大文字とすればその限りではない)．
+</p>
+<code>
+alignas, alignof, and, and_eq, asm, auto, bitand, bitor, bool, break, case, catch, char, char16_t, char32_t, class, compl, const, constexpr, const_cast, continue, decltype, default, delete, do, double, dynamic_cast, else, enum, explicit, export, extern, false, float, for, friend, goto, if, inline, int, long, mutable, namespace, new, noexcept, not, not_eq, nullptr, operator, or, or_eq, private, protected, public, register, reinterpret_cast, return, short, signed, sizeof, static, static_assert, static_cast, struct, switch, template, this, thread_local, throw, true, try, typedef, typeid, typename, union, unsigned, using, virtual, void, volatile, wchar_t, while, xor, xor_eq
+</code>
+
+<p>
+変数の型には，整数型(<code>int</code>), 単精度実数型(<code>float</code>), 倍精度実数型(<code>double</code>), 文字
+型(<code>char</code>)などがある．本講義で主に用いるのは, <b>整数型(<code>int</code>)</b> と <b>倍精度実数(<code>double</code>)</b> だ．
+</p>
+
+<p>
+変数には，宣言された時に指定された型の値しか格納できない. 
+<code>int</code> 型の変数は <code>3.14</code> という「実数」を格納できないし，
+<code>double</code> 型の変数は <code>3</code> という「整数」を格納できない．
+C++では，宣言時の型と異なる型が代入された時には <b>暗黙の型変換</b> が行なわれる．
+例えば，
+</p>
+<ul class="org-ul">
+<li><code>int</code> 型の変数 <code>a</code> に実数 <code>3.14</code> を代入する(<code>int a=3.14</code>)と, 実数 <code>3.14</code> が整数 <code>3</code> に変換された上で <code>a</code> に代入される(<code>int a=3</code>と同じ)．
+</li>
+<li><code>double</code> 型の変数 <code>b</code> に整数 <code>3</code> を代入する(<code>double b = 3</code>)と, 整数 <code>3</code> が倍精度実数 <code>3.00000000...</code> に変換された上で <code>b</code> に代入される(<code>double b = 3.0</code>と同じ)．
+</li>
+</ul>
+<p>
+といった変換が行なわれる．暗黙の型変換は，直感に反しないように設計されているが，どのような処理が行なわれているかを正確に把握するまでは，無闇に使わない方がよい．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-6-2" class="outline-3">
+<h3 id="sec-6-2"><span class="section-number-3">6.2</span> 変数の値を出力する</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+変数を使わないコード <code>sample2-1.cpp</code> の 10〜14行目：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#21322;&#24452;: "</span> &lt;&lt; 12.34 &lt;&lt; <span style="color: #bdb76b;">" &#20870;&#21608;&#29575;: "</span> &lt;&lt; 3.14 &lt;&lt; endl;
 cout &lt;&lt; <span style="color: #bdb76b;">"&#20870;&#21608;&#12398;&#38263;&#12373;:"</span> &lt;&lt; 2.0 * 3.14 * 12.34 &lt;&lt; endl;
 cout &lt;&lt; <span style="color: #bdb76b;">"&#20870;&#12398;&#38754;&#31309;:"</span> &lt;&lt; 3.14 * pow(12.34, 2.0) &lt;&lt; endl; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">pow(x,y) &#12399; x &#12398; y &#20055;&#12434;&#36820;&#12377;</span>
 cout &lt;&lt; <span style="color: #bdb76b;">"&#29699;&#12398;&#34920;&#38754;&#31309;:"</span> &lt;&lt; 4.0 * 3.14 * pow(12.34, 2.0) &lt;&lt; endl;
@@ -469,23 +644,175 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#29699;&#12398;&#20307;&#31309;:"<
 </pre>
 </div>
 <p>
-と比較してみると，変数を使った方が，公式の表現に近く，
-すっきりとしていることに気づくだろう．
+に対して，変数を使ったコード <code>sample2-2.cpp</code> の 11〜15行目：
 </p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#21322;&#24452;: "</span> &lt;&lt; r &lt;&lt; <span style="color: #bdb76b;">" &#20870;&#21608;&#29575;: "</span> &lt;&lt; pi &lt;&lt; endl; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21322;&#24452;&#12392;&#20870;&#21608;&#29575;&#12434;&#34920;&#31034;</span>
+cout &lt;&lt; <span style="color: #bdb76b;">"&#20870;&#21608;&#12398;&#38263;&#12373;:"</span> &lt;&lt; 2.0 * pi * r &lt;&lt; endl;      <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20870;&#21608;&#29575;&#215;&#30452;&#24452;</span>
+cout &lt;&lt; <span style="color: #bdb76b;">"&#20870;&#12398;&#38754;&#31309;:"</span> &lt;&lt; pi * pow(r, 2.0) &lt;&lt; endl;    <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20870;&#21608;&#29575;&#215;&#21322;&#24452;&#12398;2&#20055;</span>
+cout &lt;&lt; <span style="color: #bdb76b;">"&#29699;&#12398;&#34920;&#38754;&#31309;:"</span> &lt;&lt; 4.0 * pi * pow(r, 2.0) &lt;&lt; endl; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">4&#215;&#20870;&#21608;&#29575;&#215;&#21322;&#24452;&#12398;2&#20055;</span>
+cout &lt;&lt; <span style="color: #bdb76b;">"&#29699;&#12398;&#20307;&#31309;:"</span> &lt;&lt; 4.0/3.0 * pi * pow(r, 3.0) &lt;&lt; endl; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">4/3&#215;&#20870;&#21608;&#29575;&#215;&#21322;&#24452;&#12398;3&#20055;</span>
+</pre>
+</div>
+<p>
+では，半径の数値(12.34)の代わりに <code>r</code> を，
+円周率の数値(3.14)の代わりに <code>pi</code> を使っている．
+こうすることで，以下のようなメリットがある：
+</p>
+<ul class="org-ul">
+<li>半径や円周率が代わっても, 計算部分はまったく <b>変更する必要がない</b>.
+</li>
+<li>公式の表現に近い表現を使うことができ，コードが <b>読み易くなる</b>. 
+</li>
+</ul>
+
+<p>
+これらの点は，単にコーディングを容易にするだけでなく，
+<b>ソースコードの保守</b> を確実に行う上でも，極めて重要である．
+</p>
+</div>
 </div>
 </div>
 
 <div id="outline-container-sec-7" class="outline-2">
-<h2 id="sec-7"><span class="section-number-2">7</span> 標準入力から入力された情報を表示させよう</h2>
-</div>
+<h2 id="sec-7"><span class="section-number-2">7</span> 標準入力から得られた値を使おう(サンプルプログラム2-3)</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+変数を使うことで，半径を色々変えて円周長，円の面積，球の表面積，球の体積を計算してみたい場合でも，
+ソースコードの中で，その変数に与える値の部分を修正するだけで対応できる．
+しかし，計算すべき半径が 100通りある場合，それぞれに対してソースファイルを作ってコンパイル+実行しなければならない．
+そこで, <b>プログラムの実行中にユーザーが半径を入力</b> できるようにしてみよう．
+</p>
 
+<p>
+<code>~/cpp/sample2-3.cpp</code> というファイルを作り，その中に以下のソースコードを書き込んで
+コンパイル，実行してみよう．
+</p>
+<script src="https://gist.github.com/nagae/5a1528f6e6a86eeff592.js"></script>
+<p>
+こうすれば，半径が <code>12.34</code> でも <code>567.89</code> でも <code>3.14</code> でも，プログラムそのものを
+一切修正することなく計算できる．
+</p>
+</div>
+</div>
 <div id="outline-container-sec-8" class="outline-2">
-<h2 id="sec-8"><span class="section-number-2">8</span> </h2>
+<h2 id="sec-8"><span class="section-number-2">8</span> <code>sample2-3.cpp</code> の解説</h2>
+<div class="outline-text-2" id="text-8">
+</div><div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1"><span class="section-number-3">8.1</span> C++ での標準入力</h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>C++ でプログラム実行中にキーボードから値を入力させるには，標準入力ストリームを用いる．
+</li>
+<li>標準入力ストリームは <code>std::cin</code> という名前で <code>&lt;iostream&gt;</code> ライブラリ内に定義されている．
+</li>
+<li>入力ストリームから変数に値を渡すには，入力演算子 <code>&gt;&gt;</code> を用いて，
+<div class="org-src-container">
+
+<pre class="src src-c++">  &#20837;&#21147;&#12473;&#12488;&#12522;&#12540;&#12512; &gt;&gt; &#22793;&#25968;
+</pre>
+</div>
+<p>
+とする．
+</p>
+</li>
+<li><code>sample2-3.cpp</code> の12行目：
+<div class="org-src-container">
+
+<pre class="src src-c++">cin &gt;&gt; r;                   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27161;&#28310;&#20837;&#21147; cin &#12363;&#12425;&#21322;&#24452;&#12434;&#24471;&#12427;</span>
+</pre>
+</div>
+<p>
+では，標準入力 <code>cin</code> (4行目で名前空間を宣言してるので <code>std::</code> は省略可能)から，半径を表す変数 <code>r</code> に値を渡している．
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2"><span class="section-number-3">8.2</span> 半径と円周率を両方入力できるようにする</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+<code>sample2-3.cpp</code> の11〜12行目を
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"&#21322;&#24452;&#12392;&#20870;&#21608;&#29575;&#12434;&#20837;&#21147;&#12375;&#12390;&#19979;&#12373;&#12356;: "</span>;
+cin &gt;&gt; r &gt;&gt; pi;               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27161;&#28310;&#20837;&#21147; cin &#12363;&#12425;&#21322;&#24452;&#12434;&#24471;&#12427;</span>
+</pre>
+</div>
+<p>
+と修正すれば，半径に続けて円周率も入力できるようになる．キーボードから複数の値を入力する場合は，スペースもしくは改行で区切る．
+</p>
+<script src="https://gist.github.com/nagae/b6012d7ed3ce344c5cc0.js"></script>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-9" class="outline-2">
+<h2 id="sec-9"><span class="section-number-2">9</span> 「円筒」の表面積と体積を求めて表示させるプログラム</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+<code>sample2-3.cpp</code> をベースにして, <b>円筒</b> の「底面の半径」と「高さ」を入力させ，その表面積と体積を表示させるプログラムを作ってみよう．ヒントは以下の通り：
+</p>
+<ul class="org-ul">
+<li><b>円筒</b> の体積は「底面の面積」×「高さ」 に等しい．
+</li>
+<li>円筒 の表面積は 「底面の面積」 × 2 + 「側面の面積」に等しい．
+</li>
+<li>円筒 の「側面の面積」は「底面の円周長」×「高さ」に等しい．
+</li>
+</ul>
+
+
+<p>
+簡単すぎる？じゃぁ, <b>円錐</b> ではどうだろう？
+</p>
+</div>
+</div>
+<div id="outline-container-sec-10" class="outline-2">
+<h2 id="sec-10"><span class="section-number-2">10</span> 「円錐」の表面積と体積を求めて表示させるプログラム</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+<b>円錐</b> の「底面の半径」と「高さ」を入力させ，その表面積と体積を表示させるプログラムを作ってみよう．まずは <b>ヒント無し</b> で作ってみよう!
+<p style="margin-bottom:800px">ヒントを見るには↓にスクロール．</p>
+</p>
+<ul class="org-ul">
+<li><b>円錐</b> の体積は「底面の面積」×「高さ」÷3 に等しい．
+</li>
+<li>円錐の表面積は「底面の面積」+「側面の面積」に等しい．
+</li>
+<li>円錐の側面は <b>扇形</b> になり，その半径は「底面の半径」と「高さ」の <b>二乗和平方根</b> に，中心角は「底面の円周」÷「扇形の半径」に，面積は「中心角」×「半径の二乗」÷2に等しい．
+</li>
+<li>C++ で <b>平方根</b> を表現するには, <code>&lt;math.h&gt;</code> ライブラリに含まれる <code>sqrt</code> 関数を使う. <code>sqrt(x)</code> は <code>x</code> の平方根を返す．
+</li>
+<li>例えば，円周率, 底面の半径，円錐の高さ，円錐の側面(扇形)の半径, 中心角および面積を，それぞれ，
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">pi</span>;                      <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20870;&#21608;&#29575;</span>
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">r</span>, <span style="color: #9acd32;">h</span>;                    <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#24213;&#38754;&#12398;&#21322;&#24452;, &#20870;&#37648;&#12398;&#39640;&#12373;</span>
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">R</span>, <span style="color: #9acd32;">theta</span>, <span style="color: #9acd32;">S</span>;             <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20596;&#38754;(&#25159;&#24418;)&#12398;&#21322;&#24452;, &#20013;&#24515;&#35282;, &#38754;&#31309;</span>
+</pre>
+</div>
+<p>
+と定義しておいた場合，円錐の側面の扇形の半径, 中心角および面積は以下のように計算できる(ハズ)：
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">R = sqrt( pow(r,2.0) + pow(h, 2.0)); <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20596;&#38754;(&#25159;&#24418;)&#12398;&#21322;&#24452;&#12399;</span>
+                                     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12300;&#24213;&#38754;&#12398;&#21322;&#24452;&#12301;&#12392;&#12300;&#20870;&#37648;&#12398;&#39640;&#12373;&#12301;&#12398;&#20108;&#20055;&#21644;&#24179;&#26041;&#26681;&#12395;&#31561;&#12375;&#12356;</span>
+theta = 2.0 * pi * r / R; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20596;&#38754;(&#25159;&#24418;)&#12398;&#20013;&#24515;&#35282;&#12399;&#12300;&#24213;&#38754;&#12398;&#20870;&#21608;&#12301;&#247;&#12300;&#20596;&#38754;&#12398;&#21322;&#24452;&#12301;&#12395;&#31561;&#12375;&#12356;</span>
+S = theta * pow(R,2.0)  / 2.0; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20596;&#38754;(&#25159;&#24418;)&#12398;&#38754;&#31309;&#12399;&#12300;&#20013;&#24515;&#35282;&#12301;&#215;&#12300;&#21322;&#24452;&#12398;&#20108;&#20055;&#12301;&#247; 2&#12395;&#31561;&#12375;&#12356;</span>
+</pre>
+</div>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-06-06 Fri 00:12</p>
+<p class="date">Created: 2014-06-06 Fri 11:19</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
