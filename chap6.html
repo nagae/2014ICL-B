@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第6回 アカデミックスキルI レポートの作成技術(4)</title>
-<!-- 2014-05-13 Tue 11:51 -->
+<!-- 2014-06-06 Fri 15:56 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -150,8 +150,8 @@ for the JavaScript code in this tag.
 
 <!--/*--><![CDATA[/*><!--*/
 org_html_manager.set("TOC_DEPTH", "2");
-org_html_manager.set("LINK_HOME", "");
-org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LINK_HOME", "../");
+org_html_manager.set("LINK_UP", "./index.html");
 org_html_manager.set("LOCAL_TOC", "0");
 org_html_manager.set("VIEW_BUTTONS", "0");
 org_html_manager.set("MOUSE_HINT", "0");
@@ -207,9 +207,55 @@ for the JavaScript code in this tag.
  }
 /*]]>*///-->
 </script>
+<script type="text/javascript" src="http://orgmode.org/mathjax/MathJax.js"></script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+    MathJax.Hub.Config({
+        // Only one of the two following lines, depending on user settings
+        // First allows browser-native MathML display, second forces HTML/CSS
+        //  config: ["MMLorHTML.js"], jax: ["input/TeX"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+        extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js",
+                     "TeX/noUndefined.js"],
+        tex2jax: {
+            inlineMath: [ ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"], ["\\begin{displaymath}","\\end{displaymath}"] ],
+            skipTags: ["script","noscript","style","textarea","pre","code"],
+            ignoreClass: "tex2jax_ignore",
+            processEscapes: false,
+            processEnvironments: true,
+            preview: "TeX"
+        },
+        showProcessingMessages: true,
+        displayAlign: "center",
+        displayIndent: "2em",
+
+        "HTML-CSS": {
+             scale: 100,
+             availableFonts: ["STIX","TeX"],
+             preferredFont: "TeX",
+             webFont: "TeX",
+             imageFont: "TeX",
+             showMathMenu: true,
+        },
+        MMLorHTML: {
+             prefer: {
+                 MSIE:    "MML",
+                 Firefox: "MML",
+                 Opera:   "HTML",
+                 other:   "HTML"
+             }
+        }
+    });
+/*]]>*///-->
+</script>
 </head>
 <body>
-<div id="content">
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="./index.html"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><div id="content">
 <h1 class="title">第6回 アカデミックスキルI レポートの作成技術(4)</h1>
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
@@ -297,7 +343,7 @@ TeX の命令は <b>マクロ</b> と <b>環境</b> とに分かれる．
 </dd>
 <dt> <code>\item[用語名] 用語の定義</code> </dt><dd>定義リストの項目であることを指示. <code>description</code> 環境内でのみ使える.
 </dd>
-<dt> <code>\LaTeX</code> </dt><dd><img src="ltxpng/chap6_88f45c44200c34a1d4ecd8718e8937852cd0808f.png" alt="$\text{\LaTeX}$" /> を挿入する.
+<dt> <code>\LaTeX</code> </dt><dd>\(\text{\LaTeX}\) を挿入する.
 </dd>
 <dt> <code>\pagebreak</code> </dt><dd>ページ区切りを挿入する.
 </dd>
@@ -448,7 +494,7 @@ TeX の命令は <b>マクロ</b> と <b>環境</b> とに分かれる．
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-05-13 Tue 11:51</p>
+<p class="date">Created: 2014-06-06 Fri 15:56</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
