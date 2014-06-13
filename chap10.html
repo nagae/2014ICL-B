@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第10回 アカデミックスキルII C言語(3) 乱数の発生と gnuplot の初歩</title>
-<!-- 2014-06-13 Fri 11:08 -->
+<!-- 2014-06-13 Fri 23:48 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -408,7 +408,7 @@ RAND_MAX: 2147483647
 <ul class="org-ul">
 <li>このプログラムのように，ユーザー値を入力するのを「待つ」ようなプログラムは
 Emacs の <code>M-!</code> (shell-command) では実行できない．「端末」を使うか，
-<code>M-eshell</code> として Eshell(Emacs 上のシェル)を使おう．
+<code>M-x eshell</code> として Eshell(Emacs 上のシェル)を使おう．
 </li>
 </ul>
 
@@ -477,9 +477,9 @@ Emacs の <code>M-!</code> (shell-command) では実行できない．「端末�
 同じ「種」からは毎回同じ乱数が生成されてしまう(予測できてしまう)．
 そこで，この「種」を自動的に，かつ，予測不能な形で生成する古典的な方法として，
 プログラムが呼び出された際の「時間」を用いる方法を紹介する．
-以下のプログラム <code>sample3-2-seed.cpp</code> を作成し，コンパイル・実行してみよう．
+以下のプログラム <code>sample3-2-time.cpp</code> を作成し，コンパイル・実行してみよう．
 </p>
-<script src="https://gist.github.com/nagae/7f1b0855037cc6244fc7.js"></script>
+<script src="https://gist.github.com/nagae/686a6da7f5aa25a7635b.js"></script>
 
 <p>
 このプログラムを何度か実行してみよう．
@@ -723,6 +723,7 @@ replot - x + 1 linetype 3 title ""
 gnuplot で円をプロットするには，少し工夫が必要である．
 </p>
 <pre class="example">
+set parametric
 plot [ 0: 0.5*pi ] cos(t), sin(t)
 </pre>
 <p>
@@ -735,6 +736,19 @@ replot cos(t), sin(t) lt 3 t ""
 <p>
 とすると，四分円とランダムな点をプロットできる．
 </p>
+</div>
+
+<div id="outline-container-sec-5-3-1" class="outline-4">
+<h4 id="sec-5-3-1"><span class="section-number-4">5.3.1</span> 追記: 媒介変数を用いない場合</h4>
+<div class="outline-text-4" id="text-5-3-1">
+<pre class="example">
+plot "&lt;./sample3-4.o" ps 2
+replot sqrt(1 - x ** 2) lt 3 t ""
+</pre>
+<p>
+とする方が簡単に四分円を表示させられる．
+</p>
+</div>
 </div>
 </div>
 
@@ -761,7 +775,7 @@ Excel のようにボタン1つでグラフの形状を変えたりはできな�
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-06-13 Fri 11:08</p>
+<p class="date">Created: 2014-06-13 Fri 23:48</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
