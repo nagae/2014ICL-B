@@ -723,7 +723,8 @@ replot - x + 1 linetype 3 title ""
 gnuplot で円をプロットするには，少し工夫が必要である．
 </p>
 <pre class="example">
-plot [ 0: 0.5*pi ] cos(t), sin(t)
+  set parametric
+  plot [ 0: 0.5*pi ] cos(t), sin(t)
 </pre>
 <p>
 とした後,
