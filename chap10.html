@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>第10回 アカデミックスキルII C言語(3) 乱数の発生と繰り返し</title>
+<!-- 2014-06-13 Fri 09:37 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Takeshi Nagae" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel=stylesheet href="style.css" type="text/css">
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "../");
+org_html_manager.set("LINK_UP", "./index.html");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="./index.html"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><div id="content">
+<h1 class="title">第10回 アカデミックスキルII C言語(3) 乱数の発生と繰り返し</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. 乱数を発生させよう(sample3-1.cpp)</a>
+<ul>
+<li><a href="#sec-1-1">1.1. 乱数を3つ発生させ，表示するプログラム(sample3-1.cpp)</a></li>
+<li><a href="#sec-1-2">1.2. <code>sample3-1.cpp</code> の解説</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2. もっと乱数っぽくしよう</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 入力された値を「種」とした乱数を生成するプログラム(<code>sample3-2-seed.cpp</code>)</a></li>
+<li><a href="#sec-2-2">2.2. <code>sample3-2-seed.cpp</code> の解説</a></li>
+<li><a href="#sec-2-3">2.3. 乱数の「種」として現在時刻を用いるプログラム(<code>sample3-2-time.cpp</code>)</a></li>
+<li><a href="#sec-2-4">2.4. <code>sample3-2-time.cpp</code> の解説</a></li>
+<li><a href="#sec-2-5">2.5. 「最初の乱数だけ規則性がる」問題を解決した乱数生成プログラム(<code>sample3-2.cpp</code>)</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 実数乱数を発生させよう</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 「0以上1未満」の実数乱数を3つ発生させ，表示させるプログラム(<code>sample3-3.cpp</code>)</a></li>
+<li><a href="#sec-3-2">3.2. <code>sample3-3.cpp</code> の解説</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. 正方形内にランダムな点を発生させよう</a>
+<ul>
+<li><a href="#sec-4-1">4.1. 「0以上1以下」の実数乱数 x, y を発生させるプログラムを作り，</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. 正方形内に発生させた点が四分円に入ってるか否かを表示させよう(if 文による分岐)</a></li>
+<li><a href="#sec-6">6. 正方形内にランダムな点をたくさん発生させよう(for文による繰り返し)</a></li>
+<li><a href="#sec-7">7. 発生させた点をプロットしてみよう(gnuplot を用いた出力)</a></li>
+<li><a href="#sec-8">8. 1/4円の面積を求めよう</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> 乱数を発生させよう(sample3-1.cpp)</h2>
+<div class="outline-text-2" id="text-1">
+</div><div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> 乱数を3つ発生させ，表示するプログラム(sample3-1.cpp)</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+計算機はいつも決まった処理を行うように設計されているが，
+ゲームを作ったり，確率的シミュレーションを行なったりする場合には，
+サイコロのような確率的な値(<b>乱数</b> と呼ばれる)が必要になることもある．
+</p>
+
+<p>
+C言語で乱数を扱う関数や定数は <code>&lt;stdlib.h&gt;</code> ライブラリに定義されている．
+まずは, <code>~/cpp</code> ディレクトリ内に以下のサンプルプログラム <code>sample3-1.cpp</code> を作り，コンパイル・実行してみよう．
+</p>
+<script src="https://gist.github.com/nagae/597d6943b5bbfae3cbd1.js"></script>
+
+<ul class="org-ul">
+<li>Emacs でファイルを開くには <code>C-x C-f</code> (file-file)
+<ul class="org-ul">
+<li><code>~/cpp/sample3-1.cpp</code> というファイルを開く/新しく作るには: 
+<pre class="example">
+C-x C-f ~/cpp/sample3-1.cpp RET
+</pre>
+</li>
+</ul>
+</li>
+<li>Emacs 上にペーストするには <code>C-y</code> (yank)
+</li>
+<li>Emacs でファイルを保存するには <code>C-x C-s</code> (save-buffer)
+</li>
+<li>Emacs 上でコンパイル/実行するには <code>M-!</code> (shell-command)
+<ul class="org-ul">
+<li><code>sample3-1.cpp</code> をコンパイルして <code>sample3-1.o</code> という実行ファイルを作るには:
+<pre class="example">
+g++ sample3-1.cpp -o sample3-1.o
+</pre>
+</li>
+<li><code>sample3-1.o</code> を実行するには
+<pre class="example">
+./sample3-1.o
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<code>sample3-1.o</code> を実行すると，以下のような表示されるはずだ：
+</p>
+<pre class="example">
+r1: 16807
+r2: 282475249
+r3: 1622650073
+RAND_MAX: 2147483647
+</pre>
+<p>
+<code>r1, r2, r3</code> は，いずれも <code>rand()</code> という関数で初期化されているのに，
+全く違うランダムな値が格納されていることを確認して欲しい．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> <code>sample3-1.cpp</code> の解説</h3>
+<div class="outline-text-3" id="text-1-2">
+</div><div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1"><span class="section-number-4">1.2.1</span> 一般ユーティリティ・ライブラリ <code>&lt;stdlib.h&gt;</code> の読み込み</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+2行目:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #b0c4de;">#include</span> <span style="color: #bdb76b;">&lt;stdlib.h&gt;</span>             <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20081;&#25968;&#12434;&#25201;&#12358;&#12383;&#12417;&#12398;&#12521;&#12452;&#12502;&#12521;&#12522;&#12434;&#35501;&#12415;&#36796;&#12416;</span>
+</pre>
+</div>
+<p>
+では，乱数を扱うための一般ユーティリティ・ライブラリ <code>&lt;stdlib.h&gt;</code> を読み込んでいる．
+<code>&lt;stdlib.h&gt;</code> には，乱数を扱う関数 <code>rand(), srand()</code> や定数 <code>RAND_MAX</code> をはじめ，
+文字列を数値型(<code>int, double</code>)に変換/逆変換する関数や記憶領域を管理する関数などが含まれている．
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2"><span class="section-number-4">1.2.2</span> 乱数の生成</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+9〜11行目:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">r1</span> = rand();     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">r1, r2, r3 &#12434;&#21516;&#12376; rand () &#38306;&#25968;&#12391;&#21021;&#26399;&#21270;</span>
+<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">r2</span> = rand();     <span style="color: #00cd66;">// </span>
+<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">r3</span> = rand();     <span style="color: #00cd66;">//</span>
+</pre>
+</div>
+<p>
+では, 整数(<code>int</code>)型変数 <code>r1, r2, r3</code> を定義し，それぞれを, <code>rand()</code> 関数を用いて初期化している．
+</p>
+
+<p>
+<code>rand()</code> は <code>&lt;stdlib.h&gt;</code> 内で定義されている関数で，
+呼び出されるたびに0以上の整数をランダムに返す．
+戻す整数の最大値はマクロ定数 <code>RAND_MAX</code> として <code>&lt;stdlib.h&gt;</code> 内に定義されており，
+17行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; <span style="color: #bdb76b;">"RAND_MAX: "</span> &lt;&lt; RAND_MAX &lt;&lt; endl;
+</pre>
+</div>
+<p>
+で表示される．
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> もっと乱数っぽくしよう</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+乱数を生成させるプログラム <code>sample3-1.o</code> を何度か実行してみよう．
+何か気づいただろうか．
+そう. <code>sample3-1.o</code> で出力される <code>r1, r2, r3</code> は，毎回，同じ値なのである．
+実は, <code>rand()</code> を呼び出す度に生成される値は，
+ある規則に従う <b>確定的</b> な数列なのである．
+その規則性が読み取れないためにランダムに見えるだけなのだ．
+このような乱数を「疑似乱数」と呼ぶ．
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 入力された値を「種」とした乱数を生成するプログラム(<code>sample3-2-seed.cpp</code>)</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+<code>rand()</code> は, ある初期値(「種」と呼ばれる)から
+ある規則(線形合同法)に従う数列を順に返す．
+この「種」を変えることで，異なる疑似乱数を生成できる．
+以下のプログラム <code>sample3-2-seed.cpp</code> を作成し，コンパイル・実行してみよう．
+</p>
+<script src="https://gist.github.com/nagae/eb0280388c1e67da5817.js"></script>
+
+<ul class="org-ul">
+<li>このプログラムのように，ユーザー値を入力するのを「待つ」ようなプログラムは
+Emacs の <code>M-!</code> (shell-command) では実行できない．「端末」を使うか，
+<code>M-eshell</code> として Eshell(Emacs 上のシェル)を使おう．
+</li>
+</ul>
+
+<p>
+このプログラムでは，生成される数列のパターンを判別し易いように, 
+あえて5つの乱数を表示させている．
+</p>
+
+<p>
+このプログラムを何度か実行して，以下を確認してみよう．
+</p>
+<ol class="org-ol">
+<li>「種」として 1 を与えてみよう. <code>sample3-1.o</code> の結果と比較してみよう．
+</li>
+<li>「種」として 1 を与えた場合に生成される2番目の乱数(<code>r2</code>)を「種」として与えてみよう．
+</li>
+<li>「種」として 1, 10, 11, 100, 111, 1000, 10001 を与えた時の乱数列を比較してみよう
+</li>
+
+<li>何度も同じプログラムをコンパイルしたり実行したりするには「端末」や Emacs が
+備える「履歴」機能を使うとよい．具体的には，端末や Emacs でコマンドが入力できる
+ところで <code>カーソルの上下</code> を押すと，過去に入力したコマンドが順に表示されてくる．
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> <code>sample3-2-seed.cpp</code> の解説</h3>
+<div class="outline-text-3" id="text-2-2">
+<ul class="org-ul">
+<li>10行目
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">unsigned</span> <span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">seed</span>;            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20081;&#25968;&#12398;&#12300;&#31278;&#12301;&#12434;&#26684;&#32013;&#12377;&#12427;&#22793;&#25968;</span>
+</pre>
+</div>
+<p>
+では，乱数の「種」を格納するために符号無し整数(<code>unsigned int</code>)型の変数 <code>seed</code> を定義している．
+符号無し整数とは，全てのビットを数値の表現に使う型で 0 以上の整数の格納に用いられる．
+</p>
+</li>
+<li>12行目
+<div class="org-src-container">
+
+<pre class="src src-c++">srand(seed);               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20081;&#25968;&#12398;&#12300;&#31278;&#12301;&#12392;&#12375;&#12390; seed &#12434;&#19982;&#12360;&#12427;</span>
+</pre>
+</div>
+<p>
+では, <code>srand()</code> という関数を用いることで，乱数の「種」を与えている．
+具体的には, 関数 <code>srand()</code> を  <code>seed</code> を <b>引数</b> として与えて呼び出すことで，
+乱数の「種」の値に <code>seed</code> の値を代入している．
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 乱数の「種」として現在時刻を用いるプログラム(<code>sample3-2-time.cpp</code>)</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<code>sample3-2-seed.cpp</code> では「種」を入力させることで，
+毎回異なる疑似乱数を発生させることに成功した．
+しかし, 実行のたびにユーザーに「種」を入力させるのは面倒だし，
+同じ「種」からは毎回同じ乱数が生成されてしまう(予測できてしまう)．
+そこで，この「種」を自動的に，かつ，予測不能な形で生成する古典的な方法として，
+プログラムが呼び出された際の「時間」を用いる方法を紹介する．
+以下のプログラム <code>sample3-2-seed.cpp</code> を作成し，コンパイル・実行してみよう．
+</p>
+<script src="https://gist.github.com/nagae/7f1b0855037cc6244fc7.js"></script>
+
+<p>
+このプログラムを何度か実行してみよう．
+</p>
+<ol class="org-ol">
+<li>間隔を1秒以上あけて実行してみよう．
+</li>
+<li>間隔をなるべく短くして実行してみよう(カーソルの上下で過去のコマンドが入力できることを活用しよう)
+</li>
+<li>1つ目の乱数 <code>r1</code> と，2つ目以降の乱数 <code>r2, r3, r4, r5</code> の変り方を比べてみよう
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> <code>sample3-2-time.cpp</code> の解説</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+4行目:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #b0c4de;">#include</span> <span style="color: #bdb76b;">&lt;time.h&gt;</span>               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26178;&#38291;&#12395;&#38306;&#12377;&#12427;&#12521;&#12452;&#12502;&#12521;&#12522;&#12434;&#35501;&#12415;&#36796;&#12416;</span>
+</pre>
+</div>
+<p>
+で，時間に関するライブラリ <code>&lt;time.h&gt;</code> を読み込んでいる．
+</p>
+
+<p>
+10行目:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">unsigned</span> <span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">seed</span> = (<span style="color: #7fffd4;">unsigned</span> <span style="color: #7fffd4;">int</span>) time(<span style="color: #40e0d0;">NULL</span>); <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20081;&#25968;&#12398;&#12300;&#31278;&#12301;&#12434;&#29694;&#22312;&#26178;&#21051;&#12391;&#21021;&#26399;&#21270;</span>
+</pre>
+</div>
+<p>
+では, <code>time()</code> 関数を用いて現在の時刻(世界標準時の 1970年1月1日 0:00 からの経過秒数)を取得し，
+それを用いて <code>seed</code> を初期化している．
+それだけの処理をするだけなのに, <code>time</code> の前に 
+<code>(unsigned int)</code> がついていたり, 引数に見慣れない変数 <code>NULL</code> が与えられていたり，とごちゃごちゃしている．
+</p>
+
+<p>
+本来, 関数 <code>time()</code> は, <code>time_t</code> 型(時間値を表す型で <code>&lt;time.h&gt;</code> で定義されている)の <b>ポインタ</b> を引数とし，
+<code>time_t</code> 型の値を返す関数である．
+まず, <code>(unsigned int)</code> を前につけることで, <code>time</code> の戻り値(<code>time_t</code> 型)を
+<code>srand</code> が引数として受け取れる符号無し整数(<code>unsigned int</code> 型)に変換している．
+次に，ここでは引数に何も指定する必要が無いのだが，
+<code>time</code> を引数無しで呼び出すとエラーになるため, <code>NULL</code> という空のポインタを与えている．
+</p>
+
+<p>
+なお，変数のポインタというのはその変数の「仮想的な番地」に相当するもので，
+これを用いることで，メモリを無駄に使うことなく関数やオブジェクト間で変数の値を共有できる．
+その詳細については本講義では解説しないが，
+C/C++ において極めて重要な役割を果たす仕様であることだけ覚えておいて欲しい．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 「最初の乱数だけ規則性がる」問題を解決した乱数生成プログラム(<code>sample3-2.cpp</code>)</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+<code>sample3-2-time.o</code> を何度か繰り返して実行してみると, <code>r1</code> だけは大きく変わらないことが判る．
+これは, <code>srand</code> に与える乱数の「種」(≒時刻)が殆ど変わらないため，
+その直後に呼び出された <code>rand()</code> が返す値が似てしまうのが原因である(<code>sample3-2-seed.o</code> で乱数の種に 
+10 と 11, 100 と 101, 1000 と 1001 を入れた場合の最初の変数が似てしまうのと同じ)．
+この問題は <code>srand()</code> の直後に <code>rand()</code> を何度か「空打ち」することで解決できる．
+以下のプログラム <code>sample3-2.cpp</code> を作成し，コンパイル・実行してみよう．
+</p>
+<script src="https://gist.github.com/nagae/aacb433a464f8bd3895f.js"></script>
+
+<ul class="org-ul">
+<li><code>sample3-2.o</code> と <code>sample3-2-seed.o</code> を何度か実行し，結果を比較してみよう．
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 実数乱数を発生させよう</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 「0以上1未満」の実数乱数を3つ発生させ，表示させるプログラム(<code>sample3-3.cpp</code>)</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<code>rand()</code> を使うことで「0以上 <code>RAND_MAX</code> 以下のランダムな整数」が生成できるのだが，
+これをそのままゲームやシミュレーションに使うのは難しい．
+<code>RAND_MAX</code> の値に意味が無い上，計算機環境によってその値が異なるからだ．
+</p>
+
+<p>
+そこで, 古典的な方法として, <code>rand()</code> で生成された乱数を <code>RAND_MAX+1</code> で割ることで，
+「0以上1未満のランダムな実数」(と思われるもの)を作る方法を紹介しよう．
+次のサンプルプログラム <code>sample3-3.cpp</code> を作り，コンパイル・実行してみよう．
+</p>
+<script src="https://gist.github.com/nagae/45aa7fafede21606167f.js"></script>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> <code>sample3-3.cpp</code> の解説</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+15〜17行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">r1</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX + 1.0 );
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">r2</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX + 1.0 );
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">r3</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX + 1.0 );
+</pre>
+</div>
+<p>
+の各行では, <code>rand()</code> を <code>RAND_MAX + 1</code> で割ったもので実数(<code>double</code> 型)変数 <code>r1, r2, r3</code> を初期化している．
+ここで, <code>rand()</code> の出力や <code>RAND_MAX</code> の前に <code>(double)</code> をつけることで，
+もともと整数であるこれらの値を実数(<code>double</code>)型に型変換している(<code>1.0</code> は最初から実数なので型変換は不要)．
+</p>
+
+<p>
+なお，これらの分母を <code>(double) RAND_MAX</code> に変えれば <b>「0以上1以下」</b> の実数乱数が生成できる．
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 正方形内にランダムな点を発生させよう</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 「0以上1以下」の実数乱数 x, y を発生させるプログラムを作り，</h3>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 正方形内に発生させた点が四分円に入ってるか否かを表示させよう(if 文による分岐)</h2>
+</div>
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> 正方形内にランダムな点をたくさん発生させよう(for文による繰り返し)</h2>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> 発生させた点をプロットしてみよう(gnuplot を用いた出力)</h2>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"><span class="section-number-2">8</span> 1/4円の面積を求めよう</h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Takeshi Nagae</p>
+<p class="date">Created: 2014-06-13 Fri 09:37</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
