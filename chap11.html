@@ -1,0 +1,1011 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>第10回 アカデミックスキルII C言語(4) 繰り返しと条件分岐</title>
+<!-- 2014-06-19 Thu 22:11 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Takeshi Nagae" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel=stylesheet href="style.css" type="text/css">
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "../");
+org_html_manager.set("LINK_UP", "./index.html");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="./index.html"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><div id="content">
+<h1 class="title">第10回 アカデミックスキルII C言語(4) 繰り返しと条件分岐</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. このページの更新履歴</a></li>
+<li><a href="#sec-2">2. 処理の流れを制御する要素</a></li>
+<li><a href="#sec-3">3. <code>for</code> 文による繰り返しを習得しよう</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 正方形の中に N個の ランダムな点をプロットするプログラム(<code>sample4-1.cpp</code>)</a></li>
+<li><a href="#sec-3-2">3.2. <code>sample4-1.cpp</code> の解説</a></li>
+<li><a href="#sec-3-3">3.3. 関係演算子</a></li>
+<li><a href="#sec-3-4">3.4. 練習問題</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. <code>if..else...</code> 文による条件分岐を習得しよう</a>
+<ul>
+<li><a href="#sec-4-1">4.1. ランダムに点を生成し，それが四分円に含まれているか否かを判定するプログラム(<code>sample4-2.cpp</code>)</a></li>
+<li><a href="#sec-4-2">4.2. <code>sample4-2.cpp</code> の解説</a></li>
+<li><a href="#sec-4-3">4.3. 練習問題</a></li>
+<li><a href="#sec-4-4">4.4. 3つの点のうち四分円に含まれる個数をカウントするプログラム(<code>sample4-3.cpp</code>)</a></li>
+<li><a href="#sec-4-5">4.5. <code>sample4-3.cpp</code> の解説</a></li>
+<li><a href="#sec-4-6">4.6. 練習問題</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. 挑戦してみよう</a>
+<ul>
+<li><a href="#sec-5-1">5.1. 正方形内に <code>N</code> 個の点を生成し，その中で四分円に含まれる点のみを gnuplot でプロットしてみよう</a></li>
+<li><a href="#sec-5-2">5.2. 正方形内に <code>N</code> 個の点を生成し，その中で四分円に含まれる点の個数をカウントするプログラム <code>challange4-1.cpp</code> を作成せよ．</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> このページの更新履歴</h2>
+<div class="outline-text-2" id="text-1">
+<a href="https://github.com/nagae/2014ICL-B/commits/gh-pages/chap11.html">このページの更新履歴</a>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> 処理の流れを制御する要素</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+C/C++ をはじめとする多くのプログラム言語では，
+</p>
+<ul class="org-ul">
+<li>逐次処理 
+</li>
+<li>条件分岐
+</li>
+<li>繰り返し
+</li>
+</ul>
+<p>
+の3つの要素を組み合わせて処理の流れを制御する．
+</p>
+
+<p>
+基本となるのは，前回の講義で作成した <b>正方形内に3つのランダムな点を発生させるプログラム</b> 
+(<code>sample3-4.cpp</code>):
+</p>
+<script src="https://gist.github.com/nagae/1e346390e9e621ec03bd.js"></script>
+<p>
+と，これと四分円を合わせてプロットする下記の gnuplot コマンド:
+</p>
+<pre class="example">
+set xrange [0:1]
+set yrange [0:1]
+set size square
+plot "&lt;sample3-4.o"
+replot sqrt(1 - x ** 2)
+</pre>
+<p>
+である(前回の講義の最後になって「四分円を描くだけなら媒介変数を用いる必要がない」ことに気づきました…)．
+</p>
+
+<p>
+以降では, <code>sample3-4.cpp</code> をベースにして，
+</p>
+<ol class="org-ol">
+<li>3個ではなく N 個の点を生成し，その座標を出力するプログラム
+</li>
+<li>生成された3個の点のうち, 四分円に含まれる点の数をカウントするプログラム
+</li>
+</ol>
+<p>
+を作ってみよう．その上で，
+</p>
+<ol class="org-ol">
+<li value="3">生成したN個の点のうち，四分円に含まれる点の座標だけを出力するプログラム
+</li>
+<li>生成した N個の点のうち，四分円に含まれる点の数をカウントするプログラム
+</li>
+<li>上記 4. のプログラムを使って，円周率を推計するプログラム
+</li>
+</ol>
+<p>
+を作ってみよう．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> <code>for</code> 文による繰り返しを習得しよう</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 正方形の中に N個の ランダムな点をプロットするプログラム(<code>sample4-1.cpp</code>)</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+<code>sample3-4.cpp</code> を修正して「10個」の点を生成・出力させるにはどうしたらよいだろう？
+すぐに思いつくのは，15〜20行目:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">x1</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX );
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">y1</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX );
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">x2</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX );
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">y2</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX );
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">x3</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX );
+<span style="color: #7fffd4;">double</span> <span style="color: #9acd32;">y3</span> = (<span style="color: #7fffd4;">double</span>) rand() / ( (<span style="color: #7fffd4;">double</span>)RAND_MAX );
+</pre>
+</div>
+<p>
+を点の数だけ増やす方法である．しかし，この方法には，以下の致命的な欠点がある:
+</p>
+<ul class="org-ul">
+<li>100個, 1000個, &#x2026;と生成する点の数につれてソースコードが長くなり，それだけ入力ミスが増える
+</li>
+<li>予め決められた個数の点しか生成させられない.
+</li>
+</ul>
+
+<p>
+このように同じ処理を何度も行ないたい場合には <b><i>繰り返し</i></b> を使う．C/C++ には,繰り返し用の構文として，
+以下の3つが用意されている．
+</p>
+<dl class="org-dl">
+<dt> <code>for</code> </dt><dd><b>予め決まった回数</b> だけ処理を繰り返したい場合
+</dd>
+<dt> <code>while</code> </dt><dd><b>ある条件が満足されるまで</b> 処理を繰り返したい場合(繰り返しの「前」に条件を判定)
+</dd>
+<dt> <code>do...while</code> </dt><dd><b>ある条件が満足されるまで</b> 処理を繰り返したい場合(繰り返しの「後」に条件を判定)
+</dd>
+</dl>
+<p>
+この講義では <code>for</code> 構文のみを解説する．
+</p>
+
+<p>
+<code>~/cpp</code> の下に以下のサンプル・プログラム <code>sample4-1.cpp</code> を作成・コンパイルし，
+<code>sample4-1.o</code> という実行ファイルを作成しよう．
+</p>
+<script src="https://gist.github.com/nagae/5298dcfb5ce034a59bf9.js"></script>
+
+<ul class="org-ul">
+<li>Emacs でファイルを開くには <code>C-x C-f</code> (file-file)
+<ul class="org-ul">
+<li><code>~/cpp/sample4-1.cpp</code> というファイルを開く/新しく作るには: 
+<pre class="example">
+C-x C-f ~/cpp/sample4-1.cpp RET
+</pre>
+</li>
+</ul>
+</li>
+<li>Emacs 上にペーストするには <code>C-y</code> (yank)
+</li>
+<li>Emacs でファイルを保存するには <code>C-x C-s</code> (save-buffer)
+</li>
+<li>Emacs 上でコンパイル/実行するには <code>M-!</code> (shell-command)
+<ul class="org-ul">
+<li><code>sample4-1.cpp</code> をコンパイルして <code>sample4-1.o</code> という実行ファイルを作るには:
+<pre class="example">
+g++ sample4-1.cpp -o sample4-1.o
+</pre>
+</li>
+<li><code>sample4-1.o</code> を実行するには
+<pre class="example">
+./sample4-1.o
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+実行すると，以下のように，10組の0以上1未満の乱数ペアが表示されるはずだ(出力される値は実行状況によって異なる):
+</p>
+<pre class="example">
+0.527762 0.0991858
+0.0156348 0.774582
+0.39885 0.475178
+0.309051 0.223189
+0.137885 0.440539
+0.134666 0.32532
+0.65007 0.726346
+0.696439 0.0479749
+0.314471 0.319364
+0.559033 0.66221
+</pre>
+
+<p>
+この出力を gnuplot に渡せば，10個の点が表示される. 「端末」上で
+</p>
+<div class="org-src-container">
+
+<pre class="src src-sh"><span style="color: #b0c4de;">cd</span> ~/cpp
+gnuplot
+</pre>
+</div>
+<p>
+と入力して gnuplot を起動し, 
+</p>
+<pre class="example">
+gnuplot&gt;
+</pre>
+<p>
+というプロンプトが出ている状態で，以下を入力する．
+</p>
+<pre class="example">
+set xrange [0:1]
+set yrange [0:1]
+set size square
+plot "&lt;./sample4-1.o"
+</pre>
+<p>
+新しいウィンドウが開いて，10個の点がプロットされているだろうか？
+</p>
+
+<p>
+何度か <code>gnuplot&gt;</code> プロンプトに対して
+</p>
+<pre class="example">
+plot "&lt;./sample4-1.o"
+</pre>
+<p>
+を繰り返し入力してみよう(カーソルキーの上下で過去に入力したコマンドを表示させられる)．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> <code>sample4-1.cpp</code> の解説</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+15行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">N</span> = 10;                     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#32368;&#12426;&#36820;&#12375;&#22238;&#25968;</span>
+</pre>
+</div>
+<p>
+では，繰り返し回数を整数(<code>int</code>)型変数 <code>N</code> に格納している．
+繰り返し回数を <code>for</code> 文(後述)の中に直接書くこともできるが，
+こうして意味のある名前を持たせた変数に格納しておくことが
+「読み易さ」および「保守のしやすさ」の観点から望ましい．
+</p>
+
+<p>
+16〜24行目では <code>for</code> 文を用いた繰り返し処理が記述されている．
+<code>for</code> 構文は以下のような構造をしている.
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">for</span> (&#12475;&#12531;&#12486;&#12531;&#12473;1; &#12475;&#12531;&#12486;&#12531;&#12473;2; &#12475;&#12531;&#12486;&#12531;&#12473;3) <span style="color: #00cd66;">// </span><span style="color: #00cd66;">for&#25991;&#12398;&#23459;&#35328;</span>
+{                                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">for &#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+  &#12475;&#12531;&#12486;&#12531;&#12473;4;                              
+  &#12475;&#12531;&#12486;&#12531;&#12473;5;                              
+  :                                         
+  :                                         
+}                                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">for &#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+</pre>
+</div>
+<p>
+ここで, <code>for(...)</code> の括弧内の3つのセンテンスは，それぞれ，以下の役割を担っている：
+</p>
+<dl class="org-dl">
+<dt> センテンス1: 初期処理 </dt><dd>繰り返しを始める前(最初の処理が行なわれる前)に実行される処理．
+</dd>
+<dt> センテンス2: 条件判定 </dt><dd>真(true, 0以外の値)もしくは偽(false, 0)のいずれかを取る．真である限り，繰り返しが継続される．通常「関係演算子」が用いられる．
+</dd>
+<dt> センテンス3: 挿入処理 </dt><dd>繰り返しを行う度(1つの処理が終わり，次の新しい処理が行なわれる前)に実行される処理．しばしば「増分演算子」が用いられる．
+</dd>
+</dl>
+
+<p>
+一般に, <code>for</code> 文は「ブロック内の処理を <code>N</code> 回繰り返す」ときに用いられる．
+この場合，一般的には <code>for</code> 文は以下のように書く:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">for</span> (<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">i</span> = 0; i &lt; N; ++i)
+  {
+    &#32368;&#12426;&#36820;&#12375;&#12383;&#12356;&#20966;&#29702;
+  }
+</pre>
+</div>
+<p>
+<code>;</code> で区切られた順に説明していこう.
+</p>
+<dl class="org-dl">
+<dt> <code>int i = 0</code> (初期処理) </dt><dd>反復回数を格納する整数(<code>int</code>)型変数として <code>i</code> を定義し，その値を 0 で初期化する
+</dd>
+<dt> <code>i < N</code> (条件判定) </dt><dd><code>i &lt; N</code> である間繰り返す．
+</dd>
+<dt> <code>++i</code> (挿入処理) </dt><dd>繰り返しのたびに <code>i</code> の値を1つづつ増やす. <code>++i</code> は <code>i = i + 1</code> と同じ意味．
+</dd>
+</dl>
+<p>
+すなわち, この <code>for</code> 文は「 <code>i=0</code> を初期値とし, <code>i</code> の値を 1, 2, 3, &#x2026; と増やしながら <code>i&lt;N</code> である限り処理を繰り返せ」と指示しているのである．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 関係演算子</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+「条件判定」のセンテンスには，通常，2つの値を比較する関係演算子が用いられる．
+関係演算子は，
+</p>
+<pre class="example">
+値1 演算子 値2
+</pre>
+<p>
+のように使われる．これが評価されると，値1 と 値2 の関係によって真(<code>1</code>)もしくは偽(<code>0</code>)のいずれかの値を返す．
+</p>
+
+<p>
+関係演算子には，以下のものがある．
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">関係演算子</th>
+<th scope="col" class="left">使い方</th>
+<th scope="col" class="left">真を返す条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left"><code>&lt;</code></td>
+<td class="left"><code>a &lt; b</code></td>
+<td class="left"><code>a</code> が <code>b</code> より小さい</td>
+</tr>
+
+<tr>
+<td class="left"><code>&lt;=</code></td>
+<td class="left"><code>a <= b</code></td>
+<td class="left"><code>a</code> が <code>b</code> と同じかそれより小さい</td>
+</tr>
+
+<tr>
+<td class="left"><code>&gt;</code></td>
+<td class="left"><code>a &gt; b</code></td>
+<td class="left"><code>a</code> が <code>b</code> より大きい</td>
+</tr>
+
+<tr>
+<td class="left"><code>&gt;=</code></td>
+<td class="left"><code>a >= b</code></td>
+<td class="left"><code>a</code> が <code>b</code> と同じかそれより大きい</td>
+</tr>
+
+<tr>
+<td class="left"><code>==</code></td>
+<td class="left"><code>==</code></td>
+<td class="left"><code>a</code> が <code>b</code> と同じ</td>
+</tr>
+
+<tr>
+<td class="left"><code>!=</code></td>
+<td class="left"><code>a != b</code></td>
+<td class="left"><code>a</code> が <code>b</code> と異なる</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+「xは"1以上5未満"または"7"」のように複数の条件を組み合わせたい場合には，条件式同士を接続する「論理演算子」を用いる．
+</p>
+<table border="2" cellspacing="2" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th class="left">論理演算子</td>
+<th class="left">使い方</td>
+<th class="left">真を返す条件</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left"><code>&amp;&amp;</code> (論理積)</td>
+<td class="left"><code>A &amp;&amp; B</code></td>
+<td class="left">条件式 <code>A</code> と <code>B</code> の <b>どちらも</b> が真である</td>
+</tr>
+
+<tr>
+<td class="left"><code>||</code> (論理和)</td>
+<td class="left"><code>A || B</code></td>
+<td class="left">条件式 <code>A</code> もしくは <code>B</code> の <b>少なくともどちらか一方</b> が真である</td>
+</tr>
+
+<tr>
+<td class="left"><code>!</code> (否定)</td>
+<td class="left"><code>!A</code></td>
+<td class="left">条件式 <code>A</code> が <b>偽である</b></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+本講義では詳しく述べないが，関係演算子および論理演算子を使いこなすためには，以下のルールを知っておくとよい．
+</p>
+<ul class="org-ul">
+<li>論理演算子には加減乗除のように処理順序が決まっている(論理積&gt;論理和)．
+</li>
+<li>処理順序を制御したい場合には，括弧を使って階層化する(深いレベルの括弧から先に処理される)．
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 練習問題</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>10個の点ではなく, 100個, 1,000個, 10,000個の点をプロットしてみよう．
+</li>
+<li>反復回数(<i>iteration</i>)を格納する変数名を <code>i</code> ではなく <code>itr</code> にしてみよう．
+</li>
+<li>繰り返し回数を <code>N+1</code> 回にするには，どこをどう変えたらよいだろう？
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> <code>if..else...</code> 文による条件分岐を習得しよう</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> ランダムに点を生成し，それが四分円に含まれているか否かを判定するプログラム(<code>sample4-2.cpp</code>)</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+<code>~/cpp</code> ディレクトリの下に以下のサンプル・プログラム <code>sample4-2.cpp</code> を作成し, 
+<code>sample4-2.o</code> という実行ファイル名でコンパイルしよう．
+</p>
+<script src="https://gist.github.com/nagae/0a694ae0ec74647782de.js"></script>
+
+<p>
+これを何度か実行すると，以下のような出力が得られるはずだ(出力内容は実行状況によって異なる)．
+</p>
+<pre class="example">
+$ ./sample4-2.o 
+x: 0.768915 y: 0.16269
+&gt;&gt;&gt; 四分円に含まれます &lt;&lt;&lt;
+$ ./sample4-2.o 
+x: 0.768915 y: 0.16269
+&gt;&gt;&gt; 四分円に含まれます &lt;&lt;&lt;
+$ ./sample4-2.o 
+x: 0.987875 y: 0.209734
+&lt;   四分円に含まれません   &gt;
+$ ./sample4-2.o 
+x: 0.206834 y: 0.256779
+&gt;&gt;&gt; 四分円に含まれます &lt;&lt;&lt;
+$ ./sample4-2.o 
+x: 0.425793 y: 0.303824
+&gt;&gt;&gt; 四分円に含まれます &lt;&lt;&lt;
+:
+:
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> <code>sample4-2.cpp</code> の解説</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+21〜29行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12427;&#12363;&#21542;&#12363;&#12434;&#21028;&#23450;&#12375;&#65292;&#34920;&#31034;&#12377;&#12427;</span>
+<span style="color: #ffffff;">if</span> ( x*x + y*y &lt;= 1.0 )       <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(x^2+y^2&lt;=1.0 &#12394;&#12425;&#30495;&#65292;&#12381;&#12358;&#12391;&#12394;&#12369;&#12428;&#12400;&#20605;)</span>
+  {                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+    cout &lt;&lt; <span style="color: #bdb76b;">"&gt;&gt;&gt; &#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12414;&#12377; &lt;&lt;&lt;"</span> &lt;&lt; endl;
+  }                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+<span style="color: #ffffff;">else</span>                          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#28288;&#36275;&#12373;&#12428;&#12394;&#12363;&#12387;&#12383;(&#20605;&#12398;&#22580;&#21512;)&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12364;&#32154;&#12367;&#12371;&#12392;&#12434;&#23459;&#35328;</span>
+  {                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+    cout &lt;&lt; <span style="color: #bdb76b;">"&lt;   &#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12414;&#12379;&#12435;   &gt;"</span> &lt;&lt; endl;
+  }                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+</pre>
+</div>
+<p>
+では, <code>if...then</code> 構文を用いて, ランダムに生成された点 (x, y) が
+</p>
+<ul class="org-ul">
+<li>点(x, y) が四分円に含まれる(<code>x*x + y*y <= 1.0</code> が真の場合)
+</li>
+<li>点(x, y) が四分円に含まれない場合(<code>x*x + y*y <= 1.0</code> が偽の場合)
+</li>
+</ul>
+<p>
+のいずれに該当するかを判別し，その後の処理を分岐させている．
+</p>
+
+<p>
+まず，21〜24行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">if</span> ( x*x + y*y &lt;= 1.0 )       <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(x^2+y^2&lt;=1.0 &#12394;&#12425;&#30495;&#65292;&#12381;&#12358;&#12391;&#12394;&#12369;&#12428;&#12400;&#20605;)</span>
+  {                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+    cout &lt;&lt; <span style="color: #bdb76b;">"&gt;&gt;&gt; &#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12414;&#12377; &lt;&lt;&lt;"</span> &lt;&lt; endl;
+  }                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+</pre>
+</div>
+<p>
+では, 関係演算子を用いた式 <code>(x*x + y*y <= 1.0)</code> を評価し，
+これが真(点が四分円に含まれる)である場合には，その後のブロックを実行することを指示している．
+</p>
+
+<p>
+次に，25〜29行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">else</span>                          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#28288;&#36275;&#12373;&#12428;&#12394;&#12363;&#12387;&#12383;(&#20605;&#12398;&#22580;&#21512;)&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12364;&#32154;&#12367;&#12371;&#12392;&#12434;&#23459;&#35328;</span>
+  {                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+    cout &lt;&lt; <span style="color: #bdb76b;">"&lt;   &#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12414;&#12379;&#12435;   &gt;"</span> &lt;&lt; endl;
+  }                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+</pre>
+</div>
+<p>
+では, <code>if</code> 文に与えられた条件 <code>(x*x + y*y <= 1.0)</code> が満足されなかった場合には，
+それに続くブロックを実行することを指示している．
+</p>
+
+<p>
+<code>if</code> 構文は，基本的に以下の構造を持つ:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">if</span> ( &#24335; )       <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(x^2+y^2&lt;=1.0 &#12394;&#12425;&#30495;&#65292;&#12381;&#12358;&#12391;&#12394;&#12369;&#12428;&#12400;&#20605;)</span>
+  {                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+   &#30495;&#12398;&#22580;&#21512;&#12398;&#20966;&#29702;
+  }                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+<span style="color: #ffffff;">else</span>                          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#28288;&#36275;&#12373;&#12428;&#12394;&#12363;&#12387;&#12383;(&#20605;&#12398;&#22580;&#21512;)&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12364;&#32154;&#12367;&#12371;&#12392;&#12434;&#23459;&#35328;</span>
+  {                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+   &#20605;&#12398;&#22580;&#21512;&#12398;&#20966;&#29702;
+  }                           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+</pre>
+</div>
+<p>
+<code>if</code> の直後の括弧内には，評価された際に真(0以外)が偽(0)のいずれかを返すセンテンスが与えられる．
+一般に用いられるのは，これは変数どうし，もしくは変数と定数とを，関係演算子を用いて比較する式である．
+<code>sample4-2.cpp</code> のケースでは, <code>x*x + y*y</code> という項と <code>1.0</code> という定数を，関係演算子 <code><=</code> で比較している．
+</p>
+
+<p>
+なお, 偽の場合に何も処理を行なわない場合, <code>else</code> 以降を省略できる．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-3" class="outline-3">
+<h3 id="sec-4-3"><span class="section-number-3">4.3</span> 練習問題</h3>
+<div class="outline-text-3" id="text-4-3">
+<ol class="org-ol">
+<li>ランダムな点が正方形のどの場所にも等確率で生成されるとしたとき，その点が四分円に含まれる確率を考えてみよう
+</li>
+<li><code>./sample4-2.o</code> を何度か繰り返してみて，四分円に含まれる回数が上で求めた確率に近いかどうか確認してみよう
+</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-sec-4-4" class="outline-3">
+<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 3つの点のうち四分円に含まれる個数をカウントするプログラム(<code>sample4-3.cpp</code>)</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+上記の練習問題の2つ目をもう少しだけシステマティックに行うプログラムを作成しよう．
+<code>~/cpp</code> ディレクトリの下に，下記の内容のサンプル・プログラム <code>sample4-3.cpp</code> を作成し，
+<code>sample4-3.o</code> という名前でコンパイル・実行してみよう．
+</p>
+<script src="https://gist.github.com/nagae/7878ffff3b8f825c526b.js"></script>
+
+<p>
+何度か実行してみると，以下のような出力が得られるはずだ(実際の値は実行時の状況によって異なる)：
+</p>
+<pre class="example">
+$ ./sample4-3.o 
+0.136003 0.801979
+0.865367 0.229632
+0.431412 0.73584
+四分円に含まれた点の数は 3個です
+$ ./sample4-3.o 
+0.573921 0.896068
+0.223097 0.588225
+0.300797 0.502844
+四分円に含まれた点の数は 2個です
+$ ./sample4-3.o 
+0.792881 0.943113
+0.901962 0.267522
+0.23549 0.886346
+四分円に含まれた点の数は 2個です
+$ ./sample4-3.o 
+0.230799 0.0372023
+0.259691 0.626114
+0.104876 0.653351
+四分円に含まれた点の数は 3個です
+$ ./sample4-3.o 
+0.449758 0.084247
+0.938556 0.305411
+0.039569 0.0368527
+四分円に含まれた点の数は 3個です
+$ ./sample4-3.o 
+0.668717 0.131292
+0.61742 0.984707
+0.974262 0.420355
+四分円に含まれた点の数は 1個です
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-4-5" class="outline-3">
+<h3 id="sec-4-5"><span class="section-number-3">4.5</span> <code>sample4-3.cpp</code> の解説</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+28行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">n</span> = 0;                     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12427;&#28857;&#12398;&#25968; (0 &#12391;&#21021;&#26399;&#21270;)</span>
+</pre>
+</div>
+<p>
+四分円に含まれる個数のカウント用に <code>n</code> という名前の整数(<code>int</code>)型変数を宣言し，
+0で初期化する．続いて，29〜32行目:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">if</span> ( x1*x1 + y1*y1 &lt;= 1.0)     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">(x1, y1) &#12364;&#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12427;&#12394;&#12425; n &#12434;1&#12388;&#22679;&#12420;&#12377;</span>
+   {
+     ++n;
+   }
+</pre>
+</div>
+<p>
+で, (x1, y1) が四分円に含まれていたら <code>n</code> の値を1つ増やす. 
+なお，四分円に含まれない場合には何の処理も行なわないため, <code>else</code> ブロックが省略されている．
+</p>
+
+<p>
+同様に, 33〜40行目
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #ffffff;">if</span> ( x2*x2 + y2*y2 &lt;= 1.0)    <span style="color: #00cd66;">// </span><span style="color: #00cd66;">(x2, y2) &#12364;&#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12427;&#12394;&#12425; n &#12434;1&#12388;&#22679;&#12420;&#12377;</span>
+  {
+    ++n;
+  }
+<span style="color: #ffffff;">if</span> ( x3*x3 + y3*y3 &lt;= 1.0)    <span style="color: #00cd66;">// </span><span style="color: #00cd66;">(x3, y3) &#12364;&#22235;&#20998;&#20870;&#12395;&#21547;&#12414;&#12428;&#12427;&#12394;&#12425; n &#12434;1&#12388;&#22679;&#12420;&#12377;</span>
+  {
+    ++n;
+  }
+</pre>
+</div>
+<p>
+では，(x2, y2) および (x3, y3) のそれぞれについて，四分円に含まれていたら <code>n</code> の値を1つ増やす，という処理を行なっている．
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-6" class="outline-3">
+<h3 id="sec-4-6"><span class="section-number-3">4.6</span> 練習問題</h3>
+<div class="outline-text-3" id="text-4-6">
+<ul class="org-ul">
+<li>ランダムな点が正方形内のどの地点にも等確率で生成されるとした場合, 3つの点のうち，四分円に含まれる数が
+<ul class="org-ul">
+<li>0個の場合
+</li>
+<li>1個の場合
+</li>
+<li>2個の場合
+</li>
+<li>3個の場合
+</li>
+</ul>
+<p>
+の確率は，それぞれ，いくらになるだろうか．
+</p>
+</li>
+<li><code>./sample4-3.o</code> を何度か実行してみた場合，上述の確率と同じような頻度が実現するだろうか．
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 挑戦してみよう</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 正方形内に <code>N</code> 個の点を生成し，その中で四分円に含まれる点のみを gnuplot でプロットしてみよう</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>最初は <code>N=100</code> くらいから試してみよう
+</li>
+<li>「(0.5, 0.5) を中心とする半径 0.5 の円に含まれる点のみプロット」にも挑戦してみよう
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 正方形内に <code>N</code> 個の点を生成し，その中で四分円に含まれる点の個数をカウントするプログラム <code>challange4-1.cpp</code> を作成せよ．</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>点が正方形内のどの場所にも等確率で生成される場合， <code>N</code> を充分に大きくすれば，
+生成した全ての点の数 <code>N</code> に対する四分円に含まれる点の数 <code>n</code> の比率を4倍したもの 
+<code>4.0 * (double)n / (double) N</code> は
+円周率に等しくなるはずである.  <code>N</code> をいくつか変えてみて，これを確かめよ．
+</li>
+<li><code>cout &lt;&lt; 4.0 * (double) n / (double) N = として得られる出力で，表示精度(小数点以下の表示桁数)が不足する場合は，
+  =&lt;iomanip&gt;</code> ライブラリに含まれている <code>setprecision()</code> 関数を用いることで，
+小数点以下の表示桁数(の最大値)を指定できる．
+
+<p>
+<code>main</code> 関数を呼び出す前に
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #b0c4de;">#include</span> <span style="color: #bdb76b;">&lt;iomanip&gt;</span>
+</pre>
+</div>
+<p>
+と <code>&lt;iomanip&gt;</code> ライブラリを読み込んでおく．そして，表示させたい数値の直前で，
+出力ストリームに <code>std::setprecision(表示桁数)</code> を渡すことで，表示精度を変えられる．
+</p>
+
+<p>
+例えば，小数点以下第９位までを表示させたい場合には，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; setprecision(9) &lt;&lt; 4.0 * (<span style="color: #7fffd4;">double</span>) n / (<span style="color: #7fffd4;">double</span>) N &lt;&lt; endl;
+</pre>
+</div>
+<p>
+などとする (<code>using namespace std</code> を宣言しているので, <code>std::</code> は省略できる)． 
+</p>
+
+<p>
+なお，表示対象自体の精度以下の桁は表示されない．例えば, <code>N=1000</code> の場合
+<code>4*n/N</code> の精度は たかだか 小数点以下3位なので，4位以下は表示されない．
+どうしても指定した桁まで表示させたい場合には，
+以下のように出力ストリームに <code>std::fixed</code> を渡しておけばよい．
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">cout &lt;&lt; fixed &lt;&lt; setprecision(9) &lt;&lt; 4.0 * (<span style="color: #7fffd4;">double</span>) n / (<span style="color: #7fffd4;">double</span>) N &lt;&lt; endl;
+</pre>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Takeshi Nagae</p>
+<p class="date">Created: 2014-06-19 Thu 22:11</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
