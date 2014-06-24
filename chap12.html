@@ -1,0 +1,791 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>第12回 アカデミックスキルII C言語(5) レポート課題「クイズ番組のパラドックス」を検証しよう</title>
+<!-- 2014-06-24 Tue 18:26 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Takeshi Nagae" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel=stylesheet href="style.css" type="text/css">
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "../");
+org_html_manager.set("LINK_UP", "./index.html");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="./index.html"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><div id="content">
+<h1 class="title">第12回 アカデミックスキルII C言語(5) レポート課題「クイズ番組のパラドックス」を検証しよう</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. このページの更新履歴</a></li>
+<li><a href="#sec-2">2. レポート課題</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 課題</a></li>
+<li><a href="#sec-2-2">2.2. 提出するもの，提出方法および〆切</a></li>
+<li><a href="#sec-2-3">2.3. 複数のファイルを1つのファイルまとめるコマンド (<code>tar</code>)</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3. 課題のすすめ方</a>
+<ul>
+<li><a href="#sec-3-1">3.1. 3つの箱の中から1つを選び，選んだ箱が正解かどうかを表示させるプログラム(<code>rep-3in1.cpp</code>)</a></li>
+<li><a href="#sec-3-2">3.2. <code>rep-3in1.cpp</code> を <code>N</code> 回繰り返し，正解数や正解率を表示させるプログラム(<code>rep-3in1_Ntimes.cpp</code>)</a></li>
+<li><a href="#sec-3-3">3.3. 解答者が選んだ箱と異なる空箱(司会者が選ぶ箱)を表示させるプログラム(<code>rep-another1.cpp</code>)</a></li>
+<li><a href="#sec-3-4">3.4. 司会者が開けた空箱を見て，変更するか否かを選択できるプログラム(<code>rep-ex3in1.cpp</code>)</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> このページの更新履歴</h2>
+<div class="outline-text-2" id="text-1">
+<a href="https://github.com/nagae/2014ICL-B/commits/gh-pages/chap12.html">このページの更新履歴</a>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> レポート課題</h2>
+<div class="outline-text-2" id="text-2">
+</div><div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 課題</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+以下の「クイズ番組のパラドックス」を考える．なお，パラドックス(paradox)とは，荒っぽく言うならば, 
+「 <b>直感的に正しいと感じる解答</b> と, <b>論理的に妥当な解答</b> が異なる問題 」のこと．
+</p>
+
+<blockquote>
+<p>
+クイズの状況は以下の通り：
+</p>
+<ol class="org-ol">
+<li>登場人物は，あるクイズ番組の「司会者」と「解答者」の二人．
+</li>
+<li>解答者の前に3つの箱(A, B, C)がある．そのうち1つだけに当たりの豪華景品が入っており，残りの2つは空っぽ．
+</li>
+<li>解答者にとっては，どの箱も同じように見えるが，司会者は，どの箱に景品が入っているかを知っている．
+</li>
+<li>解答者は，景品の箱を当てると中の景品をもらえる．
+</li>
+</ol>
+
+<p>
+この状況の下で，以下の手続きでクイズ番組が進められる．
+</p>
+
+<ol class="org-ol">
+<li value="5">まず，解答者が，箱の中から1つ(例えば，A)を選択する．
+</li>
+<li>次に，司会者が，残りの箱のうち1つ(例えば, B)を開けて中が空であることを見せる．
+</li>
+<li>ここで，解答者は，最初に選んだ箱(A)を，残っているもう1つの箱(この場合, C)に変更してもよい．
+</li>
+</ol>
+
+<p>
+このとき，解答者は <b>選ぶ箱を変更する</b> ことで，正解する確率を上げられるだろうか？
+</p>
+</blockquote>
+
+<p>
+この問について，定量的に回答しなさい．具体的には，まず，
+</p>
+<dl class="org-dl">
+<dt> 変更しない場合の正解確率(確率A) </dt><dd>手続き 5 で解答者の行動が終了する(手続き 6, 7が無い場合)ときに正解する確率はいくらか？
+</dd>
+<dt> 変更した場合の正解確率(確率B) </dt><dd>手続き 6, 7 で解答者が選択を変更した場合に正解する確率はいくらか？
+</dd>
+</dl>
+<p>
+を，それぞれ，確率的シミュレーションによって推計しなさい．
+</p>
+
+<p>
+次に，得られた推計結果から，上記 A の確率よりも B の確率の方が大きいか否かについて論じなさい．
+必要に応じて，グラフや図を用いてもよい．
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 提出するもの，提出方法および〆切</h3>
+<div class="outline-text-3" id="text-2-2">
+</div><div id="outline-container-sec-2-2-1" class="outline-4">
+<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> 提出するもの</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+以下の <b>2つのファイル</b> を提出せよ
+</p>
+<ol class="org-ol">
+<li><b>確率A</b> および  <b>確率B</b> の <b>推定結果</b> および <b>推定結果に基づく主張</b> (i.e. 「選ぶ箱を変更することで正解確率が上昇する」もしくは「選ぶ箱を変更しても正解確率は変化しない」). 
+<ul class="org-ul">
+<li>LaTeX などを用いて <b>整形された</b> ものが望ましい(その場合は PDF フォーマットで提出せよ)が，整形されていないただのテキストでもよい．
+</li>
+<li>図やグラフなどを適宜用いて見易くしたものを歓迎する．本文とは別のファイルで図やグラフを提出する場合(PDF フォーマットに限る)は, 本文中でどのファイルを参照すればよいかを明示すること．
+</li>
+<li>計推定結果や図/グラフが複数のファイルに分かれている場合は, <code>tar</code> コマンド(後述)を用いて <b>アーカイブ</b> すること．
+</li>
+</ul>
+</li>
+<li>確率を推計するのに用いた C/C++ プログラムの <b>ソースファイル</b>.
+<ul class="org-ul">
+<li>コメント(<code>//</code> の後は全てコメントと見なされる)をなるべく多く用いて，それぞれの処理をどのような意図で行なっているのかを記述すること．
+<b>コメントが不十分なソースファイルについては減点する可能性がある</b>
+</li>
+<li>複数のファイルに分かれている場合は, <code>tar</code> コマンド(後述)を使ってアーカイブすること．
+</li>
+</ul>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-sec-2-2-2" class="outline-4">
+<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> 提出方法</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+<a href="https:www.srp.tohoku.ac.jp/sa/top.do">学務情報システム</a> より提出
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2-3" class="outline-4">
+<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> 〆切</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+7月4日(金) 午後 17:00
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 複数のファイルを1つのファイルまとめるコマンド (<code>tar</code>)</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+複数のファイルを1つのファイル(<b>書庫</b> ファイルと呼ばれる)にまとめる(<b>アーカイブ</b> すると呼ぶ)には，
+端末から <code>tar</code> というコマンドを使う．
+</p>
+
+
+<p>
+参考リンク
+</p>
+<ul class="org-ul">
+<li><a href="http:itpro.nikkeibp.co.jp/article/COLUMN/20060227/230896/">http:itpro.nikkeibp.co.jp/article/COLUMN/20060227/230896/</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> 課題のすすめ方</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 3つの箱の中から1つを選び，選んだ箱が正解かどうかを表示させるプログラム(<code>rep-3in1.cpp</code>)</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+まず，3つの箱からユーザー(解答者)が1つを選び，
+それが正解かどうかを表示させるプログラム <code>rep-3in1.cpp</code> を作ってみよう．
+</p>
+<script src="https://gist.github.com/nagae/510244c2281718f8438b.js"></script>
+<dl class="org-dl">
+<dt> 14〜15行目 </dt><dd>正解の箱の番号を0〜2の中からランダムに選ぶ．ここでは, 0, 1, 2 のいずれかをランダムに生成する方法として，
+<code>rand()</code> で生成された整数を2で割った余りを用いている．<a href="#coderef-rep-3in1_15"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_15');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_15');">15行目</a> で用いられる <code>%</code> は「余り」を求める演算子．
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#27770;&#12417;&#12427;</span>
+<span id="coderef-rep-3in1_15" class="coderef-off"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">% &#12399;&#12300;&#20313;&#12426;&#12301;&#12434;&#27714;&#12417;&#12427;&#28436;&#31639;&#23376;</span></span>
+</pre>
+</div>
+</dd>
+<dt> 17〜20行目 </dt><dd>解答者(ユーザー)が入力した箱の番号を <code>input_box</code> という名前の変数に格納する．
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12518;&#12540;&#12470;&#12540;&#12395;&#31665;&#12398;&#30058;&#21495;&#12434;&#20837;&#21147;&#12373;&#12379;&#12427;</span>
+<span id="coderef-rep-3in1_18" class="coderef-off"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">input_box</span>;          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#12398;&#30058;&#21495;&#12434;&#26684;&#32013;&#12377;&#12427;&#22793;&#25968;</span></span>
+<span id="coderef-rep-3in1_19" class="coderef-off">cout &lt;&lt; <span style="color: #bdb76b;">"&#31665;&#12398;&#30058;&#21495;&#12434;&#20837;&#21147;&#12375;&#12390;&#19979;&#12373;&#12356; (0, 1, 2)?-&gt; "</span>;</span>
+<span id="coderef-rep-3in1_20" class="coderef-off">cin &gt;&gt; input_box;               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27161;&#28310;&#20837;&#21147;&#12363;&#12425;&#31665;&#12398;&#30058;&#21495;&#12434;&#21462;&#12426;&#36796;&#12416;</span></span>
+</pre>
+</div>
+<p>
+<a href="#coderef-rep-3in1_18"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_18');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_18');">18行目</a>では，解答者が選んだ箱の番号を格納する変数 <code>input_box</code> を整数(<code>int</code>)型として宣言し，
+<a href="#coderef-rep-3in1_20"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_20');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_20');">20行目</a>で標準入力 <code>cin</code> から値を取り込んでいる．
+</p>
+</dd>
+<dt> 22〜32行目 </dt><dd>正解か否かを判定して表示させている．
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12363;&#21542;&#12363;&#12434;&#21028;&#23450;</span>
+<span id="coderef-rep-3in1_23" class="coderef-off"><span style="color: #ffffff;">if</span> ( collect_box == input_box ) <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(&#27491;&#35299;&#12398;&#31665;&#30058;&#21495;&#12392;&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#30058;&#21495;&#12364;&#19968;&#33268;&#12375;&#12390;&#12356;&#12428;&#12400;&#30495;)</span></span>
+<span id="coderef-rep-3in1_24" class="coderef-off">  {                               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span></span>
+    cout &lt;&lt; <span style="color: #bdb76b;">"!!! &#27491;&#35299;&#12391;&#12377; !!!"</span> &lt;&lt; endl; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12392;&#34920;&#31034; </span>
+<span id="coderef-rep-3in1_26" class="coderef-off">  }                               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span></span>
+<span id="coderef-rep-3in1_27" class="coderef-off"> <span style="color: #ffffff;">else</span></span>
+<span id="coderef-rep-3in1_28" class="coderef-off">   {                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span></span>
+     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12495;&#12474;&#12524;&#12398;&#12513;&#12483;&#12475;&#12540;&#12472;&#12392;&#27491;&#35299;&#12434;&#34920;&#31034;</span>
+     cout &lt;&lt; <span style="color: #bdb76b;">"&#27531;&#24565;&#65292;&#12495;&#12474;&#12524;"</span> &lt;&lt; endl
+          &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12399; "</span> &lt;&lt; collect_box &lt;&lt; <span style="color: #bdb76b;">"&#12391;&#12375;&#12383;"</span> &lt;&lt; endl;
+<span id="coderef-rep-3in1_32" class="coderef-off">   }                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span></span>
+</pre>
+</div>
+<p>
+まず，<a href="#coderef-rep-3in1_23"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_23');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_23');">23行目</a>の <code>if</code> では <a href="#coderef-rep-3in1_15"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_15');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_15');">15行目</a> で与えた <code>collect_box</code> と<a href="#coderef-rep-3in1_20"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_20');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_20');">20行目</a>でユーザーが入力した <code>input_box</code> が
+一致するかどうかを判別しており，一致している場合は <a href="#coderef-rep-3in1_24"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_24');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_24');">24行目</a>〜<a href="#coderef-rep-3in1_26"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_26');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_26');">26行目</a>のブロックが実行される．
+次に，<a href="#coderef-rep-3in1_27"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_27');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_27');">27行目</a>の <code>else</code> は <code>collect_box</code> と <code>input_box</code> が一致しない場合に
+その後の <a href="#coderef-rep-3in1_28"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_28');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_28');">28行目</a>〜<a href="#coderef-rep-3in1_32"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_32');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_32');">32行目</a>のブロックを実行することを指示している．
+</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> <code>rep-3in1.cpp</code> を <code>N</code> 回繰り返し，正解数や正解率を表示させるプログラム(<code>rep-3in1_Ntimes.cpp</code>)</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+<code>rep-3in1.cpp</code> を使って「3つの箱から1つを選んだとき，それが正解である確率」を推定してみよう．
+このための手続きは，以下のように書き下せるだろう．
+</p>
+
+<ol class="org-ol">
+<li><code>rep-3in1.cpp</code> を <b>自分で</b> <code>N</code> 回実行し，そのうち正解した回数を <b>自分で</b> 数えておく(正解した回数を <code>n</code> 回とする)
+</li>
+<li><code>n</code> を <code>N</code> で割ったものを <b>自分で</b> 計算し，正解確率の推定値とする．
+</li>
+</ol>
+
+<p>
+この <b>自分で</b> やる部分を計算機に任せることで，数え間違いや計算間違いを減らし，所要時間も(多分)短縮できる．
+<code>for</code> 文を用いて <code>N</code> 回繰り返すようにしたのが，下記のプログラム <code>rep-3in1_Ntimes.cpp</code> である．
+</p>
+<script src="https://gist.github.com/nagae/2ab71be9c3f16e5f51e9.js"></script>
+
+<p>
+解説
+</p>
+<dl class="org-dl">
+<dt> 14〜16行目 </dt><dd>繰り返し回数と正解の数の宣言および初期化
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#32368;&#12426;&#36820;&#12375;&#12398;&#25968;&#12392;&#27491;&#35299;&#12375;&#12383;&#25968;</span>
+<span id="coderef-rep-3in1_Ntimes_15" class="coderef-off"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">N</span> = 10;                     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#32368;&#12426;&#36820;&#12375;&#22238;&#25968;</span></span>
+<span id="coderef-rep-3in1_Ntimes_16" class="coderef-off"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">n</span> = 0;                      <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#25968;(0&#12391;&#21021;&#26399;&#21270;)</span></span>
+</pre>
+</div>
+<p>
+<a href="#coderef-rep-3in1_Ntimes_15"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_Ntimes_15');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_Ntimes_15');">15行目</a> で繰り返し回数 <code>N</code> を, <a href="#coderef-rep-3in1_Ntimes_16"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_Ntimes_16');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_Ntimes_16');">16行目</a>で正解した数を，それぞれ整数(<code>int</code>)型で宣言し，初期化している．
+</p>
+
+<p>
+なお <code>N</code> や <code>n</code> を <code>for</code> 文の中で宣言したり，初期化してはいけない．
+</p>
+</dd>
+<dt> 18〜20行目, 43行目 </dt><dd><code>for</code> 文の宣言, ブロックの開始と終了
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#32368;&#12426;&#36820;&#12375;&#20966;&#29702;</span>
+<span id="coderef-rep-3in1_Ntimes_19" class="coderef-off"><span style="color: #ffffff;">for</span> (<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">i</span> = 0; i &lt; N; ++i)   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">for &#25991;&#12398;&#26465;&#20214;&#12434;&#23459;&#35328;(i=0&#12391;&#21021;&#26399;&#21270;;i &lt; N &#12398;&#38291;&#32368;&#12426;&#36820;&#12375;;&#32368;&#12426;&#36820;&#12377;&#38555;&#12395;i&#12434;1&#12388;&#22679;&#12420;&#12377;)</span></span>
+<span id="coderef-rep-3in1_Ntimes_20" class="coderef-off">  { <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#8595;&#8595;&#8595;&#8595;&#8595; for &#12502;&#12525;&#12483;&#12463;&#12371;&#12371;&#12363;&#12425; &#8595;&#8595;&#8595;&#8595;&#8595;</span></span>
+</pre>
+</div>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span id="coderef-rep-3in1_Ntimes_43" class="coderef-off">} <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#8593;&#8593;&#8593;&#8593;&#8593; for &#12502;&#12525;&#12483;&#12463;&#12371;&#12371;&#12414;&#12391; &#8593;&#8593;&#8593;&#8593;&#8593;</span></span>
+</pre>
+</div>
+<p>
+<a href="#coderef-rep-3in1_Ntimes_19"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_Ntimes_19');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_Ntimes_19');">19行目</a>の <code>for</code> 文は, その後のブロック内(<a href="#coderef-rep-3in1_Ntimes_20"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_Ntimes_20');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_Ntimes_20');">20</a>〜<a href="#coderef-rep-3in1_Ntimes_43"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_Ntimes_43');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_Ntimes_43');">43</a>行目)の処理を <code>N</code> 回繰り返すことを宣言している．
+</p>
+</dd>
+<dt> 21〜40行目 </dt><dd>3つの箱の中から選んだ1つが当たりか否かを判定して表示させる処理
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#27770;&#12417;&#12427;</span>
+<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">% &#12399;&#12300;&#20313;&#12426;&#12301;&#12434;&#27714;&#12417;&#12427;&#28436;&#31639;&#23376;</span>
+
+<span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12503;&#12524;&#12452;&#12516;&#12540;&#12395;&#31665;&#12398;&#30058;&#21495;&#12434;&#20837;&#21147;&#12373;&#12379;&#12427;</span>
+<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">input_box</span>;          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#12398;&#30058;&#21495;&#12434;&#26684;&#32013;&#12377;&#12427;&#22793;&#25968;</span>
+cout &lt;&lt; <span style="color: #bdb76b;">"&#31665;&#12398;&#30058;&#21495;&#12434;&#20837;&#21147;&#12375;&#12390;&#19979;&#12373;&#12356; (0, 1, 2)?-&gt; "</span>;
+cin &gt;&gt; input_box;               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27161;&#28310;&#20837;&#21147;&#12363;&#12425;&#31665;&#12398;&#30058;&#21495;&#12434;&#21462;&#12426;&#36796;&#12416;</span>
+
+<span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12363;&#21542;&#12363;&#12434;&#21028;&#23450;</span>
+<span style="color: #ffffff;">if</span> (collect_box == input_box)   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(&#27491;&#35299;&#12398;&#31665;&#30058;&#21495;&#12392;&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#30058;&#21495;&#12364;&#19968;&#33268;&#12375;&#12390;&#12356;&#12428;&#12400;&#30495;)</span>
+  {                             <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+    cout &lt;&lt; <span style="color: #bdb76b;">"!!! &#27491;&#35299;&#12391;&#12377; !!!"</span> &lt;&lt; endl;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12392;&#34920;&#31034;</span>
+<span id="coderef-rep-3in1_Ntimes_33" class="coderef-off">    ++n;                                          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12375;&#12383;&#25968;&#12434;1&#12388;&#22679;&#12420;&#12377;</span></span>
+  }                             <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+ <span style="color: #ffffff;">else</span>
+   {                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
+     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12495;&#12474;&#12524;&#12398;&#12513;&#12483;&#12475;&#12540;&#12472;&#12392;&#27491;&#35299;&#12434;&#34920;&#31034;</span>
+     cout &lt;&lt; <span style="color: #bdb76b;">"&#27531;&#24565;&#65292;&#12495;&#12474;&#12524;"</span> &lt;&lt; endl
+          &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12399; "</span> &lt;&lt; collect_box &lt;&lt; <span style="color: #bdb76b;">"&#12391;&#12375;&#12383;"</span> &lt;&lt; endl;
+   }                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
+</pre>
+</div>
+<p>
+基本的には <code>rep-3in1.cpp</code> の14〜32行目と全く同じ処理．唯一の違いは,
+正解した場合に <a href="#coderef-rep-3in1_Ntimes_33"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_Ntimes_33');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_Ntimes_33');">33行目</a> で <b>正解した回数</b> <code>n</code> の値を <code>++</code> 演算子を用いて1つ増やしていること．
+</p>
+</dd>
+<dt> 45〜48行目 </dt><dd>試行回数，正解した数および正解確率を表示
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12375;&#12383;&#25968;&#12392;&#27491;&#35299;&#30906;&#29575;&#12434;&#34920;&#31034;</span>
+cout &lt;&lt; <span style="color: #bdb76b;">"&#35430;&#34892;&#22238;&#25968; (N): "</span> &lt;&lt; N &lt;&lt; endl;
+cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#25968; (n): "</span> &lt;&lt; n &lt;&lt; endl;
+<span id="coderef-rep-3in1_Ntimes_48" class="coderef-off">cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#30906;&#29575; (n/N)*100 % : "</span> &lt;&lt; ( (<span style="color: #7fffd4;">double</span>) n / (<span style="color: #7fffd4;">double</span>) N ) * 100.0 &lt;&lt; endl;</span>
+</pre>
+</div>
+<p>
+<a href="#coderef-rep-3in1_Ntimes_48"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_Ntimes_48');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_Ntimes_48');">48行目</a>では，まず，正解した確率 <code>n/N</code> を計算するために，もともと整数(<code>int</code>)型として定義されている
+変数 <code>n</code> と <code>N</code> を，実数(<code>double</code>)型に変換している．次に，正解した確率のパーセンテージを表示するために <code>n/N</code> に <code>100.0</code> を乗じている．
+</p>
+</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 解答者が選んだ箱と異なる空箱(司会者が選ぶ箱)を表示させるプログラム(<code>rep-another1.cpp</code>)</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+クイズ番組の手続きでは，解答者が箱を選んだ後，司会者が残った箱のうち1つを開き，空箱であることを見せる．
+この「解答者が選んだ箱以外の空箱の1つ(= <b>司会者が選ぶ箱</b>)」を決める部分をプログラムで作ってみよう．
+</p>
+
+<p>
+司会者が選ぶ箱を決めるルールを以下のように決めよう：
+</p>
+<ol class="org-ol">
+<li><b>解答者が選んだ箱</b> と <b>正解の箱</b> が異なる場合は，残る1つを <b>司会者が選ぶ箱</b> とする
+</li>
+<li><b>解答者が選んだ箱</b> が <b>正解の箱</b> と同じ場合は，残る2つの箱のどちらか一方をランダムに選び，それを <b>司会者が選ぶ箱</b> とする
+</li>
+</ol>
+</div>
+
+<div id="outline-container-sec-3-3-1" class="outline-4">
+<h4 id="sec-3-3-1"><span class="section-number-4">3.3.1</span> <b>解答者が選んだ箱</b> と <b>正解の箱</b> が異なる場合</h4>
+<div class="outline-text-4" id="text-3-3-1">
+<p>
+まず，1番のルールをプログラムで実装するのは比較的カンタンである．
+この場合は <b>解答者が選んだ箱</b> と <b>正解の箱</b> と <b>司会者が選ぶ箱</b> の番号が全て異なり，
+その <b>合計</b> が常に 0 + 1 + 2 = 3 であるから, <b>司会者が選ぶ箱</b> の番号は，以下の式で求められる．
+</p>
+<pre class="example">
+司会者が選ぶ箱の番号 = 3 - (解答者が選んだ箱の番号 + 正解の箱の番号)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-sec-3-3-2" class="outline-4">
+<h4 id="sec-3-3-2"><span class="section-number-4">3.3.2</span> <b>解答者が選んだ箱</b> と <b>正解の箱</b> と同じ場合</h4>
+<div class="outline-text-4" id="text-3-3-2">
+<p>
+次に，2番のルールは少し厄介である．
+手始めに場合分けして考えると, <b>司会者が選ぶ箱</b> は
+</p>
+<dl class="org-dl">
+<dt> 解答者が選んだ箱(=正解の箱)が0番 </dt><dd>「1番」か「2番」のいずれか
+</dd>
+<dt> 解答者が選んだ箱(=正解の箱)が1番 </dt><dd>「0番」か「2番」のいずれか
+</dd>
+<dt> 解答者が選んだ箱(=正解の箱)が2番 </dt><dd>「0番」か「1番」のいずれか
+</dd>
+</dl>
+<p>
+となる. 2つの選択肢のいずれか一方をランダムに選択するには，コインを1枚投げて, 
+<span class="underline">表なら最初の選択肢</span>, <span class="underline">裏なら2番目の選択肢</span> を選ぶことにすればよい．
+</p>
+
+<p>
+このルールは，2段階の <code>if</code> 文を用いて以下のように実装できる:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span class="linenr"> 1: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
+<span class="linenr"> 2: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">head_or_tail</span> = rand() % 2;  <span style="color: #00cd66;">// </span><span style="color: #00cd66;">2&#12388;&#12398;&#36984;&#25246;&#32930;&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#36984;&#12406;&#12383;&#12417;&#12395;&#12467;&#12452;&#12531;&#12398;&#34920;(=1)&#12392;&#35023;(=0)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
+<span class="linenr"> 3: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">open_box</span>;           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;</span>
+<span class="linenr"> 4: </span>
+<span class="linenr"> 5: </span><span style="color: #ffffff;">if</span> ( collect_box == 0 )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 0 &#30058;&#12398;&#22580;&#21512;</span>
+<span class="linenr"> 6: </span>  {
+<span class="linenr"> 7: </span>    <span style="color: #ffffff;">if</span> ( head_or_tail )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 0 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#34920;&#12394;&#12425; 1 &#30058;&#12434;&#36984;&#12406;</span>
+<span class="linenr"> 8: </span>      { open_box = 1; }
+<span class="linenr"> 9: </span>    <span style="color: #ffffff;">else</span>
+<span class="linenr">10: </span>      { open_box = 2; }         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 0 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#35023;&#12394;&#12425; 2 &#30058;&#12434;&#36984;&#12406;</span>
+<span class="linenr">11: </span>  }
+<span class="linenr">12: </span> <span style="color: #ffffff;">else</span> <span style="color: #ffffff;">if</span> ( collect_box == 1 )   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 1 &#30058;&#12398;&#22580;&#21512;</span>
+<span class="linenr">13: </span>   {
+<span class="linenr">14: </span>    <span style="color: #ffffff;">if</span> ( head_or_tail )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 1 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#34920;&#12394;&#12425; 0 &#30058;&#12434;&#36984;&#12406;</span>
+<span class="linenr">15: </span>      { open_box = 0; }
+<span class="linenr">16: </span>    <span style="color: #ffffff;">else</span>
+<span class="linenr">17: </span>      { open_box = 2; }         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 1 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#35023;&#12394;&#12425; 2 &#30058;&#12434;&#36984;&#12406;</span>
+<span class="linenr">18: </span>   }
+<span class="linenr">19: </span> <span style="color: #ffffff;">else</span> <span style="color: #ffffff;">if</span> ( collect_box == 2 )   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 2 &#30058;&#12398;&#22580;&#21512;</span>
+<span class="linenr">20: </span>   {
+<span class="linenr">21: </span>    <span style="color: #ffffff;">if</span> ( head_or_tail )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 2 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#34920;&#12394;&#12425; 1 &#30058;&#12434;&#36984;&#12406;</span>
+<span class="linenr">22: </span>      { open_box = 1; }
+<span class="linenr">23: </span>    <span style="color: #ffffff;">else</span>
+<span class="linenr">24: </span>      { open_box = 2; }         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 2 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#35023;&#12394;&#12425; 2 &#30058;&#12434;&#36984;&#12406;</span>
+<span class="linenr">25: </span>   }
+</pre>
+</div>
+
+<p>
+これでも実装上は問題ないが，もう少し洗練された方法を考えてみよう．
+</p>
+<ul class="org-ul">
+<li>コインを投げて表が出たら <b>正解の箱の番号 + 1</b> を，裏が出たら <b>正解の箱の番号 - 1</b> を <b>司会者が選ぶ箱</b> とする．
+</li>
+<li>ただし，正解の箱が 2 番でコインが表の場合には <b>司会者が選ぶ箱</b> は 0 番とする．逆に，正解の箱が 0 番でコインが裏の場合には <b>司会者が選ぶ箱</b> は 2 番とする．
+</li>
+</ul>
+<p>
+これは，下図のように箱を円状に並べておいて，コインの表が出たら正解の箱の右隣(時計方向の隣)の箱を，裏が出たら正解の箱の左隣(反時計方向の隣)の箱を選ぶ方法に等しい．
+</p>
+
+
+<div class="figure">
+<p><img src="boxes.png" alt="boxes.png" />
+</p>
+</div>
+
+<p>
+これなら, <code>-1</code> もしくは <code>1</code> を <code>50%</code> づつの確率で生成し，これを正解の箱の番号に加えたものを <b>司会者が選ぶ箱</b> の番号とすればよい．
+<code>-1</code> もしくは <code>1</code> を <code>50%</code> づつの確率で生成させるには，
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++">( rand() % 2 ) * 2 - 1;
+</pre>
+</div>
+<p>
+とすればよい．その理由は以下のように順に考えると明らか．
+</p>
+<ul class="org-ul">
+<li>最初の括弧の中の <code>rand() % 2</code> は <code>0</code> か <code>1</code> のいずれか
+</li>
+<li>これを2倍した値は <code>0</code> か <code>2</code> のいずれか
+</li>
+<li>そこから <code>1</code> を引いた値は <code>-1</code> か <code>1</code> のいずれか
+</li>
+</ul>
+
+<p>
+少し工夫が必要なのは「0番の左(<code>-1</code> 番)」と「2番の右(<code>3</code> 番)」を，それぞれ「2番」と「0番」と
+読み替える(上図のオレンジ色の矢印に対応)方法だ．これは, 
+</p>
+<pre class="example">
+司会者が開く箱の番号 = 正解の箱の番号 - 2
+</pre>
+<p>
+とすればよい．その理由は，司会者が開ける箱が「0番の左」もしくは「2番の右」となる状況では，
+</p>
+<ul class="org-ul">
+<li>正解が0番なら，司会者が開く箱は 2番
+</li>
+<li>正解が2番なら，司会者が開く箱は 0番
+</li>
+</ul>
+<p>
+の二通りのみを考えればよいからである．
+</p>
+
+<p>
+ここまでの手続きは，以下のコードで実装できる．
+</p>
+<div class="org-src-container">
+
+<pre class="src src-c++"><span class="linenr">1: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
+<span class="linenr">2: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">open_box</span>;                   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;</span>
+<span class="linenr">3: </span>
+<span class="linenr">4: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">pls_or_mns</span> = ( rand() % 2 ) * 2 - 1; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#24038;(-1) &#12418;&#12375;&#12367;&#12399; &#21491;(1) &#12398;&#12356;&#12378;&#12428;&#12363;&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
+<span class="linenr">5: </span>open_box = collect_box + pls_or_mns; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;&#12399;&#27491;&#35299;&#12398;&#31665;&#12398;&#24038;&#12363;&#21491;</span>
+<span class="linenr">6: </span>
+<span class="linenr">7: </span><span style="color: #ffffff;">if</span> ( open_box &lt; 0 || open_box &gt; 2 ) <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;&#12364;&#12300;0&#30058;&#12398;&#24038;&#12301;&#12418;&#12375;&#12367;&#12399;&#12300;2&#30058;&#12398;&#21491;&#12301;&#12395;&#12394;&#12387;&#12383;&#22580;&#21512;</span>
+<span class="linenr">8: </span>  { open_box = 2 - collect_box; }   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364;0&#30058;&#12394;&#12425;&#21496;&#20250;&#32773;&#12399;2&#30058;&#12434;&#65292;&#27491;&#35299;&#12364;2&#30058;&#12394;&#12425;&#21496;&#20250;&#32773;&#12399;0&#30058;&#12434;&#36984;&#12406;</span>
+</pre>
+</div>
+<p>
+最初のコードと比べて随分シンプルになったのではないだろうか？
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3-3" class="outline-4">
+<h4 id="sec-3-3-3"><span class="section-number-4">3.3.3</span> 解答者が選んだ箱と正解の箱から，司会者が選ぶ箱の番号を決めるプログラム</h4>
+<div class="outline-text-4" id="text-3-3-3">
+<p>
+以上の考え方に基づいて
+解答者が選んだ箱と異なる「空箱」を表示させるようにしたのが，下記のプログラム <code>rep-another1.cpp</code> である．
+</p>
+<script src="https://gist.github.com/nagae/eed9bd54fe8b6ec5eb09.js"></script>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4"><span class="section-number-3">3.4</span> 司会者が開けた空箱を見て，変更するか否かを選択できるプログラム(<code>rep-ex3in1.cpp</code>)</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+3つの箱の中から正解を探すプログラム <code>rep-3in1.cpp</code> を，
+「司会者が空箱を開けた後に，残った箱に変更するか否か」を選択できるようにしたのが
+下記のプログラム <code>rep-ex3in1.cpp</code> である．
+</p>
+<script src="https://gist.github.com/nagae/e086563cfe5f323954fe.js"></script>
+<p>
+解説
+</p>
+<dl class="org-dl">
+<dt> 22〜34行目 </dt><dd>司会者が開ける箱を決める. <code>rep-another1.cpp</code> の22〜34行目と全く同じである．
+</dd>
+<dt> 36〜42行目 </dt><dd>残った箱に変更するか否かをユーザー(解答者)に選択させる
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#31665;&#12434;&#22793;&#26356;&#12377;&#12427;&#12363;&#21542;&#12363;&#12434;&#36984;&#25246;&#12377;&#12427;</span>
+<span id="coderef-rep-ex3in1_37" class="coderef-off"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">change_box</span> = 3 - (input_box + open_box); <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#22793;&#26356;&#20808;&#12398;&#31665;&#12398;&#30058;&#21495;</span></span>
+<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">is_change</span>;                               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#22793;&#26356;&#12377;&#12427;(=0&#20197;&#22806;)&#12363;&#22793;&#26356;&#12375;&#12394;&#12356;(=0)&#12434;&#26684;&#32013;&#12377;&#12427;&#22793;&#25968;</span>
+cout &lt;&lt; <span style="color: #bdb76b;">"&#21496;&#20250;&#32773;&#12364;&#31665; "</span> &lt;&lt; open_box &lt;&lt; <span style="color: #bdb76b;">" &#12434;&#38283;&#12369;&#65292;&#31354;&#12391;&#12354;&#12427;&#12371;&#12392;&#12364;&#21028;&#12426;&#12414;&#12375;&#12383;"</span> &lt;&lt; endl
+     &lt;&lt; <span style="color: #bdb76b;">"&#36984;&#25246;&#12377;&#12427;&#31665;&#12434; "</span> &lt;&lt; input_box &lt;&lt; <span style="color: #bdb76b;">" &#12363;&#12425; "</span>
+     &lt;&lt; change_box &lt;&lt; <span style="color: #bdb76b;">" &#12395;&#22793;&#26356;&#12375;&#12414;&#12377;&#12363;(1:yes / 0:no)?-&gt; "</span>;
+<span id="coderef-rep-ex3in1_42" class="coderef-off">cin &gt;&gt; change_box;            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27161;&#28310;&#20837;&#21147;&#12363;&#12425;&#22793;&#26356;&#12377;&#12427;&#12363;&#21542;&#12363;&#12434;&#21462;&#12426;&#36796;&#12416;</span></span>
+</pre>
+</div>
+<p>
+<a href="#coderef-rep-ex3in1_37"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-ex3in1_37');" onmouseout="CodeHighlightOff(this, 'coderef-rep-ex3in1_37');">37行目</a>で <b>変更先の箱の番号(<code>change_box</code>)</b> を決定している．その際，
+</p>
+<ul class="org-ul">
+<li><b>解答者が選んだ箱(<code>input_box</code>)</b> と <b>司会者が開けた箱(<code>open_box</code>)</b> と <b>変更先の箱(<code>change_box</code>)</b> が全て異なり，その番号の合計は3である．
+</li>
+</ul>
+<p>
+ことを活用している．
+</p>
+</dd>
+<dt> 44〜46行目 </dt><dd>ユーザーが箱を変更した場合の処理
+<div class="org-src-container">
+
+<pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">0&#20197;&#22806;&#12364;&#20837;&#21147;&#12373;&#12428;&#12383;&#22580;&#21512;&#12399;&#21496;&#20250;&#32773;&#12364;&#38283;&#12369;&#12383;&#31665;&#12395;&#22793;&#26356;&#12377;&#12427;</span>
+<span style="color: #ffffff;">if</span> ( is_change != 0 )
+  { input_box = change_box; }
+</pre>
+</div>
+<p>
+<a href="#coderef-rep-ex3in1_42"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-ex3in1_42');" onmouseout="CodeHighlightOff(this, 'coderef-rep-ex3in1_42');">42行目</a>で <code>is_change</code> に取り込まれた数値が 0 以外だった場合には，
+選択する箱(<code>input_box</code>)を変更先の箱(<code>change_box</code>)に変更する．
+</p>
+</dd>
+<dt> 48〜59行目 </dt><dd>正解か否かを判断し，表示する. <code>3in1.cpp</code> の22〜32行目と全く同じである．
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Takeshi Nagae</p>
+<p class="date">Created: 2014-06-24 Tue 18:26</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
