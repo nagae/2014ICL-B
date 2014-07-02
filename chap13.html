@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>第13回 アカデミックスキルII C言語(6) 余裕がある人向けの課題</title>
+<!-- 2014-07-02 Wed 18:41 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Takeshi Nagae" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.right  { text-align: center;  }
+  th.left   { text-align: center;   }
+  th.center { text-align: center; }
+  td.right  { text-align: right;  }
+  td.left   { text-align: left;   }
+  td.center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara:nth-child(2) { display: inline; }
+  .footpara { display: block; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel=stylesheet href="style.css" type="text/css">
+
+<script type="text/javascript" src="http://orgmode.org/org-info.js">
+/**
+ *
+ * @source: http://orgmode.org/org-info.js
+ *
+ * @licstart  The following is the entire license notice for the
+ *  JavaScript code in http://orgmode.org/org-info.js.
+ *
+ * Copyright (C) 2012-2013 Free Software Foundation, Inc.
+ *
+ *
+ * The JavaScript code in this tag is free software: you can
+ * redistribute it and/or modify it under the terms of the GNU
+ * General Public License (GNU GPL) as published by the Free Software
+ * Foundation, either version 3 of the License, or (at your option)
+ * any later version.  The code is distributed WITHOUT ANY WARRANTY;
+ * without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+ *
+ * As additional permission under GNU GPL version 3 section 7, you
+ * may distribute non-source (e.g., minimized or compacted) forms of
+ * that code without the copy of the GNU GPL normally required by
+ * section 4, provided you include this license notice and a URL
+ * through which recipients can access the Corresponding Source.
+ *
+ * @licend  The above is the entire license notice
+ * for the JavaScript code in http://orgmode.org/org-info.js.
+ *
+ */
+</script>
+
+<script type="text/javascript">
+
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "2");
+org_html_manager.set("LINK_HOME", "../");
+org_html_manager.set("LINK_UP", "./index.html");
+org_html_manager.set("LOCAL_TOC", "0");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "0");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "showall");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="./index.html"> UP </a>
+ |
+ <a accesskey="H" href="../"> HOME </a>
+</div><div id="content">
+<h1 class="title">第13回 アカデミックスキルII C言語(6) 余裕がある人向けの課題</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1. このページの更新履歴</a></li>
+<li><a href="#sec-2">2. Project Euler からの問題例</a>
+<ul>
+<li><a href="#sec-2-1">2.1. 3もしくは5の倍数(Problem 1) ★</a></li>
+<li><a href="#sec-2-2">2.2. 偶数の Fibonacci 数(Problem 2) ★</a></li>
+<li><a href="#sec-2-3">2.3. 最大の素因数(Problem 3) ★</a></li>
+<li><a href="#sec-2-4">2.4. 積として作れる最大の回文数(Problem 4) ★</a></li>
+<li><a href="#sec-2-5">2.5. 最小の係数(Problem 5) ★</a></li>
+<li><a href="#sec-2-6">2.6. 「二乗の和」と「和の二乗」の差(Problem 6) ★</a></li>
+<li><a href="#sec-2-7">2.7. 10001番目の素数(Problem 7) ★</a></li>
+<li><a href="#sec-2-8">2.8. 特別なピタゴラス3つ組(Problem 9) ★</a></li>
+<li><a href="#sec-2-9">2.9. 素数の和(Problem 10) ★</a></li>
+<li><a href="#sec-2-10">2.10. 高次の割り切れる三角数(Problem 12) ★</a></li>
+<li><a href="#sec-2-11">2.11. 最長の Collatz 列 (Problem 14) ★</a></li>
+<li><a href="#sec-2-12">2.12. 数字の「文字数」をカウント (Problem 17) ★★</a></li>
+<li><a href="#sec-2-13">2.13. 日曜日の数 (Problem 19) ★★</a></li>
+<li><a href="#sec-2-14">2.14. 友愛数の和 (Problem 21) ★★</a></li>
+<li><a href="#sec-2-15">2.15. 過剰数の和で表せない数 (Problem 23) ★★</a></li>
+<li><a href="#sec-2-16">2.16. 辞書式の順列 (Problem 24) ★★★</a></li>
+<li><a href="#sec-2-17">2.17. 逆数の循環 (Problem 26) ★★★</a></li>
+<li><a href="#sec-2-18">2.18. 二次式の素数 (Problem 27) ★★</a></li>
+<li><a href="#sec-2-19">2.19. 数の螺旋の対角要素 (Problem 28) ★</a></li>
+<li><a href="#sec-2-20">2.20. 各桁の5乗 (Problem 30) ★</a></li>
+<li><a href="#sec-2-21">2.21. コインの和 (Problem 31) ★</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> このページの更新履歴</h2>
+<div class="outline-text-2" id="text-1">
+<a href="https://github.com/nagae/2014ICL-B/commits/gh-pages/chap13.html">このページの更新履歴</a>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Project Euler からの問題例</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<a href="http://projecteuler.net">http://projecteuler.net</a> に様々な課題例が挙げられている．
+今回の情報基礎Bで取り扱う知識(変数，分岐と繰返し)だけで長江が実際に解いた問題を，先頭から順に 21問 ピックアップして訳をつけておいた．
+各問題のタイトルにつけた★の数で難易度を表している．ぜひ挑戦してみて欲しい．
+</p>
+<ul class="org-ul">
+<li>★ = 基本が判っていれば容易に解ける
+</li>
+<li>★★ = ソースコードが長くなるので時間がかかるが，解けなくはない
+</li>
+<li>★★★ = コーディング以前に頭をヒネらないと解けない
+</li>
+</ul>
+
+<p>
+なお，ここに載っていない問題は，それぞれ，以下の理由で解けないと判断している：
+</p>
+<dl class="org-dl">
+<dt> <a href="http://projecteuler.net/problem=8">Problem 8 数列の中で最大の積</a> </dt><dd>問題文にある数列を扱うには <b>配列</b> が必要．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=11">Problem 11 格子の中で最大の積</a> </dt><dd>問題文にある格子を表現するには <b>配列</b> が必要．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=13">Problem 13 大きな和</a> </dt><dd>50桁の数字を扱うには <b>配列</b> が必要．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=15">Problem 15 格子上の経路</a> </dt><dd>右と下を20回づつ選ぶ組み合わせなので <sub>40</sub>C<sub>20</sub> を計算すればよいのだが, 講義の知識だけで扱える整数の最大値を超えている．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=16">Problem 16 べき乗の桁の和</a> </dt><dd>同じく講義の知識だけ扱える整数の最大値を超えてしまう．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=18">Problem 18 最大経路和 I</a> </dt><dd>問題文の三角形を表現するには <b>配列</b> が必要．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=20">Problem 20 階乗の桁の和</a> </dt><dd>講義の知識だけ扱える整数の最大値を超えてしまう．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=22">Problem 22 名前の点数</a> </dt><dd>ファイルの入出力が必要．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=25">Problem 25 1000桁の Fibonacci 数</a> </dt><dd>講義の知識だけ扱える整数の最大値を超えてしまう．
+</dd>
+<dt> <a href="http://projecteuler.net/problem=29">Problem 29 重複のないべき乗数</a> </dt><dd>重複の有無を確認するのに <b>配列</b> が必要．
+</dd>
+</dl>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 3もしくは5の倍数(Problem 1) ★</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+10未満の3もしくは5の倍数は, <code>3</code>, <code>5</code>, <code>6</code>, <code>9</code> でその和は <code>23</code> である．
+</p>
+
+<p>
+<b>1000未満の3もしくは5の倍数の和を求めよ．</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=1">Problem 1 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 偶数の Fibonacci 数(Problem 2) ★</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Fibonacci 数列 <code>F(1), F(2), F(3), ...</code> において，=F(n)= の値は <code>F(n-1)</code> と <code>F(n-2)</code> の和で与えられる．
+<code>F(1) = 1, F(2) = 2</code> とするとき，最初の10個の項は
+</p>
+<code>1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...</code>
+<p>
+となる． 
+</p>
+
+<p>
+<b>400万以下の Fibonacci 数列の中で，偶数のものの和を求めよ.</b> 
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=2">Problem 2 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 最大の素因数(Problem 3) ★</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+<code>13195</code> の素因数は <code>5, 7, 13</code> および <code>29</code> である. <b><code>600851475143</code> の素因数の中で最大のものを求めよ．</b>
+</p>
+
+<blockquote>
+<p>
+<code>600851475143</code> は <code>int</code> 型で取り扱える最大値(<code>2147483647</code>)よりも大きいので,
+ <code>unsigned long int</code> (符号無し倍長整数型)を使うこと．
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=3">Problem 3 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> 積として作れる最大の回文数(Problem 4) ★</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+回文数(palindrome)とは, <code>11</code>, <code>101</code>, <code>12321</code> など, 右からも左からも同じように読める整数である．
+2桁の整数の積として作れる最大の回文数は <code>9009 = 91 x 99</code> である．
+</p>
+
+<p>
+<b>3桁の整数の積として作れる最大の回文数</b> を求めよ．
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=4">Problem 4 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> 最小の係数(Problem 5) ★</h3>
+<div class="outline-text-3" id="text-2-5">
+<p>
+<code>2520</code> は <code>1</code> から <code>10</code> のいずれの整数でも割り切れる最小の数である．
+<b><code>1</code> から <code>20</code> のいずれの整数でも割り切れる最小の正の整数を求めよ．</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=5">Problem 5 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6"><span class="section-number-3">2.6</span> 「二乗の和」と「和の二乗」の差(Problem 6) ★</h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+最初の10個の自然数の <b>二乗の和</b> は
+</p>
+<code>1^2 + 2^2 + ... + 10^2 = 385</code>
+<p>
+である．最初の10個の自然数の <b>和の二乗</b> は
+</p>
+(1 + 2 + ... + 10)^2 = 55^2 = 3025
+<p>
+である．従って，最初の10個の自然数の二乗の和と和の二乗の差は <code>3025 - 385 = 2640</code> である．
+</p>
+
+<p>
+<b>最初の100個の自然数の「二乗の和」と「和の二乗」の差を求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=6">Problem 6 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7"><span class="section-number-3">2.7</span> 10001番目の素数(Problem 7) ★</h3>
+<div class="outline-text-3" id="text-2-7">
+<p>
+素数を小さい順に並べると <code>2, 3, 5, 7, 11, 13</code> であるから，6番目の素数は <code>13</code> と判る．
+<b>10,001番目の素数を求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=7">Problem 7 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8"><span class="section-number-3">2.8</span> 特別なピタゴラス3つ組(Problem 9) ★</h3>
+<div class="outline-text-3" id="text-2-8">
+<p>
+ピタゴラス3つ組(Pythagorean triplet) <code>(a, b, c)</code> とは, <code>a &lt; b &lt; c</code> なる自然数で,
+</p>
+a^2 + b^2 = c^2
+<p>
+を満足するものである．例えば, <code>3^2 + 4^2 = 5^2</code> なので, <code>(3,4,5)</code> はピタゴラス3数である．
+</p>
+
+<p>
+<b>ピタゴラス3数 <code>(a,b,c)</code> で <code>a + b + c = 1000</code> となるものの積 <code>abc</code> を求めよ</b> 
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=9">Problem 9 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9"><span class="section-number-3">2.9</span> 素数の和(Problem 10) ★</h3>
+<div class="outline-text-3" id="text-2-9">
+<p>
+10未満の素数の和は 2 + 3 + 5 + 7 = 17 である. 
+</p>
+
+<p>
+<b>200万未満の素数の和を求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=10">Problem 10 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10"><span class="section-number-3">2.10</span> 高次の割り切れる三角数(Problem 12) ★</h3>
+<div class="outline-text-3" id="text-2-10">
+<p>
+三角数の順列 <code>T(1), T(2), ...</code> は，前の項に自然数を加えていくことで生成される．例えば, 7番目の三角数は <code>T(7)=1+2+3+4+5+6+7=28</code> となる．
+最初の10個の三角数は
+</p>
+1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
+<p>
+である．
+</p>
+
+<p>
+最初の7個の三角数の約数を列挙すると,
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="right">1:</td>
+<td class="left">1</td>
+</tr>
+
+<tr>
+<td class="right">3:</td>
+<td class="left">1,3</td>
+</tr>
+
+<tr>
+<td class="right">6:</td>
+<td class="left">1,2,3,6</td>
+</tr>
+
+<tr>
+<td class="right">10:</td>
+<td class="left">1,2,5,10</td>
+</tr>
+
+<tr>
+<td class="right">15:</td>
+<td class="left">1,3,5,15</td>
+</tr>
+
+<tr>
+<td class="right">21:</td>
+<td class="left">1,3,7,21</td>
+</tr>
+
+<tr>
+<td class="right">28:</td>
+<td class="left">1,2,4,7,14,28</td>
+</tr>
+</tbody>
+</table>
+<p>
+となり, <span class="underline">5個を超える約数を持つ最初の三角数</span> が <code>28</code> であることが判る．
+</p>
+
+<p>
+<b><span class="underline">500個を超える約数を持つ最初の三角数</span> を求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=12">Problem 12 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-11" class="outline-3">
+<h3 id="sec-2-11"><span class="section-number-3">2.11</span> 最長の Collatz 列 (Problem 14) ★</h3>
+<div class="outline-text-3" id="text-2-11">
+<p>
+正の整数に対して, 下記のルールに従って生成される数列を考える:
+</p>
+<blockquote>
+<p>
+<code>n -&gt; n/2</code> (<code>n</code> が偶数)<br>
+<code>n -&gt; 3n+1</code> (<code>n</code> が奇数)
+</p>
+</blockquote>
+<p>
+このルールに従って <code>13</code> から生成した数列は,
+</p>
+<code>13 -> 40 -> 20 -> 10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1</code>
+<p>
+となり, (<code>13</code> から始まって <code>1</code> まで終わるまで)10個の項で構成される．
+厳密な証明はされていない(Collatz 問題)ものの，この数列はどのような整数から始まっても <code>1</code> で終わると考えられている．
+</p>
+
+<p>
+<b>数列長が最も長くなるような 100万未満の最初の数を求めよ</b>
+</p>
+
+<p>
+<b>注意:</b> 生成された数列に100万以上の数値が含まれていてもよい．
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=14">Problem 14 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-12" class="outline-3">
+<h3 id="sec-2-12"><span class="section-number-3">2.12</span> 数字の「文字数」をカウント (Problem 17) ★★</h3>
+<div class="outline-text-3" id="text-2-12">
+<p>
+1から5までの数字を単語で書き下すと one, two, three, four, five となり，そこで使われる文字数は全部で 3 + 3 + 5 + 4 + 4 = 19 個である．
+</p>
+
+<p>
+<b>1から1000 (one thousand) までの数字を単語で書き下した時，使われる文字数を求めよ</b>
+</p>
+
+<p>
+<b>注意:</b> 空白やハイフンはカウントしない．例えば, 342 (three hundred and forty-two) には 23 文字が含まれ, 115 (one hundred and fifteen) には 20文字が含まれる．
+文字を書き下す際の "and" の用法は, British usage (例えば, <a href="http://english.stackexchange.com/questions/111765/how-to-write-out-numbers-in-compliance-with-british-usage">ここあたり</a> を参考に) に従う．
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=17">Problem 17 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-13" class="outline-3">
+<h3 id="sec-2-13"><span class="section-number-3">2.13</span> 日曜日の数 (Problem 19) ★★</h3>
+<div class="outline-text-3" id="text-2-13">
+<p>
+下記の情報が与えられている．
+</p>
+<ul class="org-ul">
+<li>1900年1月1日は月曜日
+</li>
+<li>4月, 6月, 9月, 11月は 30日
+</li>
+<li>2月は閏年ならば 29日, 平年(閏年でない)なら 28日
+</li>
+<li>それ以外の月(1月, 3月, 5月, 7月, 8月, 10月, 12月)は31日
+</li>
+<li>閏年は「4で割り切れるが100では割り切れない年」または「400で割り切れる」年．
+</li>
+</ul>
+
+<p>
+<b>20世紀(1901年1月1日から2000年12月31日)の間で，日曜日で始まる月はいくつかあるか求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=19">Problem 19 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-14" class="outline-3">
+<h3 id="sec-2-14"><span class="section-number-3">2.14</span> 友愛数の和 (Problem 21) ★★</h3>
+<div class="outline-text-3" id="text-2-14">
+<p>
+d(n) を n の真の約数(proper divisors; n より小さい約数)の和とする．
+もし2つの整数 a != b について d(a) = b かつ d(b) = a であるとき, a と b は互いに友好的(amicable)であると呼び,
+a と b のそれぞれを <span class="underline">友愛数(amicable numbers)</span> と呼ぶ．
+</p>
+
+<p>
+例えば, 220 の真の約数は 11, 2, 4, 5, 10, 11, 20, 22, 44, 55, 110 なので d(220) = 284 である．
+284 の真の約数は 1, 2, 4, 71, 142 なので d(284) = 220 である．
+</p>
+
+<p>
+<b>10000より小さい友愛数の和を求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=21">Problem 21 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-15" class="outline-3">
+<h3 id="sec-2-15"><span class="section-number-3">2.15</span> 過剰数の和で表せない数 (Problem 23) ★★</h3>
+<div class="outline-text-3" id="text-2-15">
+<p>
+完全数とは, その真の約数の和が，その数自身に一致する数である．例えば，
+28 の真の約数の和は 1 + 2 + 4 + 7 + 14 = 28 であるから, 28は完全数である．
+</p>
+
+<p>
+ある数 n について，その真の約数の和が n より小さい時は <span class="underline">不足数(deficient)</span>, 
+和が n より大きい時は <span class="underline">過剰数(abundant)</span> と呼ばれる．
+</p>
+
+<p>
+最小の過剰数は 12 (1 + 2 + 3 + 4 + 6 = 16)であるため，2つの過剰数の和で表される
+最小の数は 24 となる．数学的な解析によって, 28123 より大きな整数は <b>全て</b>
+2つの過剰数の和で表されることが明らかになっている．
+「2つの過剰数の和で表せない最大の数」がこの上限よりも小さいことは分かっているのだが，
+解析的にこの上限を減らすことはできていない．
+</p>
+
+<p>
+<b>2つの過剰数の和で表せない正の整数の総和を求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=23">Problem 23 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-16" class="outline-3">
+<h3 id="sec-2-16"><span class="section-number-3">2.16</span> 辞書式の順列 (Problem 24) ★★★</h3>
+<div class="outline-text-3" id="text-2-16">
+<p>
+順列(permutation)とは，順序つきの並びである．例えば, 3124 は10進数 1, 2, 3, 4 の順列の1つである．
+全ての順列が数値もしくはアルファベット順に並べたものを，辞書式順序(lexicographic order)と呼ぶ．
+0, 1, 2 の辞書式順列は
+</p>
+<code>012, 021, 102, 120, 201, 210</code>
+<p>
+である．
+</p>
+
+<p>
+<b>0, 1, 2, 3, 4, 5, 6, 7, 8, 9 からなる順列のうち，辞書式順序で <span class="underline">100万番目</span> になるものを求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=24">Problem 24 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-17" class="outline-3">
+<h3 id="sec-2-17"><span class="section-number-3">2.17</span> 逆数の循環 (Problem 26) ★★★</h3>
+<div class="outline-text-3" id="text-2-17">
+<p>
+単位分数(unit fraction)は分子が1の分数である．
+2から10までを分母に持つ単位分数を10進数で表すと，
+</p>
+<pre>
+1/2     =       0.5
+1/3     =       0.(3)
+1/4     =       0.25
+1/5     =       0.2
+1/6     =       0.1(6)
+1/7     =       0.(142857)
+1/8     =       0.125
+1/9     =       0.(1)
+1/10    =       0.1
+</pre>
+<p>
+となる．ここで, 0.1(6)は 0.166666&#x2026; を意味し, 1桁の循環(recurring cycle)を持つ．
+1/7 は 6桁の循環を持つことが判るだろう．
+</p>
+
+<p>
+<b>1000未満の整数(d &lt; 1000)の中で，1/n の小数部分に含まれる循環が最も長くなるものを求めよ．</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=26">Problem 26 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-18" class="outline-3">
+<h3 id="sec-2-18"><span class="section-number-3">2.18</span> 二次式の素数 (Problem 27) ★★</h3>
+<div class="outline-text-3" id="text-2-18">
+<p>
+Euler は下記の並外れた二次式を発見した:
+</p>
+<code> n^2 + n + 41</code>
+<p>
+この式は, n に 0 から 39 を順に代入することで 40 個の素数を生成できることが判っている．
+しかし, n = 40 の時には, 40<sup>2</sup> + 40 + 41 = 40 (40 + 1) + 41 は 41 で割り切れるし，当然ながら,  
+n = 41 の時には, 41<sup>2</sup> + 41 + 41 は明らかに 41 で割り切れる．
+</p>
+
+<p>
+後に, 別の二次式 <code> n ^ 2 - 79 * n + 1601</code> が発見された．この式は
+n に 0 から 79 を順に代入することで, 80 個の素数を生成できる．
+この係数 -79 と 1601 の積は -126479 である．
+</p>
+
+<p>
+次の形の二次式:
+</p>
+<code>n^2 + a * n + b, |a| < 1000, |b| < 1000</code>
+<p>
+を考える．ただし, <code>|a|, |b|</code> は, それぞれ, <code>a</code> と <code>b</code> の絶対値を表す．
+n = 0 から順に値を代入していったときに, <b>最も多くの素数を生成するようなこの二次式の係数 <code>a</code> と <code>b</code> の積を求めよ．</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=27">Problem 27 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-2-19" class="outline-3">
+<h3 id="sec-2-19"><span class="section-number-3">2.19</span> 数の螺旋の対角要素 (Problem 28) ★</h3>
+<div class="outline-text-3" id="text-2-19">
+<p>
+1 から右に時計回りに数値を並べて 5 x 5 の螺旋(spiral)を構成すると
+</p>
+<table border="0" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+
+<col  class="right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="right"><b>21</b></td>
+<td class="right">22</td>
+<td class="right">23</td>
+<td class="right">24</td>
+<td class="right"><b>25</b></td>
+</tr>
+
+<tr>
+<td class="right">20</td>
+<td class="right"><b>7</b></td>
+<td class="right">8</td>
+<td class="right"><b>9</b></td>
+<td class="right">10</td>
+</tr>
+
+<tr>
+<td class="right">19</td>
+<td class="right">6</td>
+<td class="right"><b>1</b></td>
+<td class="right">2</td>
+<td class="right">11</td>
+</tr>
+
+<tr>
+<td class="right">18</td>
+<td class="right"><b>5</b></td>
+<td class="right">4</td>
+<td class="right"><b>3</b></td>
+<td class="right">12</td>
+</tr>
+
+<tr>
+<td class="right"><b>17</b></td>
+<td class="right">16</td>
+<td class="right">15</td>
+<td class="right">14</td>
+<td class="right"><b>13</b></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+となる．このとき，対角要素の和は 101 となる．
+</p>
+
+<p>
+<b>同様の方法で 1001 x 1001 の螺旋を構成したときの対角要素の総和を求めよ．</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=28">Problem 28 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-20" class="outline-3">
+<h3 id="sec-2-20"><span class="section-number-3">2.20</span> 各桁の5乗 (Problem 30) ★</h3>
+<div class="outline-text-3" id="text-2-20">
+<p>
+驚くべきことに，その各桁の4乗の和で表せるような数は，以下の3つしかない：
+</p>
+<pre>
+1634 = 1^4 + 6^4 + 3^4 + 4^4
+8208 = 8^4 + 2^4 + 0^4 + 8^4
+9474 = 9^4 + 4^4 + 7^4 + 4^4
+</pre>
+<p>
+ただし, 1 = 1<sup>4</sup> は「和」ではないので含まない．これらの数の和は 1634 + 8208 + 9474 = 19316 である．
+</p>
+
+<p>
+<b>「その各桁の5乗の和で表される数」の総和を求めよ</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=30">Problem 30 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-2-21" class="outline-3">
+<h3 id="sec-2-21"><span class="section-number-3">2.21</span> コインの和 (Problem 31) ★</h3>
+<div class="outline-text-3" id="text-2-21">
+<p>
+英国の貨幣は£(ポンド)トp(ペンス)で構成され，下記の8種類のコインが一般に流通している:
+</p>
+<blockquote>
+<p>
+1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), £2 (200p).
+</p>
+</blockquote>
+<p>
+以下の方法で £2 を作ることができる．
+</p>
+<blockquote>
+<p>
+1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
+</p>
+</blockquote>
+<p>
+<b>これらのコインを使って £2 を作るには何通りの方法があるか？</b>
+</p>
+
+<ul class="org-ul">
+<li>原文と答え合わせはこちらから → <a href="http://projecteuler.net/problem=31">Problem 31 - Project Euler</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Takeshi Nagae</p>
+<p class="date">Created: 2014-07-02 Wed 18:41</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
