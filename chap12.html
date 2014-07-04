@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>第12回 アカデミックスキルII C言語(5) レポート課題「クイズ番組のパラドックス」を検証しよう</title>
-<!-- 2014-07-04 Fri 02:06 -->
+<!-- 2014-07-05 Sat 02:51 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Takeshi Nagae" />
@@ -220,29 +220,30 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#sec-1">1. このページの更新履歴</a></li>
-<li><a href="#sec-2">2. レポート課題</a>
+<li><a href="#sec-2">2. おわび</a></li>
+<li><a href="#sec-3">3. レポート課題</a>
 <ul>
-<li><a href="#sec-2-1">2.1. 課題</a></li>
-<li><a href="#sec-2-2">2.2. 提出するもの，提出方法および〆切</a></li>
-<li><a href="#sec-2-3">2.3. 複数のファイルを1つのファイルまとめるコマンド (<code>tar</code>)</a></li>
+<li><a href="#sec-3-1">3.1. 課題</a></li>
+<li><a href="#sec-3-2">3.2. 提出するもの，提出方法および〆切</a></li>
+<li><a href="#sec-3-3">3.3. 複数のファイルを1つのファイルまとめるコマンド (<code>tar</code>)</a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3. 自分でプログラムを作成する上で注意すること</a>
+<li><a href="#sec-4">4. 自分でプログラムを作成する上で注意すること</a>
 <ul>
-<li><a href="#sec-3-1">3.1. インデントをつけること</a></li>
-<li><a href="#sec-3-2">3.2. 変数には意味を持たせ，コメントを多用すること</a></li>
+<li><a href="#sec-4-1">4.1. インデントをつけること</a></li>
+<li><a href="#sec-4-2">4.2. 変数には意味を持たせ，コメントを多用すること</a></li>
 </ul>
 </li>
-<li><a href="#sec-4">4. 課題のすすめ方</a>
+<li><a href="#sec-5">5. 課題のすすめ方</a>
 <ul>
-<li><a href="#sec-4-1">4.1. 3つの箱の中から1つを選び，選んだ箱が正解かどうかを表示させてみよう</a></li>
-<li><a href="#sec-4-2">4.2. 上で作った「3つの箱から1つを当てるクイズ」を <code>N</code> 回繰り返し，正解数や正解率を求めよう</a></li>
-<li><a href="#sec-4-3">4.3. 解答者が選んだ箱と異なる空箱(司会者が選ぶ箱)を表示させよう</a></li>
-<li><a href="#sec-4-4">4.4. 「3つの箱から1つを当てるクイズ」を「司会者が開けた空箱を見て，変更するか否かを選択できる」ように拡張しよう</a></li>
-<li><a href="#sec-4-5">4.5. その先へ</a></li>
+<li><a href="#sec-5-1">5.1. 3つの箱の中から1つを選び，選んだ箱が正解かどうかを表示させてみよう</a></li>
+<li><a href="#sec-5-2">5.2. 上で作った「3つの箱から1つを当てるクイズ」を <code>N</code> 回繰り返し，正解数や正解率を求めよう</a></li>
+<li><a href="#sec-5-3">5.3. 解答者が選んだ箱と異なる空箱(司会者が選ぶ箱)を表示させよう</a></li>
+<li><a href="#sec-5-4">5.4. 「3つの箱から1つを当てるクイズ」を「司会者が開けた空箱を見て，変更するか否かを選択できる」ように拡張しよう</a></li>
+<li><a href="#sec-5-5">5.5. その先へ</a></li>
 </ul>
 </li>
-<li><a href="#sec-5">5. TAさんのコード</a></li>
+<li><a href="#sec-6">6. TAさんのコード</a></li>
 </ul>
 </div>
 </div>
@@ -253,13 +254,34 @@ for the JavaScript code in this tag.
 <a href="https://github.com/nagae/2014ICL-B/commits/gh-pages/chap12.html">このページの更新履歴</a>
 </div>
 </div>
-
 <div id="outline-container-sec-2" class="outline-2">
-<h2 id="sec-2"><span class="section-number-2">2</span> レポート課題</h2>
+<h2 id="sec-2"><span class="section-number-2">2</span> おわび</h2>
 <div class="outline-text-2" id="text-2">
-</div><div id="outline-container-sec-2-1" class="outline-3">
-<h3 id="sec-2-1"><span class="section-number-3">2.1</span> 課題</h3>
-<div class="outline-text-3" id="text-2-1">
+<p>
+受講生から，以下の点が間違っていることを指摘していただきました．ありがとうございます．
+</p>
+<ul class="org-ul">
+<li>全編にわたって correct を collect と綴り間違いしていました．
+</li>
+<li>サンプルプログラム <code>rep-ex3in1.cpp</code> の44行目コメントを，以下のように間違って記述していました．
+<ul class="org-ul">
+<li>正：// 0以外が入力された場合は箱を変更する
+</li>
+<li>誤：// 0以外が入力された場合は司会者が開けた箱に変更する
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> レポート課題</h2>
+<div class="outline-text-2" id="text-3">
+</div><div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> 課題</h3>
+<div class="outline-text-3" id="text-3-1">
 <p>
 以下の「クイズ番組のパラドックス」を考える．なお，パラドックス(paradox)とは，荒っぽく言うならば, 
 「 <b>直感的に正しいと感じる解答</b> と, <b>論理的に妥当な解答</b> が異なる問題 」のこと．
@@ -317,12 +339,12 @@ for the JavaScript code in this tag.
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-2" class="outline-3">
-<h3 id="sec-2-2"><span class="section-number-3">2.2</span> 提出するもの，提出方法および〆切</h3>
-<div class="outline-text-3" id="text-2-2">
-</div><div id="outline-container-sec-2-2-1" class="outline-4">
-<h4 id="sec-2-2-1"><span class="section-number-4">2.2.1</span> 提出するもの</h4>
-<div class="outline-text-4" id="text-2-2-1">
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 提出するもの，提出方法および〆切</h3>
+<div class="outline-text-3" id="text-3-2">
+</div><div id="outline-container-sec-3-2-1" class="outline-4">
+<h4 id="sec-3-2-1"><span class="section-number-4">3.2.1</span> 提出するもの</h4>
+<div class="outline-text-4" id="text-3-2-1">
 <p>
 以下の <b>2つのファイル</b> を提出せよ
 </p>
@@ -349,26 +371,28 @@ for the JavaScript code in this tag.
 </ol>
 </div>
 </div>
-<div id="outline-container-sec-2-2-2" class="outline-4">
-<h4 id="sec-2-2-2"><span class="section-number-4">2.2.2</span> 提出方法</h4>
-<div class="outline-text-4" id="text-2-2-2">
+<div id="outline-container-sec-3-2-2" class="outline-4">
+<h4 id="sec-3-2-2"><span class="section-number-4">3.2.2</span> 提出方法</h4>
+<div class="outline-text-4" id="text-3-2-2">
 <p>
 <a href="https:www.srp.tohoku.ac.jp/sa/top.do">学務情報システム</a> より提出
 </p>
 </div>
 </div>
-<div id="outline-container-sec-2-2-3" class="outline-4">
-<h4 id="sec-2-2-3"><span class="section-number-4">2.2.3</span> 〆切</h4>
-<div class="outline-text-4" id="text-2-2-3">
+<div id="outline-container-sec-3-2-3" class="outline-4">
+<h4 id="sec-3-2-3"><span class="section-number-4">3.2.3</span> 〆切</h4>
+<div class="outline-text-4" id="text-3-2-3">
 <p>
-7月4日(金) 午後 17:00
+<del>7月4日(金) 午後 17:00</del> <br>
+7月11日(金) 20:00 (延長しました)
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-sec-2-3" class="outline-3">
-<h3 id="sec-2-3"><span class="section-number-3">2.3</span> 複数のファイルを1つのファイルまとめるコマンド (<code>tar</code>)</h3>
-<div class="outline-text-3" id="text-2-3">
+
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3"><span class="section-number-3">3.3</span> 複数のファイルを1つのファイルまとめるコマンド (<code>tar</code>)</h3>
+<div class="outline-text-3" id="text-3-3">
 <p>
 複数のファイルを1つのファイル(<b>書庫</b> ファイルと呼ばれる)にまとめる(<b>アーカイブ</b> すると呼ぶ)には，
 端末から <code>tar</code> というコマンドを使う．
@@ -385,12 +409,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-sec-3" class="outline-2">
-<h2 id="sec-3"><span class="section-number-2">3</span> 自分でプログラムを作成する上で注意すること</h2>
-<div class="outline-text-2" id="text-3">
-</div><div id="outline-container-sec-3-1" class="outline-3">
-<h3 id="sec-3-1"><span class="section-number-3">3.1</span> インデントをつけること</h3>
-<div class="outline-text-3" id="text-3-1">
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> 自分でプログラムを作成する上で注意すること</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> インデントをつけること</h3>
+<div class="outline-text-3" id="text-4-1">
 <p>
 <code>for</code> 構文や <code>if</code> 構文を組み合わせて使うと，それぞれの処理が「どのブロック内で行なわれているのか」が判りづらくなる．
 このような場合には，階層の深さに応じて，先頭の文字の前に適当にスペースを入れる( <b>インデント</b> する，と言う)ことで，
@@ -499,9 +523,9 @@ for the JavaScript code in this tag.
 </div>
 </div>
 
-<div id="outline-container-sec-3-2" class="outline-3">
-<h3 id="sec-3-2"><span class="section-number-3">3.2</span> 変数には意味を持たせ，コメントを多用すること</h3>
-<div class="outline-text-3" id="text-3-2">
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 変数には意味を持たせ，コメントを多用すること</h3>
+<div class="outline-text-3" id="text-4-2">
 <p>
 C++ では, <code>//</code> から行末まではコメントと見なされる．それぞれの行について，どんな処理を意図しているのかをコメントするように意識しよう．
 コメントの無いプログラムは大変読み難い．以下のプログラムは <code>N</code> 個発生させた乱数のうち「ある性質をもつもの」だけをカウントして
@@ -549,12 +573,12 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 </div>
 </div>
 
-<div id="outline-container-sec-4" class="outline-2">
-<h2 id="sec-4"><span class="section-number-2">4</span> 課題のすすめ方</h2>
-<div class="outline-text-2" id="text-4">
-</div><div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1"><span class="section-number-3">4.1</span> 3つの箱の中から1つを選び，選んだ箱が正解かどうかを表示させてみよう</h3>
-<div class="outline-text-3" id="text-4-1">
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> 課題のすすめ方</h2>
+<div class="outline-text-2" id="text-5">
+</div><div id="outline-container-sec-5-1" class="outline-3">
+<h3 id="sec-5-1"><span class="section-number-3">5.1</span> 3つの箱の中から1つを選び，選んだ箱が正解かどうかを表示させてみよう</h3>
+<div class="outline-text-3" id="text-5-1">
 <p>
 まず，3つの箱からユーザー(解答者)が1つを選び，それが正解かどうかを表示させるプログラムを作ってみよう．
 だいたい次のような処理を順に行なえばよさそうだ．
@@ -569,19 +593,19 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 <li><code>rand()</code> の出力を予測できなくするには, <code>std::srand()</code> に与える種として <code>&lt;time.h&gt;</code> ライブラリに含まれる <code>time()</code> 関数の出力を用いる．
 </li>
 <li>ある整数 <code>M</code> について, <code>0</code> 以上 <code>M</code> 以下の整数をランダムに発生させるには，以下の2つの方法がある．
-下記の例は，いずれも，生成された乱数を用いて整数(<code>int</code>)型変数 <code>collect_box</code> を初期化する(ただし, <code>M</code> は <code>int</code> 型整数として宣言済みとする)．
+下記の例は，いずれも，生成された乱数を用いて整数(<code>int</code>)型変数 <code>correct_box</code> を初期化する(ただし, <code>M</code> は <code>int</code> 型整数として宣言済みとする)．
 <ol class="org-ol">
 <li><code>rand()</code> を <code>RAND_MAX</code> で割って作成した 0以上1以下の実数乱数に <code>M</code> を乗じた後，整数型に変換する
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = (<span style="color: #7fffd4;">int</span>) ( ( (<span style="color: #7fffd4;">double</span>) rand() / (<span style="color: #7fffd4;">double</span>) RAND_MAX ) * (<span style="color: #7fffd4;">double</span>) M );
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">correct_box</span> = (<span style="color: #7fffd4;">int</span>) ( ( (<span style="color: #7fffd4;">double</span>) rand() / (<span style="color: #7fffd4;">double</span>) RAND_MAX ) * (<span style="color: #7fffd4;">double</span>) M );
 </pre>
 </div>
 </li>
 <li><code>rand()</code> を <code>M</code> で割った余りを用いる
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % M;
+<pre class="src src-c++"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">correct_box</span> = rand() % M;
 </pre>
 </div>
 <p>
@@ -611,11 +635,11 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 <ul class="org-ul">
 <li>条件判定には <code>if...else...</code> 構文を用いる．
 </li>
-<li>正解の箱の番号および解答者が選んだ番号を，それぞれ，整数(<code>int</code>)型変数 <code>collect_box</code> および <code>input_box</code> に代入している場合,
+<li>正解の箱の番号および解答者が選んだ番号を，それぞれ，整数(<code>int</code>)型変数 <code>correct_box</code> および <code>input_box</code> に代入している場合,
 これらが一致する(正解)場合とそうでない(不正解)の場合で処理を切り替えるには, 以下のように記述する．
 <div class="org-src-container">
 
-<pre class="src src-c++"><span style="color: #ffffff;">if</span> ( collect_box == input_box ) 
+<pre class="src src-c++"><span style="color: #ffffff;">if</span> ( correct_box == input_box ) 
   {
     <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#22580;&#21512;&#12398;&#20966;&#29702;&#12502;&#12525;&#12483;&#12463;</span>
   }
@@ -640,7 +664,7 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 <div class="org-src-container">
 
 <pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#27770;&#12417;&#12427;</span>
-<span id="coderef-rep-3in1_15" class="coderef-off"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">% &#12399;&#12300;&#20313;&#12426;&#12301;&#12434;&#27714;&#12417;&#12427;&#28436;&#31639;&#23376;</span></span>
+<span id="coderef-rep-3in1_15" class="coderef-off"><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">correct_box</span> = rand() % 3; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">% &#12399;&#12300;&#20313;&#12426;&#12301;&#12434;&#27714;&#12417;&#12427;&#28436;&#31639;&#23376;</span></span>
 </pre>
 </div>
 </dd>
@@ -662,7 +686,7 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 <div class="org-src-container">
 
 <pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12363;&#21542;&#12363;&#12434;&#21028;&#23450;</span>
-<span id="coderef-rep-3in1_23" class="coderef-off"><span style="color: #ffffff;">if</span> ( collect_box == input_box ) <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(&#27491;&#35299;&#12398;&#31665;&#30058;&#21495;&#12392;&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#30058;&#21495;&#12364;&#19968;&#33268;&#12375;&#12390;&#12356;&#12428;&#12400;&#30495;)</span></span>
+<span id="coderef-rep-3in1_23" class="coderef-off"><span style="color: #ffffff;">if</span> ( correct_box == input_box ) <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(&#27491;&#35299;&#12398;&#31665;&#30058;&#21495;&#12392;&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#30058;&#21495;&#12364;&#19968;&#33268;&#12375;&#12390;&#12356;&#12428;&#12400;&#30495;)</span></span>
 <span id="coderef-rep-3in1_24" class="coderef-off">  {                               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span></span>
     cout &lt;&lt; <span style="color: #bdb76b;">"!!! &#27491;&#35299;&#12391;&#12377; !!!"</span> &lt;&lt; endl; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12392;&#34920;&#31034; </span>
 <span id="coderef-rep-3in1_26" class="coderef-off">  }                               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span></span>
@@ -670,14 +694,14 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 <span id="coderef-rep-3in1_28" class="coderef-off">   {                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span></span>
      <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12495;&#12474;&#12524;&#12398;&#12513;&#12483;&#12475;&#12540;&#12472;&#12392;&#27491;&#35299;&#12434;&#34920;&#31034;</span>
      cout &lt;&lt; <span style="color: #bdb76b;">"&#27531;&#24565;&#65292;&#12495;&#12474;&#12524;"</span> &lt;&lt; endl
-          &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12399; "</span> &lt;&lt; collect_box &lt;&lt; <span style="color: #bdb76b;">"&#12391;&#12375;&#12383;"</span> &lt;&lt; endl;
+          &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12399; "</span> &lt;&lt; correct_box &lt;&lt; <span style="color: #bdb76b;">"&#12391;&#12375;&#12383;"</span> &lt;&lt; endl;
 <span id="coderef-rep-3in1_32" class="coderef-off">   }                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span></span>
 </pre>
 </div>
 <p>
-まず，<a href="#coderef-rep-3in1_23"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_23');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_23');">23行目</a>の <code>if</code> では <a href="#coderef-rep-3in1_15"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_15');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_15');">15行目</a> で与えた <code>collect_box</code> と<a href="#coderef-rep-3in1_20"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_20');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_20');">20行目</a>でユーザーが入力した <code>input_box</code> が
+まず，<a href="#coderef-rep-3in1_23"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_23');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_23');">23行目</a>の <code>if</code> では <a href="#coderef-rep-3in1_15"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_15');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_15');">15行目</a> で与えた <code>correct_box</code> と<a href="#coderef-rep-3in1_20"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_20');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_20');">20行目</a>でユーザーが入力した <code>input_box</code> が
 一致するかどうかを判別しており，一致している場合は <a href="#coderef-rep-3in1_24"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_24');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_24');">24行目</a>〜<a href="#coderef-rep-3in1_26"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_26');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_26');">26行目</a>のブロックが実行される．
-次に，<a href="#coderef-rep-3in1_27"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_27');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_27');">27行目</a>の <code>else</code> は <code>collect_box</code> と <code>input_box</code> が一致しない場合に
+次に，<a href="#coderef-rep-3in1_27"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_27');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_27');">27行目</a>の <code>else</code> は <code>correct_box</code> と <code>input_box</code> が一致しない場合に
 その後の <a href="#coderef-rep-3in1_28"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_28');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_28');">28行目</a>〜<a href="#coderef-rep-3in1_32"class="coderef" onmouseover="CodeHighlightOn(this, 'coderef-rep-3in1_32');" onmouseout="CodeHighlightOff(this, 'coderef-rep-3in1_32');">32行目</a>のブロックを実行することを指示している．
 </p>
 </dd>
@@ -685,9 +709,9 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 </div>
 </div>
 
-<div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2"><span class="section-number-3">4.2</span> 上で作った「3つの箱から1つを当てるクイズ」を <code>N</code> 回繰り返し，正解数や正解率を求めよう</h3>
-<div class="outline-text-3" id="text-4-2">
+<div id="outline-container-sec-5-2" class="outline-3">
+<h3 id="sec-5-2"><span class="section-number-3">5.2</span> 上で作った「3つの箱から1つを当てるクイズ」を <code>N</code> 回繰り返し，正解数や正解率を求めよう</h3>
+<div class="outline-text-3" id="text-5-2">
 <p>
 次に，このプログラムを使って, 「3つの箱から1つを選んだとき，それが正解である確率」を推定してみよう．
 具体的には, このプログラムを <code>N</code> 回繰り返し, その中で何回正解したかをカウントして正解率を表示させるプログラムを作ってみよう．
@@ -797,7 +821,7 @@ C++ では, <code>//</code> から行末まではコメントと見なされる�
 <div class="org-src-container">
 
 <pre class="src src-c++"><span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#27770;&#12417;&#12427;</span>
-<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">% &#12399;&#12300;&#20313;&#12426;&#12301;&#12434;&#27714;&#12417;&#12427;&#28436;&#31639;&#23376;</span>
+<span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">correct_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">% &#12399;&#12300;&#20313;&#12426;&#12301;&#12434;&#27714;&#12417;&#12427;&#28436;&#31639;&#23376;</span>
 
 <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12503;&#12524;&#12452;&#12516;&#12540;&#12395;&#31665;&#12398;&#30058;&#21495;&#12434;&#20837;&#21147;&#12373;&#12379;&#12427;</span>
 <span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">input_box</span>;          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#12398;&#30058;&#21495;&#12434;&#26684;&#32013;&#12377;&#12427;&#22793;&#25968;</span>
@@ -805,7 +829,7 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#31665;&#12398;&#30058;&#21495;&#1
 cin &gt;&gt; input_box;               <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27161;&#28310;&#20837;&#21147;&#12363;&#12425;&#31665;&#12398;&#30058;&#21495;&#12434;&#21462;&#12426;&#36796;&#12416;</span>
 
 <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12363;&#21542;&#12363;&#12434;&#21028;&#23450;</span>
-<span style="color: #ffffff;">if</span> (collect_box == input_box)   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(&#27491;&#35299;&#12398;&#31665;&#30058;&#21495;&#12392;&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#30058;&#21495;&#12364;&#19968;&#33268;&#12375;&#12390;&#12356;&#12428;&#12400;&#30495;)</span>
+<span style="color: #ffffff;">if</span> (correct_box == input_box)   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">if &#25991;&#12398;&#26465;&#20214;&#12434;&#35352;&#36848;(&#27491;&#35299;&#12398;&#31665;&#30058;&#21495;&#12392;&#20837;&#21147;&#12373;&#12428;&#12383;&#31665;&#30058;&#21495;&#12364;&#19968;&#33268;&#12375;&#12390;&#12356;&#12428;&#12400;&#30495;)</span>
   {                             <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#30495;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
     cout &lt;&lt; <span style="color: #bdb76b;">"!!! &#27491;&#35299;&#12391;&#12377; !!!"</span> &lt;&lt; endl;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12392;&#34920;&#31034;</span>
 <span id="coderef-rep-3in1_Ntimes_33" class="coderef-off">    ++n;                                          <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12375;&#12383;&#25968;&#12434;1&#12388;&#22679;&#12420;&#12377;</span></span>
@@ -814,7 +838,7 @@ cin &gt;&gt; input_box;               <span style="color: #00cd66;">// </span><s
    {                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#22987;&#12414;&#12426;</span>
      <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#12495;&#12474;&#12524;&#12398;&#12513;&#12483;&#12475;&#12540;&#12472;&#12392;&#27491;&#35299;&#12434;&#34920;&#31034;</span>
      cout &lt;&lt; <span style="color: #bdb76b;">"&#27531;&#24565;&#65292;&#12495;&#12474;&#12524;"</span> &lt;&lt; endl
-          &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12399; "</span> &lt;&lt; collect_box &lt;&lt; <span style="color: #bdb76b;">"&#12391;&#12375;&#12383;"</span> &lt;&lt; endl;
+          &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12399; "</span> &lt;&lt; correct_box &lt;&lt; <span style="color: #bdb76b;">"&#12391;&#12375;&#12383;"</span> &lt;&lt; endl;
    }                            <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#26465;&#20214;&#12364;&#20605;&#12398;&#22580;&#21512;&#12398;&#12502;&#12525;&#12483;&#12463;&#12398;&#32066;&#12431;&#12426;</span>
 </pre>
 </div>
@@ -841,9 +865,9 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#2
 </div>
 </div>
 
-<div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3"><span class="section-number-3">4.3</span> 解答者が選んだ箱と異なる空箱(司会者が選ぶ箱)を表示させよう</h3>
-<div class="outline-text-3" id="text-4-3">
+<div id="outline-container-sec-5-3" class="outline-3">
+<h3 id="sec-5-3"><span class="section-number-3">5.3</span> 解答者が選んだ箱と異なる空箱(司会者が選ぶ箱)を表示させよう</h3>
+<div class="outline-text-3" id="text-5-3">
 <p>
 クイズ番組の手続きでは，解答者が箱を選んだ後，司会者が残った箱のうち1つを開き，空箱であることを見せる．
 この「解答者が選んだ箱以外の空箱の1つ(= <b>司会者が選ぶ箱</b>)」を決める部分をプログラムで作ってみよう．
@@ -860,9 +884,9 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#2
 </ol>
 </div>
 
-<div id="outline-container-sec-4-3-1" class="outline-4">
-<h4 id="sec-4-3-1"><span class="section-number-4">4.3.1</span> <b>解答者が選んだ箱</b> と <b>正解の箱</b> が異なる場合</h4>
-<div class="outline-text-4" id="text-4-3-1">
+<div id="outline-container-sec-5-3-1" class="outline-4">
+<h4 id="sec-5-3-1"><span class="section-number-4">5.3.1</span> <b>解答者が選んだ箱</b> と <b>正解の箱</b> が異なる場合</h4>
+<div class="outline-text-4" id="text-5-3-1">
 <p>
 まず，1番のルールをプログラムで実装するのは比較的カンタンである．
 この場合は <b>解答者が選んだ箱</b> と <b>正解の箱</b> と <b>司会者が選ぶ箱</b> の番号が全て異なり，
@@ -874,9 +898,9 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#2
 </div>
 </div>
 
-<div id="outline-container-sec-4-3-2" class="outline-4">
-<h4 id="sec-4-3-2"><span class="section-number-4">4.3.2</span> <b>解答者が選んだ箱</b> と <b>正解の箱</b> と同じ場合</h4>
-<div class="outline-text-4" id="text-4-3-2">
+<div id="outline-container-sec-5-3-2" class="outline-4">
+<h4 id="sec-5-3-2"><span class="section-number-4">5.3.2</span> <b>解答者が選んだ箱</b> と <b>正解の箱</b> と同じ場合</h4>
+<div class="outline-text-4" id="text-5-3-2">
 <p>
 次に，2番のルールは少し厄介である．
 手始めに場合分けして考えると, <b>司会者が選ぶ箱</b> は
@@ -899,25 +923,25 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#2
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span class="linenr"> 1: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
+<pre class="src src-c++"><span class="linenr"> 1: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">correct_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
 <span class="linenr"> 2: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">head_or_tail</span> = rand() % 2;  <span style="color: #00cd66;">// </span><span style="color: #00cd66;">2&#12388;&#12398;&#36984;&#25246;&#32930;&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#36984;&#12406;&#12383;&#12417;&#12395;&#12467;&#12452;&#12531;&#12398;&#34920;(=1)&#12392;&#35023;(=0)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
 <span class="linenr"> 3: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">open_box</span>;           <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;</span>
 <span class="linenr"> 4: </span>
-<span class="linenr"> 5: </span><span style="color: #ffffff;">if</span> ( collect_box == 0 )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 0 &#30058;&#12398;&#22580;&#21512;</span>
+<span class="linenr"> 5: </span><span style="color: #ffffff;">if</span> ( correct_box == 0 )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 0 &#30058;&#12398;&#22580;&#21512;</span>
 <span class="linenr"> 6: </span>  {
 <span class="linenr"> 7: </span>    <span style="color: #ffffff;">if</span> ( head_or_tail )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 0 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#34920;&#12394;&#12425; 1 &#30058;&#12434;&#36984;&#12406;</span>
 <span class="linenr"> 8: </span>      { open_box = 1; }
 <span class="linenr"> 9: </span>    <span style="color: #ffffff;">else</span>
 <span class="linenr">10: </span>      { open_box = 2; }         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 0 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#35023;&#12394;&#12425; 2 &#30058;&#12434;&#36984;&#12406;</span>
 <span class="linenr">11: </span>  }
-<span class="linenr">12: </span> <span style="color: #ffffff;">else</span> <span style="color: #ffffff;">if</span> ( collect_box == 1 )   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 1 &#30058;&#12398;&#22580;&#21512;</span>
+<span class="linenr">12: </span> <span style="color: #ffffff;">else</span> <span style="color: #ffffff;">if</span> ( correct_box == 1 )   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 1 &#30058;&#12398;&#22580;&#21512;</span>
 <span class="linenr">13: </span>   {
 <span class="linenr">14: </span>    <span style="color: #ffffff;">if</span> ( head_or_tail )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 1 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#34920;&#12394;&#12425; 0 &#30058;&#12434;&#36984;&#12406;</span>
 <span class="linenr">15: </span>      { open_box = 0; }
 <span class="linenr">16: </span>    <span style="color: #ffffff;">else</span>
 <span class="linenr">17: </span>      { open_box = 2; }         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 1 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#35023;&#12394;&#12425; 2 &#30058;&#12434;&#36984;&#12406;</span>
 <span class="linenr">18: </span>   }
-<span class="linenr">19: </span> <span style="color: #ffffff;">else</span> <span style="color: #ffffff;">if</span> ( collect_box == 2 )   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 2 &#30058;&#12398;&#22580;&#21512;</span>
+<span class="linenr">19: </span> <span style="color: #ffffff;">else</span> <span style="color: #ffffff;">if</span> ( correct_box == 2 )   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 2 &#30058;&#12398;&#22580;&#21512;</span>
 <span class="linenr">20: </span>   {
 <span class="linenr">21: </span>    <span style="color: #ffffff;">if</span> ( head_or_tail )         <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364; 2 &#30058;&#12391;&#12467;&#12452;&#12531;&#12364;&#34920;&#12394;&#12425; 1 &#30058;&#12434;&#36984;&#12406;</span>
 <span class="linenr">22: </span>      { open_box = 1; }
@@ -992,14 +1016,14 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#2
 </p>
 <div class="org-src-container">
 
-<pre class="src src-c++"><span class="linenr">1: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">collect_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
+<pre class="src src-c++"><span class="linenr">1: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">correct_box</span> = rand() % 3;   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12398;&#31665;(0, 1, 2)&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
 <span class="linenr">2: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">open_box</span>;                   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;</span>
 <span class="linenr">3: </span>
 <span class="linenr">4: </span><span style="color: #7fffd4;">int</span> <span style="color: #9acd32;">pls_or_mns</span> = ( rand() % 2 ) * 2 - 1; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#24038;(-1) &#12418;&#12375;&#12367;&#12399; &#21491;(1) &#12398;&#12356;&#12378;&#12428;&#12363;&#12434;&#12521;&#12531;&#12480;&#12512;&#12395;&#29983;&#25104;</span>
-<span class="linenr">5: </span>open_box = collect_box + pls_or_mns; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;&#12399;&#27491;&#35299;&#12398;&#31665;&#12398;&#24038;&#12363;&#21491;</span>
+<span class="linenr">5: </span>open_box = correct_box + pls_or_mns; <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;&#12399;&#27491;&#35299;&#12398;&#31665;&#12398;&#24038;&#12363;&#21491;</span>
 <span class="linenr">6: </span>
 <span class="linenr">7: </span><span style="color: #ffffff;">if</span> ( open_box &lt; 0 || open_box &gt; 2 ) <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#21496;&#20250;&#32773;&#12364;&#36984;&#12406;&#31665;&#12364;&#12300;0&#30058;&#12398;&#24038;&#12301;&#12418;&#12375;&#12367;&#12399;&#12300;2&#30058;&#12398;&#21491;&#12301;&#12395;&#12394;&#12387;&#12383;&#22580;&#21512;</span>
-<span class="linenr">8: </span>  { open_box = 2 - collect_box; }   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364;0&#30058;&#12394;&#12425;&#21496;&#20250;&#32773;&#12399;2&#30058;&#12434;&#65292;&#27491;&#35299;&#12364;2&#30058;&#12394;&#12425;&#21496;&#20250;&#32773;&#12399;0&#30058;&#12434;&#36984;&#12406;</span>
+<span class="linenr">8: </span>  { open_box = 2 - correct_box; }   <span style="color: #00cd66;">// </span><span style="color: #00cd66;">&#27491;&#35299;&#12364;0&#30058;&#12394;&#12425;&#21496;&#20250;&#32773;&#12399;2&#30058;&#12434;&#65292;&#27491;&#35299;&#12364;2&#30058;&#12394;&#12425;&#21496;&#20250;&#32773;&#12399;0&#30058;&#12434;&#36984;&#12406;</span>
 </pre>
 </div>
 <p>
@@ -1007,9 +1031,9 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#2
 </p>
 </div>
 </div>
-<div id="outline-container-sec-4-3-3" class="outline-4">
-<h4 id="sec-4-3-3"><span class="section-number-4">4.3.3</span> 解答者が選んだ箱と正解の箱から，司会者が選ぶ箱の番号を決めるプログラム</h4>
-<div class="outline-text-4" id="text-4-3-3">
+<div id="outline-container-sec-5-3-3" class="outline-4">
+<h4 id="sec-5-3-3"><span class="section-number-4">5.3.3</span> 解答者が選んだ箱と正解の箱から，司会者が選ぶ箱の番号を決めるプログラム</h4>
+<div class="outline-text-4" id="text-5-3-3">
 <p>
 以上の考え方に基づいて長江が作ったサンプル・プログラムが, 以下の <code>rep-another1.cpp</code> である．
 </p>
@@ -1017,9 +1041,9 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#27491;&#35299;&#12375;&#12383;&#2
 </div>
 </div>
 </div>
-<div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4"><span class="section-number-3">4.4</span> 「3つの箱から1つを当てるクイズ」を「司会者が開けた空箱を見て，変更するか否かを選択できる」ように拡張しよう</h3>
-<div class="outline-text-3" id="text-4-4">
+<div id="outline-container-sec-5-4" class="outline-3">
+<h3 id="sec-5-4"><span class="section-number-3">5.4</span> 「3つの箱から1つを当てるクイズ」を「司会者が開けた空箱を見て，変更するか否かを選択できる」ように拡張しよう</h3>
+<div class="outline-text-3" id="text-5-4">
 <p>
 3つの箱の中から正解を探すプログラム <code>rep-3in1.cpp</code> を，
 「司会者が空箱を開けた後に，選ぶ箱を残った箱に変更するか否か」を選択できるようにしたのが
@@ -1074,16 +1098,16 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#21496;&#20250;&#32773;&#12364;&#3
 </div>
 </div>
 
-<div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5"><span class="section-number-3">4.5</span> その先へ</h3>
-<div class="outline-text-3" id="text-4-5">
+<div id="outline-container-sec-5-5" class="outline-3">
+<h3 id="sec-5-5"><span class="section-number-3">5.5</span> その先へ</h3>
+<div class="outline-text-3" id="text-5-5">
 <p>
 ここから先は，サンプルプログラム無しで進めてみよう．
 </p>
 </div>
-<div id="outline-container-sec-4-5-1" class="outline-4">
-<h4 id="sec-4-5-1"><span class="section-number-4">4.5.1</span> 「空箱が示された後に, 選択を変更できるクイズ問題」を <code>N</code> 回繰り返し，正解数や正解率を求めよう</h4>
-<div class="outline-text-4" id="text-4-5-1">
+<div id="outline-container-sec-5-5-1" class="outline-4">
+<h4 id="sec-5-5-1"><span class="section-number-4">5.5.1</span> 「空箱が示された後に, 選択を変更できるクイズ問題」を <code>N</code> 回繰り返し，正解数や正解率を求めよう</h4>
+<div class="outline-text-4" id="text-5-5-1">
 <ul class="org-ul">
 <li>「3つの箱から1つを選択するクイズのプログラム(<code>rep-3in1.cpp</code>)」から,
 「それを <code>N</code> 回繰り返して正解数と正解率を求めるプログラム(<code>rep-3in1_Ntimes.cpp</code>)」へと拡張したように，
@@ -1092,9 +1116,9 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#21496;&#20250;&#32773;&#12364;&#3
 </ul>
 </div>
 </div>
-<div id="outline-container-sec-4-5-2" class="outline-4">
-<h4 id="sec-4-5-2"><span class="section-number-4">4.5.2</span> ユーザーによる意思決定(「解答者による箱の選択」や「空箱が示された後の選択の変更」)も計算機にさせよう</h4>
-<div class="outline-text-4" id="text-4-5-2">
+<div id="outline-container-sec-5-5-2" class="outline-4">
+<h4 id="sec-5-5-2"><span class="section-number-4">5.5.2</span> ユーザーによる意思決定(「解答者による箱の選択」や「空箱が示された後の選択の変更」)も計算機にさせよう</h4>
+<div class="outline-text-4" id="text-5-5-2">
 <ul class="org-ul">
 <li>ここまでは「解答者が最初に選ぶ箱」や「空箱が示された後で選択を変更するか否か」をユーザーに入力させているが, 
 これを100回, 1000回, 1万回, &#x2026;と繰り返すのは大変．
@@ -1138,9 +1162,9 @@ cout &lt;&lt; <span style="color: #bdb76b;">"&#21496;&#20250;&#32773;&#12364;&#3
 </div>
 </div>
 </div>
-<div id="outline-container-sec-5" class="outline-2">
-<h2 id="sec-5"><span class="section-number-2">5</span> TAさんのコード</h2>
-<div class="outline-text-2" id="text-5">
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> TAさんのコード</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 TA さんにも課題に取り組んでもらいました．
 C/C++ はソースコードの書き方に自由度が高いため，同じ処理でも書き手によって見た目が大きく異なります．
@@ -1168,7 +1192,7 @@ C/C++ はソースコードの書き方に自由度が高いため，同じ処�
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Takeshi Nagae</p>
-<p class="date">Created: 2014-07-04 Fri 02:06</p>
+<p class="date">Created: 2014-07-05 Sat 02:51</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.5h)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
